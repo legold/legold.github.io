@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/01/【聊一聊】js基础知识清单/index.html">
 <meta property="og:site_name" content="legold">
 <meta property="og:description" content="本篇文章的目的在于，列出js基础知识的清单，或者是收录js知识点，用于快速学习和了解该知识点，因此有些地方，不会深入描述。">
-<meta property="og:updated_time" content="2016-09-02T06:18:58.737Z">
+<meta property="og:updated_time" content="2016-09-02T10:42:38.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【聊一聊】js基础知识清单">
 <meta name="twitter:description" content="本篇文章的目的在于，列出js基础知识的清单，或者是收录js知识点，用于快速学习和了解该知识点，因此有些地方，不会深入描述。">
@@ -286,7 +286,8 @@
       
 
       
-        <blockquote>
+        <!--参考学习 http://pan.baidu.com/share/link?shareid=3706486130&uk=3742862273&fid=1271456057-->
+<blockquote>
 <p>本篇文章的目的在于，列出js基础知识的清单，或者是收录js知识点，用于快速学习和了解该知识点，因此有些地方，不会深入描述。</p>
 </blockquote>
 <a id="more"></a>
@@ -376,7 +377,137 @@
 <li>indexOf()</li>
 <li>lastindexOf()</li>
 </ul>
-<p><strong>未完待续</strong></p>
+<h3 id="数组常用函数"><a href="#数组常用函数" class="headerlink" title="数组常用函数"></a>数组常用函数</h3><p>数组排序 <code>sort()</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">11</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">33445</span>,<span class="number">5654</span>,<span class="number">666</span>,<span class="string">'asd'</span>,<span class="string">'b'</span>];</div><div class="line"><span class="built_in">console</span>.log(a.sort());  <span class="comment">// -&gt;[11, 2, 3, 33445, 5654, 666, "asd", "b"]</span></div></pre></td></tr></table></figure></p>
+<p>结果是不是很意外啊？没错，排序并不是按照整型大小，而是<strong>字符串对比</strong>，就是取第一个字符的ASCII码对比，小的排前面，相同的话取第二个字符再比，如果要按整型数值比较，可以这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">11</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">33445</span>,<span class="number">5654</span>,<span class="number">666</span>];</div><div class="line">a.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> a -b;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// -&gt; [2, 3, 11, 666, 5654, 33445]</span></div></pre></td></tr></table></figure></p>
+<p><code>reverse()</code>对数组进行反排序，跟sort()一样，取第一个字符ASCII码值进行比较。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">11</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">66</span>,<span class="number">4</span>];</div><div class="line"><span class="built_in">console</span>.log(a.reverse()); <span class="comment">// -&gt; [4,66,5,3,11]</span></div></pre></td></tr></table></figure></p>
+<p>如果数组里面还包含数组，则当做对象处理，并不会把元素一个个列出来作比较。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>,[<span class="number">4</span>,<span class="number">11</span>,<span class="number">3</span>]];</div><div class="line"><span class="built_in">console</span>.log(a.reverse());  <span class="comment">// -&gt; [[4,11,3],"g","f","e","d","c","b","a"]</span></div><div class="line"><span class="built_in">console</span>.log(a.join(<span class="string">' * '</span>)); <span class="comment">// -&gt; "4,11,3 * g * f * e * d * c * b * a"</span></div></pre></td></tr></table></figure></p>
+<p><code>toString()方法</code>把数组转换为字符串，不只数组，所有对象均可使用该方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,[<span class="string">'A'</span>,<span class="string">'B'</span>],<span class="number">100</span>];</div><div class="line"><span class="built_in">console</span>.log(a.toString()); <span class="comment">// -&gt; 5,6,7,A,B,100</span></div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="built_in">console</span>.log(b.toString()); <span class="comment">// -&gt; "Fri Sep 02 2016 16:15:28 GMT+0800 (中国标准时间)" (当前的日期时间)</span></div><div class="line"><span class="keyword">var</span> c = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">  alert(s);</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(c.toString()); <span class="comment">// -&gt; "function (s)&#123;alert(s)&#125;"</span></div></pre></td></tr></table></figure></p>
+<p>布尔值则返回true或false，对象则返回 [object objectname]。与join()方法相比，join()只对一维数组进行替换，而toString()则把整个数组（不管一维还是多维）完全平面化。同时该方法可用于十进制、二进制、八进制、十六进制转换，比如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="number">100</span>];</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</div><div class="line">  <span class="built_in">console</span>.log(a[i].toString()+<span class="string">" 的二进制是 "</span>+a[i].toString(<span class="number">2</span>)+ <span class="string">" ，八进制是 "</span>+a[i].toString(<span class="number">8</span>)+<span class="string">" ，十六进制是 "</span>+a[i].toString(<span class="number">16</span>)); <span class="comment">// -&gt; 可在命令台运行一下试试</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>valueOf()方法</code><br>根据不同对象返回不同原始值，用于输出的话跟toString()差不多，但是toString()是返回string类型，而valueOf()是返回原对象类型。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]];</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="keyword">var</span> c = <span class="literal">true</span>;</div><div class="line"><span class="keyword">var</span> d = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert(<span class="string">"holy"</span>);</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(a.valueOf());  <span class="comment">// [1,2,3,[4,5,6,[7,8,9]]]</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> (a.valueOf())); <span class="comment">//object</span></div><div class="line"><span class="built_in">console</span>.log(b.valueOf());  <span class="comment">//  1472807008013 (毫秒值)</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> (b.valueOf()));  <span class="comment">// number</span></div><div class="line"><span class="built_in">console</span>.log(c.valueOf()); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> (c.valueOf()));  <span class="comment">// boolean</span></div><div class="line"><span class="built_in">console</span>.log(d.valueOf());  <span class="comment">// function()&#123;alert('holy');&#125;</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(d.valueOf()));  <span class="comment">// function</span></div></pre></td></tr></table></figure></p>
+<p>数组也是对象，所以 <code>typeof (a.valueOf())</code> 返回object，返回的依然是个多维数组。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]];</div><div class="line"><span class="keyword">var</span> aa = a.valueOf();</div><div class="line"><span class="built_in">console</span>.log(aa[<span class="number">3</span>][<span class="number">3</span>][<span class="number">1</span>]);   <span class="comment">// -&gt; 8</span></div></pre></td></tr></table></figure></p>
+<p>剩余的详细api可以访问这里  <a href="http://www.w3school.com.cn/jsref/jsref_obj_array.asp" target="_blank" rel="external">javascript Array对象</a></p>
+<h1 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h1><p>javascript语言里的对象可以分为三种类型：</p>
+<blockquote>
+<ul>
+<li>用户定义对象（user-defined object）:由程序员自行创建的对象。</li>
+<li>内置对象（native object）:内置在javascript语言里的对象，如Array、Math和Date等。</li>
+<li>宿主对象（host object）:由浏览器提供的对象。  </li>
+</ul>
+</blockquote>
+<h3 id="window对象常用属性"><a href="#window对象常用属性" class="headerlink" title="window对象常用属性"></a>window对象常用属性</h3><p>可以通过下面这种方法获取window的属性：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> e <span class="keyword">in</span> <span class="built_in">window</span>)&#123;</div><div class="line">  <span class="built_in">console</span>.log(e);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>常用属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>closed</td>
+<td>返回窗口是否已被关闭</td>
+</tr>
+<tr>
+<td>name</td>
+<td>设置或返回窗口或者框架的名称</td>
+</tr>
+<tr>
+<td>document</td>
+<td>对document对象的只读引用，该文档表示浏览器窗口中的HTML文档</td>
+</tr>
+<tr>
+<td>history</td>
+<td>对history对象的只读引用，该对象包含当前浏览器访问过的URL信息</td>
+</tr>
+<tr>
+<td>location</td>
+<td>对于窗口或框架的location对象，包含当前相关的URL信息</td>
+</tr>
+<tr>
+<td>screen</td>
+<td>对screen对象额只读引用，该对象包含有关客户的屏幕和显示性能信息</td>
+</tr>
+<tr>
+<td>status</td>
+<td>设置或者读取窗口状态栏的文本信息</td>
+</tr>
+<tr>
+<td>innerHeight</td>
+<td>返回窗口的文档显示区的高度</td>
+</tr>
+<tr>
+<td>innerWidth</td>
+<td>返回窗口的文档显示区的宽度</td>
+</tr>
+<tr>
+<td>opener</td>
+<td>返回对创建此窗口的窗口的引用，当在界面A中打开另外一个窗口B的时候，可以在页面B中使用该属性得到页面A的信息</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>返回父窗口，一般在框架中使用</td>
+</tr>
+<tr>
+<td>screenLeft screenTop</td>
+<td>只读整数，声明窗口的左上角在屏幕上的x坐标和y坐标。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="window对象常用方法"><a href="#window对象常用方法" class="headerlink" title="window对象常用方法"></a>window对象常用方法</h3><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alert()</td>
+<td>显示包含应指定信息的对话框，确认框中只有一个确认按钮</td>
+</tr>
+<tr>
+<td>confirm()</td>
+<td>显示一个带指定信息的确认框，确认框带确认和取消按钮，<code>选择不同按钮返回不同结果</code></td>
+</tr>
+<tr>
+<td>prompt()</td>
+<td>显示一个带提示信息的输入框</td>
+</tr>
+<tr>
+<td>parseInt()</td>
+<td>将指定字符串转化为整型数字</td>
+</tr>
+<tr>
+<td>parseFloat()</td>
+<td>将指定字符串转化为浮点型数字</td>
+</tr>
+<tr>
+<td>open()</td>
+<td>打开一个新窗体，并加载指定的html文档</td>
+</tr>
+<tr>
+<td>close()</td>
+<td>关闭当前的浏览器窗体</td>
+</tr>
+<tr>
+<td>setTimeout()</td>
+<td>设置定时器，在指定毫秒值之后指定某个运行的函数</td>
+</tr>
+<tr>
+<td>clearTimeout()</td>
+<td>取消某个定时器</td>
+</tr>
+</tbody>
+</table>
+<p><strong>confirm()</strong>方法的作用是弹出有两个按钮的对话框，一个是【确定】，一个是【取消】，单击【确定】按钮则返回真，否则为假。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="keyword">var</span> res = confirm(<span class="string">'你今天开心吗？'</span>);</div><div class="line">   <span class="keyword">if</span>(res)&#123;</div><div class="line">     alert(<span class="string">'相当开心！'</span>);</div><div class="line">   &#125;<span class="keyword">else</span>&#123;</div><div class="line">     alert(<span class="string">'要开心呀！'</span>);</div><div class="line">   &#125;</div><div class="line">&#125;());</div></pre></td></tr></table></figure></p>
+<p><strong>prompt()</strong>方法的作用是为了显示可提示用户进行输入对话框。</p>
+<pre><code>prompt(text,defaultText)
+</code></pre><p>text:可选，要在对话框中显示的纯文本(而不是html格式的文本)。<br>defaultText:可选，默认的输入文本。<br>如果用户单击提示框中的【取消】按钮或者什么都不输入，直接关闭对话框，则返回 <code>null</code>。如果用户单击【确定按钮】，则返回输入字段当前显示的文本。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">win_prompt</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> name = prompt(<span class="string">"请输入你的名字"</span>,<span class="string">"王尼玛"</span>);</div><div class="line">  <span class="keyword">if</span>(name!=<span class="literal">null</span> &amp;&amp; name!=<span class="string">''</span>)&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">'Hello '</span>+name+<span class="string">' !'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;());</div></pre></td></tr></table></figure>
+<p><strong>open()</strong>方法</p>
+<pre><code>open(&apos;http://legold.cc&apos;,&apos;磊哥&apos;,&apos;width=400,height=600,menubar=1,statusbars=0&apos;);
+</code></pre><p><strong>未完待续</strong></p>
 
       
     </div>
@@ -541,7 +672,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ES5数据类型"><span class="nav-number">1.</span> <span class="nav-text">ES5数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊的内置函数"><span class="nav-number">2.1.</span> <span class="nav-text">特殊的内置函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的作用域、局部变量、函数声明提升与变量提升"><span class="nav-number">2.2.</span> <span class="nav-text">函数的作用域、局部变量、函数声明提升与变量提升</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用对象"><span class="nav-number">3.</span> <span class="nav-text">常用对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串对象"><span class="nav-number">3.1.</span> <span class="nav-text">字符串对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#转义字符串对象"><span class="nav-number">3.1.1.</span> <span class="nav-text">转义字符串对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串对象的定义"><span class="nav-number">3.1.2.</span> <span class="nav-text">字符串对象的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串对象的方法"><span class="nav-number">3.1.3.</span> <span class="nav-text">字符串对象的方法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ES5数据类型"><span class="nav-number">1.</span> <span class="nav-text">ES5数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊的内置函数"><span class="nav-number">2.1.</span> <span class="nav-text">特殊的内置函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的作用域、局部变量、函数声明提升与变量提升"><span class="nav-number">2.2.</span> <span class="nav-text">函数的作用域、局部变量、函数声明提升与变量提升</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用对象"><span class="nav-number">3.</span> <span class="nav-text">常用对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串对象"><span class="nav-number">3.1.</span> <span class="nav-text">字符串对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#转义字符串对象"><span class="nav-number">3.1.1.</span> <span class="nav-text">转义字符串对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串对象的定义"><span class="nav-number">3.1.2.</span> <span class="nav-text">字符串对象的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串对象的方法"><span class="nav-number">3.1.3.</span> <span class="nav-text">字符串对象的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组常用函数"><span class="nav-number">3.1.4.</span> <span class="nav-text">数组常用函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#window对象"><span class="nav-number">4.</span> <span class="nav-text">window对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#window对象常用属性"><span class="nav-number">4.0.1.</span> <span class="nav-text">window对象常用属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window对象常用方法"><span class="nav-number">4.0.2.</span> <span class="nav-text">window对象常用方法</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
