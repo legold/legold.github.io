@@ -97,7 +97,7 @@
 
 原始写法模块就是实现特定功能的一组方法。只要把不同的函数（以及记录状态的变量）简单地放在一起，就算是一个模块。123456function m1()&amp;#123;	// ...&amp;#125;function m2()&amp;#123;	// ...&amp;#125;">
 <meta property="og:image" content="http://image.beekka.com/blog/201210/bg2012102601.jpg">
-<meta property="og:updated_time" content="2016-09-05T04:09:50.446Z">
+<meta property="og:updated_time" content="2016-09-05T04:28:14.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript模块化编程(一):模块的写法">
 <meta name="twitter:description" content="javascript模块化编程对于对于日渐复杂的前端网页来说很有必要，因此掌握js模块化对于前端程序员来说也是必须学习与掌握的。
@@ -310,7 +310,19 @@
 <pre><code>module1.m1();
 </code></pre><p>但是，这样的写法会暴露所有模块成员，内部状态可以被外部改写。比如，外部代码可以直接改变内部计数器的值。</p>
 <pre><code>module1._count = 5;
-</code></pre><h1 id="立即执行"><a href="#立即执行" class="headerlink" title="立即执行"></a>立即执行</h1>
+</code></pre><h1 id="立即执行函数写法-IIFE"><a href="#立即执行函数写法-IIFE" class="headerlink" title="立即执行函数写法(IIFE)"></a>立即执行函数写法(IIFE)</h1><p>使用”<a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/" target="_blank" rel="external">立即执行匿名函数</a>“（Immediately-Invoked Function Expression，IIFE），也有叫做”自执行匿名函数”，可以达到不暴露私有成员的目的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> module1 = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> _count = <span class="number">0</span>;</div><div class="line">	<span class="keyword">var</span> m1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="comment">// ...</span></div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">var</span> m2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="comment">// ...</span></div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">       m1:m1,</div><div class="line">       m2:m2</div><div class="line">    &#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>使用上面的写法，外部代码无法读取_count变量。</p>
+<pre><code>console.log(module1._count); //undefined
+</code></pre><p>module1就是Javascript模块的基本写法。下面，再对这种写法进行加工。</p>
+<h1 id="放大模式"><a href="#放大模式" class="headerlink" title="放大模式"></a>放大模式</h1><p>如果一个模块很大，必须分成几个部分或者是一个模块需要继承另一个模块，这时就有必要采用”放大模式”(augmentation)。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> module1 = (<span class="function"><span class="keyword">function</span>(<span class="params">mod</span>)</span>&#123;</div><div class="line">	mod.m3 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="comment">// ...</span></div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">return</span> mod;</div><div class="line">&#125;)(module1);</div></pre></td></tr></table></figure></p>
+<p>上面的代码<strong>为module1模块添加了一个新方法m3()，然后返回新的module1模块。</strong></p>
+<h1 id="宽放大模式（Loose-augmentation）"><a href="#宽放大模式（Loose-augmentation）" class="headerlink" title="宽放大模式（Loose augmentation）"></a>宽放大模式（Loose augmentation）</h1><p>在浏览器环境中，模块的各个部分通常都是从网上获取的，有时无法知道哪个部分会先加载。如果采用上一节的写法，第一个执行的部分有可能加载一个不存在空对象，这时就要采用”宽放大模式”。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> module1 = ( <span class="function"><span class="keyword">function</span> (<span class="params">mod</span>)</span>&#123;</div><div class="line">　　<span class="comment">//...</span></div><div class="line">　　<span class="keyword">return</span> mod;</div><div class="line">&#125;)(<span class="built_in">window</span>.module1 || &#123;&#125;);</div></pre></td></tr></table></figure>
+<p>与”放大模式”相比，＂宽放大模式＂就是”立即执行函数”的参数可以是空对象。</p>
+<h1 id="输入全局变量"><a href="#输入全局变量" class="headerlink" title="输入全局变量"></a>输入全局变量</h1><p>独立性是模块的重要特点，模块内部最好不与程序的其他部分直接交互。<br>为了在模块内部调用全局变量，必须显式地将其他变量输入模块。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> module1 = (<span class="function"><span class="keyword">function</span> (<span class="params">$, YAHOO</span>) </span>&#123;</div><div class="line">　　<span class="comment">//...</span></div><div class="line">&#125;)(jQuery, YAHOO);</div></pre></td></tr></table></figure></p>
+<p>上面的module1模块需要使用jQuery库和YUI库，就把这两个库（其实是两个模块）当作参数输入module1。这样做除了保证模块的独立性，还使得模块之间的依赖关系变得明显。这方面更多的讨论</p>
+<p>转自阮一峰老师的文章<a href="http://www.ruanyifeng.com/blog/2012/10/javascript_module.html" target="_blank" rel="external">这里</a></p>
+
       
     </div>
 
@@ -474,7 +486,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原始写法"><span class="nav-number">1.</span> <span class="nav-text">原始写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象写法"><span class="nav-number">2.</span> <span class="nav-text">对象写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#立即执行"><span class="nav-number">3.</span> <span class="nav-text">立即执行</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原始写法"><span class="nav-number">1.</span> <span class="nav-text">原始写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象写法"><span class="nav-number">2.</span> <span class="nav-text">对象写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#立即执行函数写法-IIFE"><span class="nav-number">3.</span> <span class="nav-text">立即执行函数写法(IIFE)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#放大模式"><span class="nav-number">4.</span> <span class="nav-text">放大模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#宽放大模式（Loose-augmentation）"><span class="nav-number">5.</span> <span class="nav-text">宽放大模式（Loose augmentation）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入全局变量"><span class="nav-number">6.</span> <span class="nav-text">输入全局变量</span></a></li></ol></div>
             
           </div>
         </section>
