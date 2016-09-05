@@ -96,6 +96,8 @@
 如果你之前已经习惯了用jQuery操作DOM，学习Vue.js时请先抛开手动操作DOM的思维，因为Vue.js是数据驱动的，你无需手动操作DOM。它通过一些特殊的HTML语法，将">
 <meta property="og:image" content="http://cn.vuejs.org/images/mvvm.png">
 <meta property="og:image" content="http://yoursite.com/images/v1.png">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/341820/201606/341820-20160627065311062-227248599.gif">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/341820/201606/341820-20160627065313046-1157492348.gif">
 <meta property="og:image" content="http://yoursite.com/images/v2.png">
 <meta property="og:image" content="http://yoursite.com/images/v3.png">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/341820/201606/341820-20160627065319406-1162614113.gif">
@@ -106,7 +108,7 @@
 <meta property="og:image" content="http://yoursite.com/images/v6.png">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/341820/201606/341820-20160627065331124-2002999272.gif">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/341820/201606/341820-20160627065333452-768092605.gif">
-<meta property="og:updated_time" content="2016-09-05T10:35:31.339Z">
+<meta property="og:updated_time" content="2016-09-05T10:43:31.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js学习笔记（一）">
 <meta name="twitter:description" content="Vue.js是当下很火的一个JavaScript MVVM库，它是以数据驱动和组件化的思想构建的。相比于Angular.js，Vue.js提供了更加简洁、更易于理解的API，使得我们能够快速地上手并使用Vue.js。
@@ -326,7 +328,7 @@
 <p><img src="/images/v1.png" alt="demo1"></p>
 <p>从上图可以看出，一个ViewModel实例，他的message属性引用的是它的选项对象data属性的message。因为，<strong>每个Vue实例都会代理其选项对象里的data属性</strong>。</p>
 <h1 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h1><p>MVVM模式本身是实现了双向绑定的，在Vue.js中可以使用v-model指令在表单元素上创建双向数据绑定。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--这是我们的View--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"message"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>将message绑定到文本框，当更改文本框的值时，</p><p></p> 中的内容也会被更新。<br><a href="http://images2015.cnblogs.com/blog/341820/201606/341820-20160627065311062-227248599.gif" target="_blank" rel="external">双向绑定</a><br>反过来，如果改变message的值，文本框的值也会被更新，我们可以在Chrome控制台进行尝试。<br><a href="http://images2015.cnblogs.com/blog/341820/201606/341820-20160627065313046-1157492348.gif" target="_blank" rel="external">双向绑定</a><p></p>
+<p>将message绑定到文本框，当更改文本框的值时，</p><p></p> 中的内容也会被更新。<br><img src="http://images2015.cnblogs.com/blog/341820/201606/341820-20160627065311062-227248599.gif" alt="双向绑定"><br>反过来，如果改变message的值，文本框的值也会被更新，我们可以在Chrome控制台进行尝试。<br><img src="http://images2015.cnblogs.com/blog/341820/201606/341820-20160627065313046-1157492348.gif" alt="双向绑定"><p></p>
 <blockquote>
 <p>Vue实例的data属性指向exampleData，它是一个引用类型，改变了exampleData对象的属性，同时也会影响Vue实例的data属性。  </p>
 </blockquote>
