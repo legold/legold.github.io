@@ -1,0 +1,673 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js创建对象," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="ECMA-262把对象定义为：”无需属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说明对象是一组没有特定顺序的值。   
+
+ECMA-262把对象定义为：”无需属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说明对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把ECMAScript的对象想象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中创建对象的7种模式">
+<meta property="og:url" content="http://yoursite.com/2016/09/26/JavaScript中创建对象的7种模式/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="ECMA-262把对象定义为：”无需属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说明对象是一组没有特定顺序的值。   
+
+ECMA-262把对象定义为：”无需属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说明对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把ECMAScript的对象想象">
+<meta property="og:updated_time" content="2016-09-27T08:07:11.052Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript中创建对象的7种模式">
+<meta name="twitter:description" content="ECMA-262把对象定义为：”无需属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说明对象是一组没有特定顺序的值。   
+
+ECMA-262把对象定义为：”无需属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说明对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把ECMAScript的对象想象">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/26/JavaScript中创建对象的7种模式/"/>
+
+  <title> JavaScript中创建对象的7种模式 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript中创建对象的7种模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-26T14:13:27+08:00" content="2016-09-26">
+              2016-09-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/26/JavaScript中创建对象的7种模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/26/JavaScript中创建对象的7种模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>ECMA-262把对象定义为：”无需属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说明对象是一组没有特定顺序的值。   </p>
+</blockquote>
+<p>ECMA-262把对象定义为：”无需属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说明对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把ECMAScript的对象想象成散列表：无非就是一组名对值，其中值可以是数据或函数。</p>
+<a id="more"></a>
+<p> 创建自定义对象最简单的方式就是创建一个<code>Object</code>的实例，然后再为他添加属性和方法，如下所示：<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">person.name = <span class="string">'huanglei'</span>;</div><div class="line">person.age = <span class="number">24</span>;</div><div class="line">person.job = <span class="string">'boss'</span>;</div><div class="line"></div><div class="line">person.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>上面的例子创建了一个名为<code>person</code>的对象，并为他添加了三个属性和一个方法。其中<code>sayName</code>方法用于显示<code>name</code>属性，<code>this.name</code>将被解析为<code>person.name</code>，早期的开发人员经常使用这个模式来创建对象，后来对象字面量的方法成了创建对象的首选模式，上面的例子用对象字面量的语法可以写成如下。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">	name:<span class="string">'huanglei'</span>,</div><div class="line">	age:<span class="number">24</span>,</div><div class="line">	job:<span class="string">'boss'</span>,</div><div class="line">	sayName:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这个例子中的<code>person</code>对象和前面的对象是一样的，都有相同的属性和方法。<br>虽然<code>Object</code>构造函数或者对象字面量的方法都可以用来创建单个对象，但是这些方法有个明显的缺点：使用同一个接口创建很多对象，会产生大量的重复代码。为了解决这个方法，人们开始使用工厂模式的一种变体。</p>
+<h2 id="一、工厂模式"><a href="#一、工厂模式" class="headerlink" title="一、工厂模式"></a>一、工厂模式</h2><p>工厂模式是软件工程领域一种广为人知的设计模式，这种模式抽象了创建具体对象的过程。考虑到ECMAScript中无法创建类，开发人员就发明了一种函数，用函数来封装以特定接口创建对象的细节，如下所示：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name,age,job</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">	o.name = name;</div><div class="line">	o.age = age;</div><div class="line">	o.job = job;</div><div class="line">	o.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> o;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person1 = createPerson(<span class="string">'holy'</span>,<span class="number">25</span>,<span class="string">'farmer'</span>);</div><div class="line"><span class="keyword">var</span> person2 = createPerson(<span class="string">'lilei'</span>,<span class="number">29</span>,<span class="string">'teacher'</span>);</div></pre></td></tr></table></figure></p>
+<p>函数<code>createPerson()</code>能够根据接受的参数来构建一个包含所有必要信息的<code>Person</code>对象。可以多次调用这个函数，每次都会返回一个包含三个属性一个方法的对象。工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别的问题，即怎么样知道这是哪个对象类型。</p>
+<h2 id="二、构造函数模式"><a href="#二、构造函数模式" class="headerlink" title="二、构造函数模式"></a>二、构造函数模式</h2><p>像Array、Object这样的原生构造函数，在运行时会自动出现在执行环境中。此外，我们可以创建自定义构建函数，从而定义自定义类型的属性和方法。例如，我们可以使用构造函数重写上个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age,job</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.name = name;</div><div class="line">	<span class="keyword">this</span>.age = age;</div><div class="line">	<span class="keyword">this</span>.job = job;</div><div class="line">	<span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">'holy'</span>,<span class="number">25</span>,<span class="string">'farmer'</span>);</div><div class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">'lilei'</span>,<span class="number">29</span>,<span class="string">'teacher'</span>);</div></pre></td></tr></table></figure></p>
+<p>在这个例子中，<code>Person()</code>函数取代了<code>createPerson()</code>函数，我们注意到<code>Person()</code>与<code>createPerson()</code>的不同之处在于：</p>
+<ul>
+<li>没有显示的创建对象</li>
+<li>直接将属性和方法赋值给this对象（下面生成的实例）</li>
+<li>没有<code>return</code>语句<br>此外，还应该注意到函数名Person使用的是大写字母P。按照惯例，构造函数始终都应该以一个大写字母开头，而非构造函数则应该以一个小写字母开头。这个做法借鉴了其他OO语言，主要是为了区别于ECMAScript中的其他函数。因为构造函数本身也是函数，只不过可以创建对象而已。<br>要创建一个<code>Person</code>实例，必须使用new操作符。以上这种方式会经过以下四个步骤：<br>1，创建一个新对象<br>2，将构造函数的作用域赋给新对象<br>3，执行构造函数中的代码<br>4，返回新对象<br>在前面例子的最后，<code>person1</code>和<code>person2</code>分别保存着<code>Person</code>的一个不同的实例。这两个对象都有一个<code>constructor</code>（构造函数）属性，该属性指向<code>Person</code>。如下：<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(person1.constructor == Person);</div><div class="line"><span class="built_in">console</span>.log(person2.constructor == Person);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>对象的<code>constructor</code>属性最初是用来标识对象类型的。但是，提到检测对象类型，还是<code>instanceof</code>操作符比较可靠一些。我们在这个例子中创建的对象都是<code>Object</code>对象的实例，也是<code>Person</code>对象的实例，这一点通过<code>instanceof</code>操作符可以验证。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(person1 <span class="keyword">instanceof</span> Obeject);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(person1 <span class="keyword">instanceof</span> Person);   <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(person2 <span class="keyword">instanceof</span> <span class="built_in">Object</span>);   <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(person2 <span class="keyword">instanceof</span> Person);   <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>创建自定义的构造函数意味着将来可以将他的实例标识为一种特定的类型；而这正是构造函数模式胜过工厂模式的地方。在这个例子中，<code>person1</code>和<code>person2</code>之所以同是<code>Object</code>的实例，是因为所有的对象都继承自Object。<br>构造函数的主要问题，就是每个方法都要在实例上重新创建一遍，造成内存浪费。在前面的例子中，<code>person1</code>和<code>person2</code>都有一个名为<code>sayName()</code>的方法，但是两个方法不是同一<code>Function</code>的实例。不要忘了ECMAScript中的函数也是对象，因此每定义一个函数，也就是实例化了一个对象，从逻辑角度讲，此时的构造函数可以这样定义：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age,job</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.name = name;</div><div class="line">	<span class="keyword">this</span>.age = age;</div><div class="line">	<span class="keyword">this</span>.job = job;</div><div class="line">	<span class="keyword">this</span>.sayName = <span class="keyword">new</span> <span class="built_in">Function</span>&#123;<span class="string">'alert(this.name)'</span>&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>从这个角度来看构造函数，更容易看明白每个Person实例都会包含一个不同的Function实例的本质。说明白些，会导致不同的作用域链和标识符解析，但是创建Function新实例的机制仍然是相同的。因此，不同实例上的同名函数是不相等的，以下代码可以证实这一点。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(person1.sayName == person2.sayName); <span class="comment">//false</span></div></pre></td></tr></table></figure></p>
+<p>然而，创建两个完成同样任务的Function实例的确没有必要；况且有this对象在，根本不用在执行代码前就把函数绑定到特定的对象上。因此，可以像下面这样，通过把函数定义转移到构造函数外部来解决这个问题。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">    <span class="keyword">this</span>.job = job;</div><div class="line">    <span class="keyword">this</span>.sayName = sayName;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>.name);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样做解决了多个函数解决相同问题的问题，但是有产生了新的问题，在全局作用域中实际上只被某个对象调用，这让全局对象有点名不副实。更让人无法接受的是：如果对象需要定义很多方法，那么就要定义很多全局函数，于是我们这个自定义的引用类型就丝毫没有封装性可言了。好在这些问题可以使用原型模式来解决。</p>
+<h2 id="三、原型模式"><a href="#三、原型模式" class="headerlink" title="三、原型模式"></a>三、原型模式</h2><p>我们创建的每个函数都有一个<code>prototype</code>（原型）属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。使用原型对象的实例就是让所有实例共享它所包含的属性和方法。换句话说，不必在构造函数中定义对象的实例信息，而是可以将这些信息直接添加到原型对象中，如下所示：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">Person.prototype.name = <span class="string">'holy'</span>;</div><div class="line">Person.prototytpe.age = <span class="number">24</span>;</div><div class="line">Person.prototype.job = <span class="string">'boss'</span>;</div><div class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="keyword">this</span>.name);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</div><div class="line">person1.sayName();</div><div class="line"></div><div class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</div><div class="line">person2.sayName();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(person1.sayName == person2.sayName);</div></pre></td></tr></table></figure></p>
+<p>在此，我们将sayName()方法和所有的属性直接添加在了Person的prototype属性中，构造函数变成了空函数。即便如此，我们仍然可以通过构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但是与构造函数不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，person1和person2访问的都是同一组属性和同一个sayName()函数。要理解原型模式的工作原理，就必须先理解ECMAScript中原型对象的性质。<br>原型对象的本性由于篇幅太长将会在下一章节详细分析。上面我们说了原型模式的好处，接下来我们来看一下原型模式的缺点。原型模式省略了为构造函数传递参数的这一环节，结果所有实例在默认情况下都具有相同的属性值。这会在某些程度上带来一种不便，这并不是原型模式最大的问题，因为如果我们想为一个通过原型模式创建的对象添加属性时，添加的这个属性就会屏蔽原型对象的保存的同名属性。换句话说，就是添加的这个属性会阻止我们去访问原型中的属性，但并不会改变原型中的属性。<br>原型模式最大的问题是由其共享的本质所导致的。原型中所有的属性被很多实例共享，这种共享对函数非常合适，对包含基本值的属性也说的过去，但是对引用类型的属性值来说问题就比较突出了，下面我们来看一个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</div><div class="line">&#125;</div><div class="line">Person.prototype = &#123;</div><div class="line">    <span class="keyword">constructor</span>:Person,</div><div class="line">    name:"wei",</div><div class="line">    age:29,</div><div class="line">    friends:["乾隆","康熙"],</div><div class="line">    sayName:function()&#123;</div><div class="line">        alert(<span class="keyword">this</span>.name);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</div><div class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</div><div class="line">person1.friends.push(<span class="string">"嬴政"</span>);</div><div class="line"><span class="built_in">console</span>.log(person1.friends);   <span class="comment">//["乾隆","康熙","嬴政"]</span></div><div class="line"><span class="built_in">console</span>.log(person2.friends);   <span class="comment">//["乾隆","康熙","嬴政"]</span></div><div class="line"><span class="built_in">console</span>.log(person1.friends === person2.friends);   <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>上面的例子中，Person.prototype对象有一个名为friends的属性，该属性包含一个字符串数组。然后创建了两个Person的实例，接着修改person1.friends引用的数组，向数组中添加一个字符串，由于数组存在于Person.prototype中而不是person1中，所以person2.friends也会被修改。但是一般每个对象都是要有属于自己的属性的，所以我们很少看到有人单独使用原型模式来创建对象。</p>
+<h2 id="四、组合使用构造函数模式和原型模式（混合模式）"><a href="#四、组合使用构造函数模式和原型模式（混合模式）" class="headerlink" title="四、组合使用构造函数模式和原型模式（混合模式）"></a>四、组合使用构造函数模式和原型模式（混合模式）</h2><p>创建自定义类型最常见的方式就是组合使用构造函数模式与原型模式。<strong>构造函数模式用于定义实例属性，原型模式用于定义方法和共享的属性</strong>。结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度的节省了内存。另外，这种混成模式还支持向构造函数传递参数；可谓是集两种模式之长。下面的代码重写了前面的例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.name = name;</div><div class="line">	<span class="keyword">this</span>.age = age;</div><div class="line">	<span class="keyword">this</span>.friend = [<span class="string">'rose'</span>,<span class="string">'jack'</span>]; <span class="comment">//共享属性</span></div><div class="line">&#125;</div><div class="line">Person.prototype = &#123;</div><div class="line">	<span class="keyword">constructor</span>:Person,  //重设一下类</div><div class="line">	sayName:function()&#123;</div><div class="line">        alert(<span class="keyword">this</span>.name);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">'holy'</span>,<span class="number">25</span>);</div><div class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">'lilei'</span>,<span class="number">39</span>);</div><div class="line"></div><div class="line">person1.friends.push(<span class="string">'tail swift'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(person1.friends);  <span class="comment">//["rose", "jack", "tail swift"]</span></div><div class="line"><span class="built_in">console</span>.log(person2.friends);  <span class="comment">//["rose", "jack"]</span></div><div class="line"><span class="built_in">console</span>.log(person1.friends === person2.friends);  <span class="comment">//false</span></div><div class="line"><span class="built_in">console</span>.log(person1.sayName === person2.sayName);  <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>在这个例子中，实例属性都是在构造函数中定义的，而由所有实例共享的属性constructor和方法sayName()则是在原型中定义的。所以修改了person1.friends并不会改变person2.friends，因为他们分别引用了不同的数组。<br>这种构造函数与原型模式混成的模式，是目前在ECMAScript中使用最广泛、认同度最高的一种创建自定义类型的方法。可以说，这是用来定义引用的一种默认形式。</p>
+<h2 id="五、动态原型模式"><a href="#五、动态原型模式" class="headerlink" title="五、动态原型模式"></a>五、动态原型模式</h2><p>有其他OO语言经验的开发人员在看到独立的构造函数和原型时，很可能会感到非常的困惑。动态原型模式就是用来解决这个问题的一个方案，它把所有的信息都封装在了构造函数中，而通过构造函数中初始化原型（仅在必要的情况下），又保持了同时使用构造函数和原型的优点。换句话说，可以通过检查某个应该存在的方法是否有效，来决定是否要初始化原型。来看一个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">    <span class="keyword">this</span>.friends = [<span class="string">"乾隆"</span>,<span class="string">"康熙"</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName!=<span class="string">"function"</span>)&#123;</div><div class="line">        Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(<span class="keyword">this</span>.name);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"wei"</span>,<span class="number">29</span>);</div><div class="line">person1.friends.push(<span class="string">"嬴政"</span>);</div><div class="line">person1.sayName();</div></pre></td></tr></table></figure>
+<p>注意构造函数代码中的if语句，这里只在sayName()方法不存在的情况下才会将它添加到原型中。这断代码只有在第一次调用构造函数的时候才会被执行。此后，原型已经被初始化，不需要再做什么修改。不过要记住，这里所做的修改能立即在所有实例中得到反映。因此，这种方法可以说确实非常完美。其中if语句检查的是初始化之后应该存在的任何方法和属性–不必再用一大堆if来检查每个属性和方法，只检查其中一个即可。对于采用这样模式创建的对象，还可以使用instanceof操作符来确定他的类型。<br><strong>注意：使用动态原型模式时，不能使用对象字面量重写原型。如果在已经创建了实例的情况下重写原型，那么就会切断现有的实例与新原型之间的联系。</strong></p>
+<h2 id="六、寄生构造函数模式"><a href="#六、寄生构造函数模式" class="headerlink" title="六、寄生构造函数模式"></a>六、寄生构造函数模式</h2><p>通常，在上述几种模式都不适合的情况下可以使用寄生构造函数模式。这种模式的基本思想是创建一个函数，该函数的作用仅仅是封装创建对象的代码，然后再返回新创建的对象，但从表面看，这个函数又很像典型的构造函数。来看一个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">    o.name = name;</div><div class="line">    o.age = age;</div><div class="line">    o.job = job;</div><div class="line">    o.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="keyword">this</span>.name);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> o;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">"wei"</span>,<span class="number">29</span>,<span class="string">"banzhuan"</span>);</div><div class="line">person.sayName();</div></pre></td></tr></table></figure></p>
+<p>在这个例子中，Person函数创建了一个对象，并以相应的属性和方法初始化该对象，然后返回了这个对象。除了使用new操作符把使用的包装函数叫做构造函数之外，这个模式和工厂模式并没有多大的区别。构造函数在不返回值的情况下，会默认返回新对象的实例。而通过在构造函数的末尾添加一个return语句，可以重写调用构造函数时返回的值。<br>这个模式可以在特殊的情况下来为对象创建构造函数。假设我们想创建一个具有额外方法的特殊数组。由于不能直接修改Array构造函数，因此可以使用这个模式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">SpecialArray</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//创建数组</span></div><div class="line">    <span class="keyword">var</span> values = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line"></div><div class="line">    <span class="comment">//添加值</span></div><div class="line">    values.push.apply(values,<span class="built_in">arguments</span>);</div><div class="line"></div><div class="line">    <span class="comment">//添加方法</span></div><div class="line">    values.toPipedString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.join(<span class="string">"|"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//返回数组</span></div><div class="line">    <span class="keyword">return</span> values;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> SpecialArray(<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>);</div><div class="line"><span class="built_in">console</span>.log(colors.toPipedString());    <span class="comment">//red|blue|green</span></div></pre></td></tr></table></figure></p>
+<p>在这个例子中，我们创建了一个名为SpecialArray的构造函数。在这个函数的内部，首先创建了一个数组，然后push()方法初始化了数组的值。随后又给数组实例添加了toPipedString()方法，用来返回以竖线分隔的数组值。最后将数组以函数的形式返回。接着，我们调用了SpecialArray构造函数，传入了初始化的值，并调用了toPipedString()方法。<br>关于寄生构造函数模式，有一点需要声明：首先，返回的对象与构造函数或者构造函数的原型没有任何关系；也就是说，构造函数返回的对象与在构造函数外部创建的对象没有什么不同。为此，不能依赖instanceof操作符来确定对象的类型。由于存在这一的问题，我们建议在可以使用其他模式的情况下不要使用这种模式。</p>
+<h2 id="七、稳妥构造函数模式"><a href="#七、稳妥构造函数模式" class="headerlink" title="七、稳妥构造函数模式"></a>七、稳妥构造函数模式</h2><p>道格拉斯·克拉克福德发明了JavaScript中的稳妥对象这个概念。所谓稳妥对象，是指没有公共属性，而且其方法也不引用this对象。稳妥对象最适合在一些安全环境中（这些环境会禁止使用this和new），或者在防止数据被其他应用程序改动时使用。稳妥构造函数遵循的与寄生构造函数类似的模式，但又两点不同：一是新创建对象的实例方法不引用this；二是不使用new操作符调用构造函数。按照稳妥构造函数的要求，可以将前面的Person构造函数重写如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</div><div class="line">    <span class="comment">//创建要返回的新对象</span></div><div class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line"></div><div class="line">    <span class="comment">//可以在这里定义私有变量和函数</span></div><div class="line"></div><div class="line">    <span class="comment">//添加方法</span></div><div class="line">    o.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="keyword">this</span>.name);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">//返回对象</span></div><div class="line">    <span class="keyword">return</span> o;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意，在以这种模式创建的对象中，除了使用sayName()方法之外，没有其他办法访问name的值。可以像下面使用稳妥的Person构造函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person =Person(<span class="string">"weiqi"</span>,<span class="number">22</span>,<span class="string">"banzhuan"</span>);</div><div class="line">person.sayName();</div></pre></td></tr></table></figure></p>
+<p>这样，变量person中保存的是一个稳妥对象，而除了sayName()方法外，没有别的方式可以访问其他数据成员。即使有其他代码会给这个对象添加方法或数据成员，但也不可能有别的办法访问传入到构造函数中的原始数据。稳妥构造函数模式提供的这种安全性，使得他非常适合在某些安全执行环境–例如，ADsafe(www.adsafe.org)提供的环境下使用。<br>注意：与寄生构造函数模式类似，使用稳妥构造函数模式创建的对象与构造函数之间没有什么关系，因此instanceof操作符对这种对象也没有意义。</p>
+<p>本文摘自<a href="http://gold.xitu.io/entry/57e767a02e958a00543d9f1c" target="_blank" rel="external">地址</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js创建对象/" rel="tag">#js创建对象</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/14/js新生成的元素无法绑定事件/" rel="next" title="js新生成的元素无法绑定事件">
+                <i class="fa fa-chevron-left"></i> js新生成的元素无法绑定事件
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/26/JavaScript中创建对象的7种模式/"
+           data-title="JavaScript中创建对象的7种模式" data-url="http://yoursite.com/2016/09/26/JavaScript中创建对象的7种模式/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、工厂模式"><span class="nav-number">1.</span> <span class="nav-text">一、工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、构造函数模式"><span class="nav-number">2.</span> <span class="nav-text">二、构造函数模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、原型模式"><span class="nav-number">3.</span> <span class="nav-text">三、原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、组合使用构造函数模式和原型模式（混合模式）"><span class="nav-number">4.</span> <span class="nav-text">四、组合使用构造函数模式和原型模式（混合模式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、动态原型模式"><span class="nav-number">5.</span> <span class="nav-text">五、动态原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、寄生构造函数模式"><span class="nav-number">6.</span> <span class="nav-text">六、寄生构造函数模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、稳妥构造函数模式"><span class="nav-number">7.</span> <span class="nav-text">七、稳妥构造函数模式</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
