@@ -1,0 +1,654 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js作用域," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1，分析JavaScript的词法作用域的含义2，解析变量的作用域链3，变量名提升（Hoisting）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript词法作用域及作用域链">
+<meta property="og:url" content="http://yoursite.com/2016/09/29/JavaScript词法作用域及作用域链/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="1，分析JavaScript的词法作用域的含义2，解析变量的作用域链3，变量名提升（Hoisting）">
+<meta property="og:updated_time" content="2016-09-29T09:37:41.370Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript词法作用域及作用域链">
+<meta name="twitter:description" content="1，分析JavaScript的词法作用域的含义2，解析变量的作用域链3，变量名提升（Hoisting）">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/29/JavaScript词法作用域及作用域链/"/>
+
+  <title> JavaScript词法作用域及作用域链 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript词法作用域及作用域链
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-29T16:17:28+08:00" content="2016-09-29">
+              2016-09-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/29/JavaScript词法作用域及作用域链/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/29/JavaScript词法作用域及作用域链/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>1，分析JavaScript的词法作用域的含义<br>2，解析变量的作用域链<br>3，变量名提升（Hoisting）</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="一、块级作用域"><a href="#一、块级作用域" class="headerlink" title="一、块级作用域"></a>一、块级作用域</h2><p>在其他语言中，通常变量的作用域是有花括号限定的，称为块级作用域。<br>在块级作用域下，所有的变量都在定义的花括号内，从定义开始到花括号结束这个范围内可以使用，出了这个范围就无法访问。<br>但是在JavaScript中就不一样，因为JavaScript中没有块级作用域的概念。（ES6中let/const可以定义的变量具有块级作用域）<br>js中一般称作<code>函数作用域</code>。</p>
+<h2 id="二、JavaScript中的作用域"><a href="#二、JavaScript中的作用域" class="headerlink" title="二、JavaScript中的作用域"></a>二、JavaScript中的作用域</h2><p>先来看三个示例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(num)&#123;  <span class="comment">//num存在，为全局变量</span></div><div class="line">	num = <span class="number">10</span>;  <span class="comment">//window.num = 10;</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(num);  <span class="comment">//10</span></div><div class="line"></div><div class="line"><span class="keyword">if</span>(num)&#123;  <span class="comment">// 此时 num 存在，但是并未赋值，因此为undefind，所以条件为false</span></div><div class="line">	<span class="keyword">var</span> num = <span class="number">10</span>;  <span class="comment">//用var声明为一个全局变量，变量名提升，赋值留在原地</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(num);  <span class="comment">//undefined</span></div><div class="line"></div><div class="line"><span class="keyword">if</span>(<span class="literal">true</span>)&#123;</div><div class="line">	<span class="keyword">var</span> num = <span class="number">10</span>; </div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(num);  <span class="comment">//10</span></div></pre></td></tr></table></figure></p>
+<h3 id="函数限定变量作用域"><a href="#函数限定变量作用域" class="headerlink" title="函数限定变量作用域"></a>函数限定变量作用域</h3><p>在js中，只有函数可以限定一个变量的作用范围，什么意思？就是说，在js中，在函数里面定义的变量，可以在函数里面被访问，也可以被函数的内部函数访问，但是在函数外部是无法访问的，也就是说局部变量在全局作用域中是不可见的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> num = <span class="number">10</span>;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">try</span>&#123;  <span class="comment">//来个错误处理</span></div><div class="line">	<span class="built_in">console</span>.log(num);</div><div class="line">&#125;<span class="keyword">catch</span>(e)&#123;  </div><div class="line">	<span class="built_in">console</span>.log(e);  <span class="comment">//ReferenceError: num is not defined(…)</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这段代码运行时，会抛出一个异常，变量num没有定义，也就是说，定义在函数中的变量无法在函数外使用，当然在函数内可以随意的使用，即使在赋值之前。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(num);  <span class="comment">// undefined</span></div><div class="line">	<span class="keyword">var</span> num = <span class="number">10</span>;</div><div class="line">	<span class="built_in">console</span>.log(num);  <span class="comment">//10</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">	func();</div><div class="line">&#125;<span class="keyword">catch</span>(e)&#123;</div><div class="line">	<span class="built_in">console</span>.log(e);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="子域访问父域"><a href="#子域访问父域" class="headerlink" title="子域访问父域"></a>子域访问父域</h3><p>前面说了，函数可以限定变量的作用域，那么在函数中的函数就称为该作用域的子域，在子域中的代码可以访问到父域中的变量。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> num = <span class="number">10</span>;</div><div class="line">	<span class="keyword">var</span> sub_func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(num);  </div><div class="line">    &#125;;</div><div class="line">    sub_func();  <span class="comment">//10</span></div><div class="line">&#125;;</div><div class="line">func();</div></pre></td></tr></table></figure></p>
+<p>这段代码执行得到的结果就是10，可以看到上文所说的变量访问情况. 但是在子域中访问父域的<br>代码也是有条件的. 如下面代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> num = <span class="number">10</span>;</div><div class="line">	<span class="keyword">var</span> sub_func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	   <span class="keyword">var</span> num = <span class="number">20</span>;</div><div class="line">       <span class="built_in">console</span>.log(num);  </div><div class="line">    &#125;;</div><div class="line">    sub_func();  <span class="comment">//20</span></div><div class="line">&#125;;</div><div class="line">func();</div></pre></td></tr></table></figure></p>
+<p>这段代码比前面就多了一个”var num = 20;”，这句代码在子域中，那么子域访问父域的情况就发<br>生了变化，这段代码打印的结果是 20. 即此时子域访问的num是子域中的变量，而不是父域中的.</p>
+<p>由此可见访问有一定规则可言. 在JavaScript中使用变量，JavaScript解释器首先在当前作<br>用域中搜索是否有该变量的定义，如果有，就是用这个变量；如果没有就到父域中寻找该变量.<br>以此类推，直到最顶级作用域，仍然没有找到就抛出异常”变量未定义”. 看下面代码：</p>
+<h2 id="三、作用域链"><a href="#三、作用域链" class="headerlink" title="三、作用域链"></a>三、作用域链</h2><p>有了JavaScript的作用域的划分，那么可以将JavaScript的访问作用域连成一个链式树状结构.<br>JavaScript的作用域链一旦能清晰的了解，那么对于JavaScript的变量与闭包就是非常清晰的了.<br>下面采用绘图的办法，绘制作用域链.</p>
+<h3 id="绘制规则："><a href="#绘制规则：" class="headerlink" title="绘制规则："></a>绘制规则：</h3><p>1) 作用域链就是对象的数组<br>2) 全部script是0级链，每个对象占一个位置<br>3) 凡是看到函数延伸一个链出来，一级级展开<br>4) 访问首先看当前函数，如果没有定义往上一级链检查<br>5) 如此往复，直到0级链</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">10</span>;</div><div class="line"><span class="keyword">var</span> func1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">var</span> num = <span class="number">20</span>;</div><div class="line"> <span class="keyword">var</span> func2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> num = <span class="number">30</span>;</div><div class="line">  alert(num);</div><div class="line"> &#125;;</div><div class="line"> func2();</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> func2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">var</span> num = <span class="number">20</span>;</div><div class="line"> <span class="keyword">var</span> func3 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(num);</div><div class="line"> &#125;;</div><div class="line"> func3();</div><div class="line">&#125;;</div><div class="line">func1();</div><div class="line">func2();</div></pre></td></tr></table></figure>
+<p>下面分析一下这段代码：<br>-&gt; 首先整段代码是一个全局作用域，可以标记为0级作用域链，那么久有一个数组<br>var link_0 = [ num, func1, func2 ];// 这里用伪代码描述<br>-&gt; 在这里func1和func2都是函数，因此引出两条1级作用域链，分别为<br>var link_1 = { func1: [ num, func2 ] };// 这里用伪代码描述<br>var link_1 = { func2: [ num, func3 ] };// 这里用伪代码描述<br>-&gt; 第一条1级链衍生出2级链<br>var link_2 = { func2: [ num ] };// 这里用伪代码描述<br>-&gt; 第二条1级链中没有定义变量，是一个空链，就表示为<br>var link_2 = { func3: [ ] };<br>-&gt; 将上面代码整合一下，就可以将作用域链表示为：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这里用伪代码描述</span></div><div class="line"><span class="keyword">var</span> link = [ <span class="comment">// 0级链</span></div><div class="line"> num,</div><div class="line"> &#123; func1 : [ <span class="comment">// 第一条1级链</span></div><div class="line">  num,</div><div class="line">  &#123; func2 : [ <span class="comment">// 2级链 </span></div><div class="line">   num</div><div class="line">  ] &#125;</div><div class="line"> ]&#125;,</div><div class="line"> &#123; func2 : [ <span class="comment">// 第二条1级链</span></div><div class="line">  num,</div><div class="line">  &#123; func3 : [] &#125;</div><div class="line"> ]&#125;</div><div class="line">];</div></pre></td></tr></table></figure></p>
+<h2 id="三、变量名提升与函数名提升"><a href="#三、变量名提升与函数名提升" class="headerlink" title="三、变量名提升与函数名提升"></a>三、变量名提升与函数名提升</h2><p>有了作用域链与变量的访问规则，那么就有一个非常棘手的问题. 先看下面<br>的JavaScript代码:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">10</span>;</div><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(num);</div><div class="line">	<span class="keyword">var</span> num = <span class="number">20</span>;</div><div class="line">	<span class="built_in">console</span>.log(num);</div><div class="line">&#125;;</div><div class="line">func();</div></pre></td></tr></table></figure></p>
+<p>执行结果会是什么呢？你可以想一想，我先不揭晓答案.<br>先来分析一下这段代码.<br>这段代码中有一条0级作用域链，里面有成员num和func. 在func下是1级作用<br>域链，里面有成员num. 因此在调用函数func的时候，就会检测到在当前作用域中<br>变量num是定义过的，所以就会使用这个变量. 但是此时num并没有赋值，因为代<br>码是从上往下运行的. 因此第一次打印的是 undefined，而第二次打印的便是20.<br>你答对了么？<br>像这样将代码定义在后面，而在前面使用的情况在JavaScript中也是常见的<br>问题. 这时就好像变量在一开始就定义了一样，结果就如同下面代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">10</span>;</div><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> num;  <span class="comment">//变量名提升至作用域顶部，仅声明，不赋值，赋值在原来的位置赋值</span></div><div class="line">	<span class="built_in">console</span>.log(num);</div><div class="line">	num = <span class="number">20</span>;</div><div class="line">	<span class="built_in">console</span>.log(num);</div><div class="line">&#125;;</div><div class="line">func();</div></pre></td></tr></table></figure></p>
+<p>那么这个现象常常称为变量名提升. 同样也有函数名提升这一说. 如下面代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="string">'调用外面的函数'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	func();</div><div class="line">	<span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">'调用内部的函数'</span>);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    func();</div><div class="line">&#125;;</div><div class="line"></div><div class="line">foo();  <span class="comment">// Uncaught TypeError: func is not a function(…)</span></div></pre></td></tr></table></figure></p>
+<p>为什么是这个结果呢？<br>其实这就是因为内部的函数变量名提升导致的。上面的代码其实是以下面的方式运行的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="string">'调用外面的函数'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> func;</div><div class="line">	func();</div><div class="line">	func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       alert(<span class="string">'调用内部函数'</span>);</div><div class="line">    &#125;;</div><div class="line">    func();</div><div class="line">&#125;;</div><div class="line">foo();  <span class="comment">// Uncaught TypeError: func is not a function(…)</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="string">'调用外面的函数'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	</div><div class="line">	func();</div><div class="line">	</div><div class="line">&#125;;</div><div class="line">foo();  <span class="comment">// 调用外面的函数</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> alert(<span class="string">"调用外面的函数"</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> func();</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="string">"调用内部的函数"</span>);</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> func();</div><div class="line">&#125;;</div><div class="line">foo();  <span class="comment">// 弹出两次"调用内部的函数"</span></div></pre></td></tr></table></figure>
+<p>上面的代码说函数的两种定义方式：函数声明法与函数赋值表达式法定义函数的区别。<br>若是函数声明法，调用写在函数定义之前都没问题，但是使用赋值表达式定义函数就不行了，调用必须写在表达式之后。</p>
+<p>由于有了这些不同，因此在实际开发的时候，推荐将变量都写在开始的地方，<br>也就是在函数的开头将变量就定义好，类似于C语言的规定一样. 这个在js库中也<br>是这么完成的，如jQuery等.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(! <span class="string">'a'</span> <span class="keyword">in</span> <span class="built_in">window</span>)&#123;  <span class="comment">// a已经声明在全局作用域中，因此条件判断为false</span></div><div class="line">	<span class="keyword">var</span> a = <span class="string">'定义变量'</span>;</div><div class="line">&#125;</div><div class="line">alert(a);  <span class="comment">//弹出 undefined</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js作用域/" rel="tag">#js作用域</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/26/JavaScript中创建对象的7种模式/" rel="next" title="JavaScript中创建对象的7种模式">
+                <i class="fa fa-chevron-left"></i> JavaScript中创建对象的7种模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/29/JavaScript词法作用域及作用域链/"
+           data-title="JavaScript词法作用域及作用域链" data-url="http://yoursite.com/2016/09/29/JavaScript词法作用域及作用域链/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、块级作用域"><span class="nav-number">1.</span> <span class="nav-text">一、块级作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、JavaScript中的作用域"><span class="nav-number">2.</span> <span class="nav-text">二、JavaScript中的作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数限定变量作用域"><span class="nav-number">2.1.</span> <span class="nav-text">函数限定变量作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子域访问父域"><span class="nav-number">2.2.</span> <span class="nav-text">子域访问父域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、作用域链"><span class="nav-number">3.</span> <span class="nav-text">三、作用域链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制规则："><span class="nav-number">3.1.</span> <span class="nav-text">绘制规则：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举例"><span class="nav-number">3.2.</span> <span class="nav-text">举例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、变量名提升与函数名提升"><span class="nav-number">4.</span> <span class="nav-text">三、变量名提升与函数名提升</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
