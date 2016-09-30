@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="数据类型ECMAScript中有5中简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。">
+<meta name="description" content="数据类型
+
+ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js数据类型">
 <meta property="og:url" content="http://yoursite.com/2016/09/30/js数据类型/index.html">
 <meta property="og:site_name" content="legold">
-<meta property="og:description" content="数据类型ECMAScript中有5中简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。">
-<meta property="og:updated_time" content="2016-09-30T06:30:10.694Z">
+<meta property="og:description" content="数据类型
+
+ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。">
+<meta property="og:updated_time" content="2016-09-30T07:06:07.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js数据类型">
-<meta name="twitter:description" content="数据类型ECMAScript中有5中简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。">
+<meta name="twitter:description" content="数据类型
+
+ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。">
 
 
 
@@ -293,8 +299,10 @@
       
 
       
-        <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>ECMAScript中有5中简单数据类型（也称为基本数据类型）：<code>Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>和<code>String</code>。还有一种复杂数据类型——<code>Object</code>，<code>Object</code>本质上是由一组无序的名值对组成的。</p>
-<p><script src="http://legold.cc/mine/my_deal.js"></script><br><a id="more"></a></p>
+        <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><script src="http://legold.cc/mine/my_deal.js"></script>
+
+<p>ECMAScript中有5种简单数据类型（也称为基本数据类型）：<code>Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>和<code>String</code>。还有一种复杂数据类型——<code>Object</code>，<code>Object</code>本质上是由一组无序的名值对组成的。</p>
+<a id="more"></a>
 <h3 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h3><p><code>typeof</code>检测给定变量的数据类型<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message = <span class="string">'some string'</span>;</div><div class="line">alert(<span class="keyword">typeof</span> message);  <span class="comment">// 'string'</span></div><div class="line">alert(<span class="keyword">typeof</span>(message));  <span class="comment">// 'string'</span></div><div class="line">alert(<span class="keyword">typeof</span> <span class="number">88</span>);  <span class="comment">// 'number'</span></div></pre></td></tr></table></figure></p>
 <h3 id="Undefined-类型"><a href="#Undefined-类型" class="headerlink" title="Undefined 类型"></a>Undefined 类型</h3><p><code>Undefined</code>类型只有一个值，即特殊的<code>undefined</code>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message; <span class="comment">//在使用var声明变量但未对其加以初始化时，这个变量的值就默认为 undefined</span></div><div class="line">alert(message == <span class="literal">undefined</span>); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
 <p>下面的这个例子使用<code>undefined</code>值显式初始化了变量<code>message</code>。但我们没有必要这么做，因为未经初始化的值默认就会取得<code>undefined</code>值。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message = <span class="literal">undefined</span>;</div><div class="line">alert(message == <span class="literal">undefined</span>);  <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
