@@ -1,0 +1,701 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="H5适配," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="提起H5移动端页面适配，我相信这是很多前端人的心中的痛，明明在我的手机里就可以，你的手机为啥不行？“摔了吧”。有过经验的工程师会一脸自信的告诉我，这都不是事！用百分比结合px，rem/em，然后在结合CSS3的媒体查询不是能够分分钟搞定的嘛！
+
+没错，移动端页面的适配技巧千篇一律，本人也做过大量的H5页面，但是并没有完整的总结过这些方法。前不久偶然又遇到过这方面的问题，因此，特意来总结一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端H5页面适配(一)前奏">
+<meta property="og:url" content="http://yoursite.com/2016/10/08/移动端H5页面适配-一-前奏/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="提起H5移动端页面适配，我相信这是很多前端人的心中的痛，明明在我的手机里就可以，你的手机为啥不行？“摔了吧”。有过经验的工程师会一脸自信的告诉我，这都不是事！用百分比结合px，rem/em，然后在结合CSS3的媒体查询不是能够分分钟搞定的嘛！
+
+没错，移动端页面的适配技巧千篇一律，本人也做过大量的H5页面，但是并没有完整的总结过这些方法。前不久偶然又遇到过这方面的问题，因此，特意来总结一下。">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/phone1.png">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/pc1.png">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/pc2.gif">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/740839/201605/740839-20160515102843711-1407435940.gif">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/740839/201605/740839-20160515103300602-1749012296.gif">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/740839/201605/740839-20160515103307508-1159608111.gif">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/phone2.gif">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/phone3.gif">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/phone4.gif">
+<meta property="og:updated_time" content="2016-10-08T08:26:58.657Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端H5页面适配(一)前奏">
+<meta name="twitter:description" content="提起H5移动端页面适配，我相信这是很多前端人的心中的痛，明明在我的手机里就可以，你的手机为啥不行？“摔了吧”。有过经验的工程师会一脸自信的告诉我，这都不是事！用百分比结合px，rem/em，然后在结合CSS3的媒体查询不是能够分分钟搞定的嘛！
+
+没错，移动端页面的适配技巧千篇一律，本人也做过大量的H5页面，但是并没有完整的总结过这些方法。前不久偶然又遇到过这方面的问题，因此，特意来总结一下。">
+<meta name="twitter:image" content="http://mytu-10064593.cos.myqcloud.com/phone1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/08/移动端H5页面适配-一-前奏/"/>
+
+  <title> 移动端H5页面适配(一)前奏 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动端H5页面适配(一)前奏
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T13:24:49+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/08/移动端H5页面适配-一-前奏/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/08/移动端H5页面适配-一-前奏/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="http://legold.cc/mine/my_deal.js"></script>
+
+<blockquote>
+<p>提起H5移动端页面适配，我相信这是很多前端人的心中的痛，明明在我的手机里就可以，你的手机为啥不行？“摔了吧”。有过经验的工程师会一脸自信的告诉我，这都不是事！用百分比结合px，rem/em，然后在结合CSS3的媒体查询不是能够分分钟搞定的嘛！</p>
+</blockquote>
+<p>没错，移动端页面的适配技巧千篇一律，本人也做过大量的H5页面，但是并没有完整的总结过这些方法。前不久偶然又遇到过这方面的问题，因此，特意来总结一下。大神，就一笑而过吧。<br><a id="more"></a></p>
+<h2 id="设备宽高"><a href="#设备宽高" class="headerlink" title="设备宽高"></a>设备宽高</h2><p>js能获取到终端设备的分辨率宽高吗？（注意，这里所说的是手机整个屏幕点亮后的宽高。）<br><img src="http://mytu-10064593.cos.myqcloud.com/phone1.png" alt="设备宽高"></p>
+<p>经过查询，从网上获取到一些关于js获取页面尺寸的信息：<br>屏幕分辨率的高：window.screen.height<br>屏幕分辨率的宽：window.screen.width<br>屏幕可用工作区高度：window.screen.availHeight (表示去掉屏幕底部的工具栏的高度)<br>屏幕可用工作区宽度：window.screen.availWidth<br>网页可见区域宽：document.documentElement.clientWidth || document.body.clientWidth || window.innerWidth<br>网页可见区域高：document.documentElement.clientHeight || document.body.clientHeight || window.innerHeight<br>网页正文全文宽：document.body.scrollWidth<br>网页正文全文高：document.body.scrollHeight<br>网页被卷去的高：document.documentElement.scrollTop || document.body.scrollTop<br>网页被卷去的宽：document.documentElement.scrollLeft || document.body.scrollLeft</p>
+<p>然后，来一个普通的移动端页面，看一下各个尺寸代表什么？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> w = <span class="built_in">window</span>.screen.width,h = <span class="built_in">window</span>.screen.height;</div><div class="line"><span class="built_in">document</span>.write(w+<span class="string">'-'</span>+h);</div></pre></td></tr></table></figure></p>
+<p>查看一下，我的电脑分辨率为1366x768<br><img src="http://mytu-10064593.cos.myqcloud.com/pc1.png" alt="PC分辨率"><br>网页运行的结果为，获取到的结果是pc的分辨率<br><img src="http://mytu-10064593.cos.myqcloud.com/pc2.gif" alt="PC分辨率"></p>
+<p>然后，在看一下在手机上显示的是什么？<br>由于上传图片比较费劲，我就直接描述我的手机的显示情况了！<br>经过我的测试，结果为：</p>
+<table>
+<thead>
+<tr>
+<th>程序</th>
+<th>尺寸</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>手Q</td>
+<td>360x640（逻辑分辨率）</td>
+</tr>
+<tr>
+<td>QQ浏览器</td>
+<td>360x640</td>
+</tr>
+<tr>
+<td>手机自带浏览器</td>
+<td>360x640</td>
+</tr>
+<tr>
+<td>微信</td>
+<td>360x640</td>
+</tr>
+<tr>
+<td>搜狗浏览器</td>
+<td>360x640</td>
+</tr>
+<tr>
+<td>手淘</td>
+<td>360x640</td>
+</tr>
+<tr>
+<td>UC浏览器</td>
+<td>1080-1920（设备分辨率）</td>
+</tr>
+</tbody>
+</table>
+<p>UC浏览器上显示的结果是出乎我的意料啊!为啥会这样呢？<strong>为啥你这么不合群呢？wtf??</strong><br>下载了安兔兔评测软件后，显示的我的手机得到分辨率是1080x1920,经过截图查看到的图片的宽高分别为1080x1920。<br>wtf?这是什么鬼？<br>难道就只有uc浏览器获得到的是正确的，其他的都是胡扯？本着认真，负责任的态度，我决定一探究竟。<br>理解这个问题，需要引入几个概念<code>设备像素比:window.devicePixelRatio</code>、逻辑分辨率和设备分辨率。<br>并且三者之间存着这个关系。 <strong>dpr*逻辑分辨率 = 设备分辨率。</strong>网页的视口的大小是设备分辨率/dpr 。<br>这样我们就很清晰了，除了UC浏览器，其他的程序获取的应该是逻辑分辨率，而UC做了处理，它获取到的就是手机的设备分辨率。<br>上面说的dpr(设备像素比),这是window的一个属性，我们可以获取到，我的是3，它量化了屏幕的物理分辨率（设备分辨率）与显示清晰度。<br>在桌面端，css的1个像素往往都是对应着电脑屏幕的1个物理像素。（1个css像素完全覆盖了一个设备像素）<br><img src="http://images2015.cnblogs.com/blog/740839/201605/740839-20160515102843711-1407435940.gif" alt=""><br>而在手机端，由于屏幕尺寸的限制，缩放是经常性的操作。<br>//设备像素(深蓝色背景)、CSS像素(半透明背景)<br>//左图表示当用户进行缩小操作时，一个设备像素覆盖了多个CSS像素<br>//右图表示当用户进行放大操作时，一个CSS像素覆盖了多个设备像素<br><img src="http://images2015.cnblogs.com/blog/740839/201605/740839-20160515103300602-1749012296.gif" alt=""><img src="http://images2015.cnblogs.com/blog/740839/201605/740839-20160515103307508-1159608111.gif" alt=""><br>不论我们进行缩小或放大操作，元素设置的CSS像素(如width:300px)是始终不变的，而一个CSS像素对应多少个设备像素是根据当前的缩放比例来决定的<br>设备像素比DPR(devicePixelRatio)是默认缩放为100%的情况下，设备像素和CSS像素的比值</p>
+<pre><code>DPR = 设备像素 / CSS像素(某一方向上)
+</code></pre><p>因此，我们可以得出，除了UC浏览器外的其他浏览器获取到的都是逻辑分辨率（css像素） 360x640。<br>而uc浏览器获取到的是设备分辨率（设备像素）(360x3) x (640x3)  =  1080 x 1920 。<br>这里就不细讲dpr了，我会单独写篇文章了总结一下dpr这些属性。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"div1"</span> style=<span class="string">"background:red;position:absolute;width:100%;z-index:-1;"</span>&gt;&lt;/div&gt;</div><div class="line"><span class="keyword">var</span> w = <span class="built_in">window</span>.screen.width,h = <span class="built_in">window</span>.screen.height; </div><div class="line"><span class="keyword">var</span> w2 = <span class="built_in">document</span>.documentElement.clientWidth;</div><div class="line"><span class="keyword">var</span> h2 = <span class="built_in">document</span>.documentElement.clientHeight;</div><div class="line"><span class="keyword">var</span> w3 = <span class="built_in">window</span>.screen.availWidth;</div><div class="line"><span class="keyword">var</span> h3 = <span class="built_in">window</span>.screen.availHeight;</div><div class="line"><span class="keyword">var</span> w4 = <span class="built_in">window</span>.innerWidth;</div><div class="line"><span class="keyword">var</span> h4 = <span class="built_in">window</span>.innerHeight;</div><div class="line"><span class="built_in">document</span>.write(<span class="string">'window.screen.width:'</span>+w+<span class="string">'  window.screen.height:'</span>+h+<span class="string">'&lt;br&gt;'</span>);</div><div class="line"><span class="built_in">document</span>.write(<span class="string">'设备像素比:window.devicePixelRatio:'</span>+<span class="built_in">window</span>.devicePixelRatio+<span class="string">'&lt;br&gt;'</span>);</div><div class="line"><span class="built_in">document</span>.write(<span class="string">'网页可用区域:'</span>+w2+<span class="string">'-'</span>+h2+<span class="string">'&lt;br&gt;'</span>);</div><div class="line"><span class="built_in">document</span>.write(<span class="string">'屏幕有效分辨率：window.screen.availWidth:'</span>+w3+<span class="string">'-window.screen.availHeight:'</span>+h3+<span class="string">'&lt;br&gt;'</span>)</div><div class="line"><span class="built_in">document</span>.write(<span class="string">'window.innerWidth:'</span>+w4+<span class="string">'-window.innerHeight:'</span>+h4);</div><div class="line"><span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>);</div><div class="line">oDiv.style.height = h2/<span class="number">2</span> + <span class="string">'px'</span>;</div></pre></td></tr></table></figure></p>
+<p>我的手机上的测试<br>QQ浏览器：<br><img src="http://mytu-10064593.cos.myqcloud.com/phone2.gif" alt=""><br>UC浏览器：<br><img src="http://mytu-10064593.cos.myqcloud.com/phone3.gif" alt=""><br>手Q：<br><img src="http://mytu-10064593.cos.myqcloud.com/phone4.gif" alt=""></p>
+<hr>
+<p>上面说到的是一个普通移动端规规矩矩的网页，我们知道，现在有很多手机浏览器，都有网页全屏模式，也就是在head中加入一个特定的meta属性，来让网页全屏，以应用程序的模式显示。因此我也加入这么一段meta<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- uc强制竖屏 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"screen-orientation"</span> <span class="attr">content</span>=<span class="string">"portrait"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- uc强制全屏 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"full-screen"</span> <span class="attr">content</span>=<span class="string">"yes"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- uc应用模式 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"browsermode"</span> <span class="attr">content</span>=<span class="string">"application"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- QQ强制竖屏 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"x5-orientation"</span> <span class="attr">content</span>=<span class="string">"portrait"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- QQ强制全屏 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"x5-fullscreen"</span> <span class="attr">content</span>=<span class="string">"true"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- QQ应用模式 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"x5-page-mode"</span> <span class="attr">content</span>=<span class="string">"app"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>经过测试，UC浏览器能够完全全屏，QQ浏览器不能够完全全屏，手机上面的状态栏还保留着，而且此时获取的网页可用区域高度也和自己想象的不太一样，不知道它是怎么处理的，得出的结论就是这段meta如果在页面不涉及获取可用区域高度的时候可以用，但是谨慎使用。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/H5适配/" rel="tag">#H5适配</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/30/js数据类型/" rel="next" title="js数据类型">
+                <i class="fa fa-chevron-left"></i> js数据类型
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/08/移动端H5页面适配-一-前奏/"
+           data-title="移动端H5页面适配(一)前奏" data-url="http://yoursite.com/2016/10/08/移动端H5页面适配-一-前奏/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设备宽高"><span class="nav-number">1.</span> <span class="nav-text">设备宽高</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
