@@ -1,0 +1,659 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="H5适配," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在做H5活动页（单屏滑动页）的时候，我们为了高度还原设计稿，需要在各个手机屏幕中，设计稿中的页面元素始终都能够完整的显示在所有的手机可显示区域中。而不是随着页面的伸缩，四个边可能超出屏幕，就像被裁切掉一样，这当然是不能忍受的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端H5页面适配(二)高度还原设计稿">
+<meta property="og:url" content="http://yoursite.com/2016/10/10/移动端H5页面适配-二-高度还原设计稿/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="在做H5活动页（单屏滑动页）的时候，我们为了高度还原设计稿，需要在各个手机屏幕中，设计稿中的页面元素始终都能够完整的显示在所有的手机可显示区域中。而不是随着页面的伸缩，四个边可能超出屏幕，就像被裁切掉一样，这当然是不能忍受的。">
+<meta property="og:image" content="http://img8.wtoutiao.com/?url=http://mmbiz.qpic.cn/mmbiz/kn3fIZB16Mr9JGYjNwKlKJKsSYZnaIdibibkBmLSOsKAYtzu9FpurMeic2XpBFzsWzg3LamaVhJHrcVRFsrbibLOhw/0?wx_fmt=png">
+<meta property="og:updated_time" content="2016-10-10T09:32:00.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端H5页面适配(二)高度还原设计稿">
+<meta name="twitter:description" content="在做H5活动页（单屏滑动页）的时候，我们为了高度还原设计稿，需要在各个手机屏幕中，设计稿中的页面元素始终都能够完整的显示在所有的手机可显示区域中。而不是随着页面的伸缩，四个边可能超出屏幕，就像被裁切掉一样，这当然是不能忍受的。">
+<meta name="twitter:image" content="http://img8.wtoutiao.com/?url=http://mmbiz.qpic.cn/mmbiz/kn3fIZB16Mr9JGYjNwKlKJKsSYZnaIdibibkBmLSOsKAYtzu9FpurMeic2XpBFzsWzg3LamaVhJHrcVRFsrbibLOhw/0?wx_fmt=png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/10/移动端H5页面适配-二-高度还原设计稿/"/>
+
+  <title> 移动端H5页面适配(二)高度还原设计稿 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动端H5页面适配(二)高度还原设计稿
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-10T14:00:17+08:00" content="2016-10-10">
+              2016-10-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/10/移动端H5页面适配-二-高度还原设计稿/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/移动端H5页面适配-二-高度还原设计稿/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="http://legold.cc/mine/my_deal.js"></script>
+
+<blockquote>
+<p>在做H5活动页（单屏滑动页）的时候，我们为了高度还原设计稿，需要在各个手机屏幕中，设计稿中的页面元素始终都能够完整的显示在所有的手机可显示区域中。而不是随着页面的伸缩，四个边可能超出屏幕，就像被裁切掉一样，这当然是不能忍受的。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="pageResponse"><a href="#pageResponse" class="headerlink" title="pageResponse"></a>pageResponse</h2><p>网上也有这种需求的解决办法，比如白树大神的一篇文章，<a href="http://www.cnblogs.com/PeunZhang/p/4517864.html" target="_blank" rel="external">【原】pageResponse - 让H5适配移动设备全家(移动端适配)</a>,感兴趣的可以研究一下，pageResponse.js是分了三种模式，auto,cover,auto。下面我先来分析一下大神的思路和代码。</p>
+<h3 id="contain模式"><a href="#contain模式" class="headerlink" title="contain模式"></a>contain模式</h3><ul>
+<li>保持页面的宽高比，调整页面的宽度或高度（较大者），使页面完全包含在浏览器窗口中</li>
+<li>页面水平或垂直居中在窗口中，因此左右或上下可能会出现空白，因此，页面背景应该设置在外层的盒子上，里面应用contain模式的元素不应涉及背景，而应该仅仅是起到包含元素，布局元素的作用。</li>
+<li>适合单屏页面，滑屏页面</li>
+</ul>
+<h3 id="cover模式"><a href="#cover模式" class="headerlink" title="cover模式"></a>cover模式</h3><ul>
+<li>保持页面的宽高比，调整页面额宽度或高度（较小者），使页面完全覆盖浏览器窗口</li>
+<li>页面水平垂直居中，超出浏览器窗口左右或上下会被隐藏掉，因此，看到这里，觉得这里不太好，因为这种模式为了全屏覆盖，会截取掉边缘的一部分内容。</li>
+<li>适合滑屏页面，单屏页面，且边缘无重要的内容，元素都是集中展示的</li>
+</ul>
+<h3 id="auto模式"><a href="#auto模式" class="headerlink" title="auto模式"></a>auto模式</h3><p>保持页面的宽高比，调整页面的宽度，使页面宽度完全包含在浏览器窗口中</p>
+<p>OK,接下来，去看一下他的代码长什么样。（每次我看别人代码，都被设计吐槽为偷代码，偷你妹，你才是偷！）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">pageResponse</span>(<span class="params">opt</span>)</span>&#123; <span class="comment">//opt是一个选项对象</span></div><div class="line">    <span class="keyword">var</span> ua = navigator.userAgent,</div><div class="line">        wp = ua.match(<span class="regexp">/Windows Phone ([\d.]+)/</span>),</div><div class="line">        android = ua.match(<span class="regexp">/(Android);?[\s\/]+([\d.]+)?/</span>)，</div><div class="line">        <span class="comment">//设备宽高初始比例</span></div><div class="line">        dw = <span class="built_in">document</span>.documentElement.clientWidth,</div><div class="line">        dh = <span class="built_in">document</span>.documentElement.clientHeight,</div><div class="line">        ds = dw/dh,</div><div class="line">        <span class="comment">//页面宽高初始比例 (默认设计页面是 640x1008的尺寸)</span></div><div class="line">        pw = opt.width || <span class="number">320</span>,</div><div class="line">        ph = opt.height || <span class="number">504</span>,</div><div class="line">        ps = pw/ph,</div><div class="line">        <span class="comment">//调用的选择器</span></div><div class="line">        pd = <span class="built_in">document</span>.querySelectorAll(opt.selectors),</div><div class="line">        i = pd.length,</div><div class="line">        <span class="comment">//核心代码，页面缩放比例</span></div><div class="line">        sm = opt.mode || <span class="string">'auto'</span>,</div><div class="line">        or = opt.origin || <span class="string">'left top 0'</span>,</div><div class="line">        sn = (sm == <span class="string">'contain'</span>) ? (ds &gt; ps ? dh/ph : dw/pw) : ((sm == <span class="string">'cover'</span>) ? (ds &lt; ps ? dh/ph : dw/pw) : dw/pw);</div><div class="line">        <span class="comment">//这面这个三元运算符嵌套三元运算符，应该也好理解。不管什么模式，我们都可以想象出 ds &gt; ps 或 ds &lt; ps 是什么样子的。ds &gt; ps时候，我们可以想象，页面的高度和屏幕的高度是一样的，然后页面的宽度小于屏幕的宽度，页面水平居中于屏幕中间。 ds &gt; ps时，页面的宽度和屏幕的宽度是相同的，高度小于屏幕的高度，页面垂直居中，在cover模式的时候，就是不能有空隙，页面要全屏覆盖，即使超出也要全屏覆盖。</span></div><div class="line"></div><div class="line">        <span class="comment">//样式模板 auto || contain || cover</span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">template</span>(<span class="params">mode,obj,num</span>)</span>&#123;</div><div class="line">        	<span class="keyword">var</span> _o = obj.style;</div><div class="line">        	_o.width = pw + <span class="string">'px'</span>;</div><div class="line">        	_o.height = ph + <span class="string">'px'</span>;</div><div class="line">        	_o.webkitTransformOrigin = or;</div><div class="line">        	_o.transformOrigin = or;</div><div class="line">        	_o.webkitTransform = <span class="string">'scale('</span>+ num +<span class="string">')'</span>;</div><div class="line">        	_o.transform = <span class="string">'scale('</span>+ num +<span class="string">')'</span>;</div><div class="line">        	<span class="comment">// 兼容android 2.3.5系统下body高度不自动刷新的bug</span></div><div class="line">	        <span class="keyword">if</span> (mode == <span class="string">"auto"</span> &amp;&amp; android) &#123;</div><div class="line">	            <span class="built_in">document</span>.body.style.height = ph * num + <span class="string">"px"</span>;</div><div class="line">	        &#125; <span class="keyword">else</span></div><div class="line">	        <span class="keyword">if</span> (mode == <span class="string">"contain"</span> || mode == <span class="string">"cover"</span>) &#123;</div><div class="line">	            _o.position = <span class="string">"absolute"</span>;</div><div class="line">	            _o.left = (dw - pw) / <span class="number">2</span> + <span class="string">"px"</span>;</div><div class="line">	            _o.top = (dh - ph) / <span class="number">2</span> + <span class="string">"px"</span>;</div><div class="line">	            _o.webkitTransformOrigin = <span class="string">"center center 0"</span>;</div><div class="line">	            _o.transformOrigin = <span class="string">"center center 0"</span>;</div><div class="line">	            <span class="comment">// 阻止默认滑屏事件</span></div><div class="line">	            <span class="keyword">if</span> (wp) &#123;</div><div class="line">	                <span class="built_in">document</span>.body.style.msTouchAction = <span class="string">"none"</span>;</div><div class="line">	            &#125; <span class="keyword">else</span> &#123;</div><div class="line">	                <span class="built_in">document</span>.ontouchmove = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">	                    e.preventDefault()</div><div class="line">	                &#125;</div><div class="line">	            &#125;</div><div class="line">	        &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//运行</span></div><div class="line">        <span class="keyword">while</span>(--i&gt;=<span class="number">0</span>)&#123;</div><div class="line">        	template(sm,pd[i],sn);</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="我的方法"><a href="#我的方法" class="headerlink" title="我的方法"></a>我的方法</h2><p>怎么说呢？可以说白树大神的这种解决方法比较完美，想的比较全面。然后我试着以我自己的思路整了个简单粗暴的方法。<br>同时也借鉴了大神的思想，零依赖，不多说，直接上代码吧。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">setSize</span>(<span class="params">opt</span>)</span>&#123;</div><div class="line">        <span class="comment">//首先获得移动端设备的宽高</span></div><div class="line">        <span class="keyword">var</span> dw = <span class="built_in">document</span>.documentElement.clientWidth || <span class="built_in">window</span>.innerWidth;</div><div class="line">            dh = <span class="built_in">document</span>.documentElement.clientHeight || <span class="built_in">window</span>.innerHeight,</div><div class="line">            dr = dw/dh;</div><div class="line"></div><div class="line">        <span class="built_in">console</span>.log(dw,dh,dr);</div><div class="line">        <span class="comment">//设置默认设计稿为640x1100的宽高</span></div><div class="line">        <span class="keyword">var</span> pw = opt.width || <span class="number">320</span>,</div><div class="line">            ph = opt.height || <span class="number">550</span>;</div><div class="line">            pr = pw/ph;</div><div class="line"></div><div class="line">        <span class="keyword">var</span> m = dh*pr, n = dw/pr;</div><div class="line">        <span class="built_in">console</span>.info(dr,pr);</div><div class="line"></div><div class="line">        <span class="keyword">var</span> ele = <span class="built_in">document</span>.querySelectorAll(opt.el);</div><div class="line">        <span class="keyword">var</span> i = ele.length;</div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">setStyle</span>(<span class="params">obj,opt</span>)</span>&#123;</div><div class="line">          <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> opt)&#123;</div><div class="line">             obj[i] = opt[i] + <span class="string">'px'</span>;</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">pageWork</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> _o = obj.style;</div><div class="line">            <span class="keyword">if</span>(dr&gt;pr)&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'肖像模式'</span>);</div><div class="line">                setStyle(_o,&#123;height:dh,width:m,margin:<span class="number">0</span>,left:<span class="built_in">Math</span>.floor((dw-m)/<span class="number">2</span>)&#125;);                </div><div class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(dr.toFixed(<span class="number">3</span>) === pr.toFixed(<span class="number">3</span>))&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'正好匹配哈'</span>);</div><div class="line">                setStyle(_o,&#123;width:dw,height:dh,margin:<span class="number">0</span>&#125;);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'风景模式'</span>);</div><div class="line">                setStyle(_o,&#123;width:dw,height:n,margin:<span class="number">0</span>,top:<span class="built_in">Math</span>.floor((dh-n)/<span class="number">2</span>)&#125;);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(--i&gt;=<span class="number">0</span>)&#123;</div><div class="line">           pageWork(ele[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    setSize(&#123;el:<span class="string">'.page_inner'</span>,width:<span class="string">'320'</span>,height:<span class="string">'550'</span>&#125;);</div><div class="line"></div><div class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      setSize(&#123;el:<span class="string">'.page_inner'</span>,width:<span class="string">'320'</span>,height:<span class="string">'550'</span>&#125;);</div><div class="line">    &#125;,<span class="literal">false</span>);</div><div class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'orientationchange'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      setSize(&#123;el:<span class="string">'.page_inner'</span>,width:<span class="string">'320'</span>,height:<span class="string">'550'</span>&#125;);</div><div class="line">    &#125;,<span class="literal">false</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//防止加载原因，再执行一次</span></div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      setSize(&#123;el:<span class="string">'.page_inner'</span>,width:<span class="string">'320'</span>,height:<span class="string">'550'</span>&#125;);</div><div class="line">    &#125;,<span class="number">333</span>);</div><div class="line">    </div><div class="line">    <span class="comment">//现在把方法暴露到全局，控制权交给你了</span></div><div class="line">    <span class="built_in">window</span>.setSize = setSize;</div><div class="line">   </div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>经过测试，我的方法暂时还没发现什么bug，也许是我还没发现吧。嘻嘻。所以，这样一来，保持页面的宽高比，调整页面的宽度或高度（较大者），使页面完全包含在浏览器窗口中，然后设置position为relative;<br>整个外层设计好了，那么里面的dom元素的位置该怎么使用呢？直接用正常文档流还是都用绝对定位，然后宽度，高度，top,left都使用百分比吗？还是使用其他的方法呢？<br>这个问题，我也看过不少单屏H5都是使用绝对定位的方式，然后百分比来设置位置，大小。我觉得这个方法好像还不错，尤其适合那些一个页面有很多排列无规则的元素来使用。<br>然后拿到设计图，比如是一个 640 x 1100尺寸的设计图，然后我们只需要获取各个元素的宽度，高度，top，left(单位<strong>百分比</strong>)即可。</p>
+<h2 id="适配设备"><a href="#适配设备" class="headerlink" title="适配设备"></a>适配设备</h2><p>你们懂得，现在几乎是智能机的时代，各种智能机，各种尺寸，所以单屏页面适配一定会对页面进行缩放的。设备有瘦长型的，有矮胖型的，有不胖不瘦的，有砖头的…<br>用上面，我总结的方法来适配页面，需要分清页面的层次。</p>
+<ul>
+<li>背景：页面的最底层，需要充满整个屏幕，即使被裁减也不影响页面效果，这个就直接宽高设置为100%</li>
+<li>主体区域：页面的主要内容展示区，其内元素都相对于这个区域定位；该区域中的内容不可被裁减，在任意屏幕中都要完整显示</li>
+<li>边缘元素：跟主体元素相比较，更靠近边缘，且相对于屏幕定位<br><img src="http://img8.wtoutiao.com/?url=http://mmbiz.qpic.cn/mmbiz/kn3fIZB16Mr9JGYjNwKlKJKsSYZnaIdibibkBmLSOsKAYtzu9FpurMeic2XpBFzsWzg3LamaVhJHrcVRFsrbibLOhw/0?wx_fmt=png" alt="各个层次"></li>
+</ul>
+<h2 id="各类元素适配方案"><a href="#各类元素适配方案" class="headerlink" title="各类元素适配方案"></a>各类元素适配方案</h2><p>现今微信游戏品宣活动基准尺寸已修订为 iPhone 6 下微信webview 的尺寸（375 x 603），设计稿则为该尺寸宽高的两倍（750 x 1206）。<br>这里我们需要明白一点是，如果我们的H5展示平台是在微信上，那么为了更好的把页面展示在更多的可用区域中，就需要减少设计的高度，比如 iPhone6的逻辑分辨率是 375 x 667，顶部显示电池，信号信息的状态栏的高度是20px,微信的标题栏高度是44px，因此 667-(20+44)=603。 所以，我们在这几单屏页面的时候这个需要注意一下。<br>当然，现在UC浏览器，QQ浏览器等一些手机浏览器都有全屏模式可用了，因此，为了更好的显示，我们需要，取个中间值，比如 高度取 630px也是可以的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/H5适配/" rel="tag">#H5适配</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/08/移动端H5页面适配-一-前奏/" rel="next" title="移动端H5页面适配(一)前奏">
+                <i class="fa fa-chevron-left"></i> 移动端H5页面适配(一)前奏
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/10/移动端H5页面适配-二-高度还原设计稿/"
+           data-title="移动端H5页面适配(二)高度还原设计稿" data-url="http://yoursite.com/2016/10/10/移动端H5页面适配-二-高度还原设计稿/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pageResponse"><span class="nav-number">1.</span> <span class="nav-text">pageResponse</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#contain模式"><span class="nav-number">1.1.</span> <span class="nav-text">contain模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cover模式"><span class="nav-number">1.2.</span> <span class="nav-text">cover模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#auto模式"><span class="nav-number">1.3.</span> <span class="nav-text">auto模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的方法"><span class="nav-number">2.</span> <span class="nav-text">我的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配设备"><span class="nav-number">3.</span> <span class="nav-text">适配设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各类元素适配方案"><span class="nav-number">4.</span> <span class="nav-text">各类元素适配方案</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
