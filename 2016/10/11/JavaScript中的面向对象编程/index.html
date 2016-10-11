@@ -1,0 +1,646 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js面向对象," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="JavaScript 是一个强大的面向对象编程语言，但是，并不像传统的编程语言，它采用一个以原型为基础的OOP 模型，致使它的语法让大多数开发人员看不懂。另外，JavaScript 也把函数作为首要的对象，这可能会给不够熟悉这门语言的开发人员造成更大的困惑。那就是我们决定放在前面作为一个简短前言进行介绍的原因，并且在 JavaScript 里也可以用作面向对象编程的一个参考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中的面向对象编程">
+<meta property="og:url" content="http://yoursite.com/2016/10/11/JavaScript中的面向对象编程/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="JavaScript 是一个强大的面向对象编程语言，但是，并不像传统的编程语言，它采用一个以原型为基础的OOP 模型，致使它的语法让大多数开发人员看不懂。另外，JavaScript 也把函数作为首要的对象，这可能会给不够熟悉这门语言的开发人员造成更大的困惑。那就是我们决定放在前面作为一个简短前言进行介绍的原因，并且在 JavaScript 里也可以用作面向对象编程的一个参考。">
+<meta property="og:updated_time" content="2016-10-11T10:37:19.061Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript中的面向对象编程">
+<meta name="twitter:description" content="JavaScript 是一个强大的面向对象编程语言，但是，并不像传统的编程语言，它采用一个以原型为基础的OOP 模型，致使它的语法让大多数开发人员看不懂。另外，JavaScript 也把函数作为首要的对象，这可能会给不够熟悉这门语言的开发人员造成更大的困惑。那就是我们决定放在前面作为一个简短前言进行介绍的原因，并且在 JavaScript 里也可以用作面向对象编程的一个参考。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/11/JavaScript中的面向对象编程/"/>
+
+  <title> JavaScript中的面向对象编程 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript中的面向对象编程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-11T17:43:12+08:00" content="2016-10-11">
+              2016-10-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/11/JavaScript中的面向对象编程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/11/JavaScript中的面向对象编程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="http://legold.cc/mine/my_deal.js"></script>
+
+<p>JavaScript 是一个强大的面向对象编程语言，但是，并不像传统的编程语言，它采用一个以原型为基础的OOP 模型，致使它的语法让大多数开发人员看不懂。另外，JavaScript 也把函数作为首要的对象，这可能会给不够熟悉这门语言的开发人员造成更大的困惑。那就是我们决定放在前面作为一个简短前言进行介绍的原因，并且在 JavaScript 里也可以用作面向对象编程的一个参考。</p>
+<a id="more"></a>
+<h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><p>随着越来越多的第三方库，框架和web依赖的出现，JavaScript发展中的命名空间是势在必行的，我们得尽量避免在全局命名空间的对象和变量的冲突。尤其是同个公司多个部门的前端配合写js时，对某一个全局变量或者全局函数都使用了同样的名称，那么势必会造成后面的覆盖掉前面的。造成前面的业务代码不会执行的后果。所以，应该规定好各自的命名空间，然后写的函数或变量都在这个命名空间下。执行的时候带上各自的命名空间就OK了。<br>随着越来越多的第三方库，框架和web依赖的出现，JavaScript发展中的命名空间是势在必行的，我们得尽量避免在全局命名空间的对象和变量的冲突。<br>不幸的是，JavaScript没有提供支持命名空间的编译，但是我们可以使用对象来得到同样结果。在JavaScript中我们有许多种模式来实现命名空间接口，但是我们覆盖嵌套的命名空间，它在该领域是最常用的模式。</p>
+<h2 id="嵌套命名空间"><a href="#嵌套命名空间" class="headerlink" title="嵌套命名空间"></a>嵌套命名空间</h2><p>嵌套的命名空间模式使用对象字面量来捆绑一个特定应用的特定名字的功能。<br>我们最初创建一个全局对象，并且赋值给一个称为MyApp的变量。<br>上述的语法会检查MyApp是否已经被定义过。假如它已经被定义过，我们简单地把它赋值给自己，但是，我们创建一个空的容器来装载我们的函数和变量。<br>我们也可以使用相同技术来创建子命名空间。例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//sub namespaces</span></div><div class="line">MyApp.users = MyApp.user || &#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p>我们一旦启动我们的容器，我们可以在（容器）内部定义我们的函数和变量，并且在全局命名空间调用它们，不需要冒着与现有定义冲突的风险。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">MyApp.users = &#123;</div><div class="line">	existingUsers:<span class="string">''</span>,</div><div class="line">	renderUsersHTML:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="comment">//your code</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">MyApp.users.renderUsersHTML();  <span class="comment">//调用</span></div></pre></td></tr></table></figure></p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>如果你写过 JavaScript 代码，那你已经使用过对象了。JavaScript 有三种类型的对象：</p>
+<h3 id="原生对象"><a href="#原生对象" class="headerlink" title="原生对象"></a>原生对象</h3><p>原生对象是语言规范的一部分，不管在什么样的运行环境下运行，原生对象都可用。原生对象包括：Array、Date、Math 和 parseInt 等。想了解所有原生对象，请参阅 <a href="https://mzl.la/2bTppcQ" target="_blank" rel="external">JavaScript 内建对象参考</a></p>
+<pre><code>var cars = new Array();  // Array is a native object
+</code></pre><h3 id="宿主对象"><a href="#宿主对象" class="headerlink" title="宿主对象"></a>宿主对象</h3><p>与原生对象不同，宿主对象是由 JavaScript 代码运行的环境创建。不同的环境创建有不同的宿主对象。这些宿主对象在多数情况下都允许我们与之交互。如果我们写的是在浏览器（这是其中一种运行环 境）上运行的代码，会有 window、document、location 和 history 等宿主对象。</p>
+<pre><code>document.body.innerHTML = &apos;hello world!&apos; // document is a host object
+</code></pre><h3 id="用户对象"><a href="#用户对象" class="headerlink" title="用户对象"></a>用户对象</h3><p>用户对象（或植入对象）是在我们的代码中定义的对象，在运行的过程中创建。JavaScript 中有两种方式创建自己的对象，下面详述。</p>
+<h4 id="对象字面量"><a href="#对象字面量" class="headerlink" title="对象字面量"></a>对象字面量</h4><p>在前面演示创建命名空间的时候，我们已经接触到了对象字面量。现在来搞清楚对象字面量的定义：对象字面量是置于一对花括号中的，由逗号分隔的名-值对列 表。对象字面量可拥有变量（属性）和函数（方法）。像 JavaScript 中的其它对象一样，它也可以作为函数的参数，或者返回值。<br>现在定义一个对象字面量并赋予一个变量：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dog = &#123;</div><div class="line">	<span class="comment">// your code</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>向这个对象字面量添加属性和方法，然后在全局作用域访问：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dog = &#123;</div><div class="line">	breed:<span class="string">'Bulldog'</span>,  <span class="comment">//property</span></div><div class="line">	bark:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'walf!'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//全局作用域中访问</span></div><div class="line"><span class="built_in">console</span>.log(dog.breed);  <span class="comment">// Bulldog</span></div><div class="line">dog.bark(); <span class="comment">// output walf</span></div></pre></td></tr></table></figure></p>
+<p>这看起来和前面的命名空间很像，但这并不是巧合。字面量对象最典型的用法就是把代码封装起来，使之在一个封装的包中，以避免与全局作用域中的变量或对象发生冲突。由于类似的原因，它也常常用于向插件或对象传递配置参数。<br><strong>如果你熟悉设计模式的话，对象字面量在某种程度上来说就是<em>单例</em>，就是那种只有一个实例的模式。对象字面量先天不具备实例化和继承的能力，我们接下来还得了解 JavaScript 中另一种创建自定义对象的方法。</strong></p>
+<h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><h5 id="定义构造函数"><a href="#定义构造函数" class="headerlink" title="定义构造函数"></a>定义构造函数</h5><p><strong>函数是JavaScript一等公民</strong>，就是说其他实体支持的操作函数都支持。在JavaScript的世界，函数可以运行时进行动态构造，可以作为参数，也可以作为其它函数的返回值，也可被赋予变量。而且，函数也可以拥有自己的属性和方法。 JavaScript 中函数的特性使之成为可以实体化和继承的东西。<br>来看看怎么用构造函数创建一个自定义的对象：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//creating a function</span></div><div class="line"><span class="function"><span class="keyword">function</span></span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js面向对象/" rel="tag">#js面向对象</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/11/JavaScript从入门到放弃/" rel="next" title="JavaScript从入门到放弃">
+                <i class="fa fa-chevron-left"></i> JavaScript从入门到放弃
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/11/JavaScript中的面向对象编程/"
+           data-title="JavaScript中的面向对象编程" data-url="http://yoursite.com/2016/10/11/JavaScript中的面向对象编程/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命名空间"><span class="nav-number">1.</span> <span class="nav-text">命名空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套命名空间"><span class="nav-number">2.</span> <span class="nav-text">嵌套命名空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">3.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原生对象"><span class="nav-number">3.1.</span> <span class="nav-text">原生对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宿主对象"><span class="nav-number">3.2.</span> <span class="nav-text">宿主对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户对象"><span class="nav-number">3.3.</span> <span class="nav-text">用户对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象字面量"><span class="nav-number">3.3.1.</span> <span class="nav-text">对象字面量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造函数"><span class="nav-number">3.3.2.</span> <span class="nav-text">构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义构造函数"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">定义构造函数</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
