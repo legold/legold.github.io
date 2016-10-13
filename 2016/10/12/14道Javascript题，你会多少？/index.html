@@ -1,0 +1,678 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JS题目," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前两天看到有关这个题目，觉得非常很有意义。
+题目一123(function()&amp;#123;	return typeof arguments;&amp;#125;)();">
+<meta property="og:type" content="article">
+<meta property="og:title" content="14道Javascript题，你会多少？">
+<meta property="og:url" content="http://yoursite.com/2016/10/12/14道Javascript题，你会多少？/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="前两天看到有关这个题目，觉得非常很有意义。
+题目一123(function()&amp;#123;	return typeof arguments;&amp;#125;)();">
+<meta property="og:updated_time" content="2016-10-12T09:50:12.772Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="14道Javascript题，你会多少？">
+<meta name="twitter:description" content="前两天看到有关这个题目，觉得非常很有意义。
+题目一123(function()&amp;#123;	return typeof arguments;&amp;#125;)();">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/12/14道Javascript题，你会多少？/"/>
+
+  <title> 14道Javascript题，你会多少？ | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                14道Javascript题，你会多少？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T10:08:04+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/14道Javascript题，你会多少？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/14道Javascript题，你会多少？/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前两天看到有关这个题目，觉得非常很有意义。</p>
+<h2 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">typeof</span> <span class="built_in">arguments</span>;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><script src="http://legold.cc/mine/my_deal.js"></script><br>答案：”object”<br>arguments是对象,伪数组，类数组有两件事要注意这里：<br>1.参数不是数组，它是一个数组一样的物体,你可以使用方括号和整数索引的元素，但方法通常可在一个如推上不存在参数数组<br>2.Array.prototype.slice.call(arguments); 转成数组，当然arguments即使是数组,返回的依然是”object”,因为数组也是对象。</p>
+<h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">23</span>; &#125;;</div><div class="line"><span class="keyword">typeof</span> g();</div></pre></td></tr></table></figure>
+<p>答案：会发生错误<br>因为function g(){ return 23; }是函数表达式,事实上只有事一个名字,不是一个函数声明<br>函数实际上是绑定到变量f，不是g。<br>在 JS 里，声明函数只有 2 种方法：<br>第 1 种： function foo(){…} （函数声明）<br>第 2 种： var foo = function(){…} （等号后面必须是匿名函数，这句实质是函数表达式）<br>除此之外，类似于 var foo = function bar(){…} 这样的东西统一按 2 方法处理，即在函数外部无法通过 bar 访问到函数，因为这已经变成了一个表达式。<br>但为什么不是 “undefined”？<br>这里如果求 typeof g ，会返回 undefined，但求的是 g()，所以会去先去调用函数 g，这里就会直接抛出异常，所以是 Error。</p>
+<h2 id="题目三"><a href="#题目三" class="headerlink" title="题目三"></a>题目三</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  <span class="keyword">delete</span> x;</div><div class="line">  <span class="keyword">return</span> x;</div><div class="line">&#125;)(<span class="number">1</span>);</div></pre></td></tr></table></figure>
+<p>答案：1<br>delete 操作符用于删除对象的成员变量，不能删除函数的参数。</p>
+<h2 id="题目四"><a href="#题目四" class="headerlink" title="题目四"></a>题目四</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> y = <span class="number">1</span>, x = y = <span class="keyword">typeof</span> x;</div><div class="line">x;</div></pre></td></tr></table></figure>
+<p>答案：”undefined”<br>通过重写代码如下结果:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> y = <span class="number">1</span>;</div><div class="line">y = <span class="keyword">typeof</span> x;</div><div class="line"><span class="keyword">var</span> x = y;</div><div class="line">x;</div></pre></td></tr></table></figure></p>
+<p>当执行，y = typeof x时，x 还没有被定义，所以y成为字符串”undefined”，然后被分配到x.</p>
+<h2 id="题目五"><a href="#题目五" class="headerlink" title="题目五"></a>题目五</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">f</span>)</span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="keyword">typeof</span> f();</div><div class="line">&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;);</div></pre></td></tr></table></figure>
+<p>在函数里的 f() 其实是参数的那个 f 的执行结果，所以是 typeof 1，也就是 “number”<br>为了便于理解我们继续分解:<br>第一部分<br>var baz = function(){ return 1; };<br>第二部分<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">f</span>)</span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">typeof</span> f();</div><div class="line">&#125;)(baz);</div></pre></td></tr></table></figure></p>
+<p>在这里，函数f接受一个参数是另一个函数,f函数内部执行这个实参函数并且返回类型<br>无论是从调用该函数返回,即使参数名称f与函数名冲突，函数接受本身作为自己的参数，然后调用，此时就看谁更具有更高的优先级了，显然，参数的优先级更高，所以实际执行的是return typeof 1</p>
+<h2 id="题目六"><a href="#题目六" class="headerlink" title="题目六"></a>题目六</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">   bar: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.baz; &#125;,</div><div class="line">   baz: <span class="number">1</span></div><div class="line">&#125;;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">typeof</span> <span class="built_in">arguments</span>[<span class="number">0</span>]();</div><div class="line">&#125;)(foo.bar);</div></pre></td></tr></table></figure>
+<p>答案： “undefined”<br>为什么是”undefined”？我们必须要知道this运算符是怎么工作的。<br>这里的this其实指的是arguments<br>在arguments<a href="">0</a>中执行了一个方法,arguments[0]就是foo.bar方法，注意:这在foo.bar中的this是没有绑定到foo。虽然 foo.bar 传递给了函数，但是真正执行的时候，函数 bar 的上下文环境是 arguments，因此this指向的就是arguments，并不是 foo。<br>arguemnts[0] 可以理解为 arguments.0（不过写代码就不要这样了，语法会错误的），所以这样看来，上下文环境是 arguemnts 就没问题了，所以在执行baz的时候自然this就是window了，window 上没有baz属性，返回的就是undefined，typeof调用的话就转换成”undefined”了。<br>this指向的是arguments，可以用下面的代码测试<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">	bar:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>&#125;,</div><div class="line">	baz:<span class="number">1</span></div><div class="line">&#125;;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">arguments</span>[<span class="number">0</span>]();</div><div class="line">&#125;)(foo.bar);</div></pre></td></tr></table></figure></p>
+<h2 id="题目七"><a href="#题目七" class="headerlink" title="题目七"></a>题目七</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">bar: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.baz; &#125;,</div><div class="line">baz: <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">typeof</span> (f = foo.bar)();</div></pre></td></tr></table></figure>
+<p>答案 “undefined”<br>继续改写一下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">bar: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.baz; &#125;,</div><div class="line">baz: <span class="number">1</span></div><div class="line">&#125;</div><div class="line">f = foo.bar;</div><div class="line"><span class="keyword">typeof</span> f();</div></pre></td></tr></table></figure></p>
+<p>其实 (a = b) 表达式的结果是b<br>把foo.bar存储给f然后调用，所以this在foo.bar引用的是全局对象，所以就没有baz属性了。换句话说，foo.bar执行的时候上下文是 foo，但是当 把 foo.bar 赋值给 f 的时候，f 的上下文环境是 window ，是没有 baz 的，所以是 ”undefined”。</p>
+<h2 id="题目八"><a href="#题目八" class="headerlink" title="题目八"></a>题目八</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f = (<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="string">"1"</span>; &#125;, <span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">2</span>; &#125;)();</div><div class="line"><span class="keyword">typeof</span> f;</div></pre></td></tr></table></figure>
+<p>答案 “number”<br>逗号操作符的使用可以很混淆，但这段说明它的行为:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</div><div class="line">x;</div></pre></td></tr></table></figure></p>
+<p>只有最后的函数会被执行。<br>x的值是3,这表明，当你有一系列的组合在一起，并由逗号分隔的表达式，它们从左到右进行计算，但只有最后一个表达式的结果保存。由于同样的原因，这个问题可以改写为减少混乱<br>逗号操作符多用于声明多个变量；但除此之外，逗号操作符还可以用于赋值，在用于赋值时，逗号操作符总会返回表达式中的最后一项，如下面的例子展示：</p>
+<pre><code>var num = (5,1,3,8);  // num的值为8
+</code></pre><h2 id="题目九"><a href="#题目九" class="headerlink" title="题目九"></a>题目九</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="keyword">if</span> (<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;) &#123;</div><div class="line">  x += <span class="keyword">typeof</span> f;</div><div class="line">&#125;</div><div class="line">x;</div></pre></td></tr></table></figure>
+<p>答案 “1undefined”<br>括号内的 function f(){} 不是函数声明，会被转换成 true ，因此 f 未定义。<br>这里有个难点，if 中的 function f(){} 要如何处理？函数声明的实际规则如下：</p>
+<h2 id="题目十"><a href="#题目十" class="headerlink" title="题目十"></a>题目十</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</div><div class="line"><span class="keyword">return</span> f();</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">2</span>; &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>答案 2<br>如果是一直看下来的话，这个题目应该是比较简单。简单的来说在执行return之前，函数声明会在任何表达式被解析和求值之前先被解析和求值，即使你的声明在代码的最后一行，它也会在同作用域内第一个表达式之前被解析/求值。<br>参考如下例子，函数fn是在alert之后声明的，但是在alert执行的时候，fn已经有定义了<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">alert(fn());</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="string">'Hello world!'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>所以题目中函数提升了两次，第二次把第一次覆盖了，所以 return 后面的 f 是 return 语句的下一条语句声明的函数 f 。注意自执行函数 (function f (){})(); 中的 f 并没有函数提升效果，它是表达式。</p>
+<h2 id="题目十一"><a href="#题目十一" class="headerlink" title="题目十一"></a>题目十一</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> f; &#125;</div><div class="line"><span class="keyword">new</span> f() <span class="keyword">instanceof</span> f;</div></pre></td></tr></table></figure>
+<p>答案 false<br>怎样去理解？<br>new f() ， 首先这个操作会创建一个新对象并调用构造函数函数这一新的对象作为它的当前上下文对象。简单的说 ，<br>new f();<br>依稀记得高级程序设计里面是这么说的：<br>1 创建空对象。<br>2 将类的prototype中的属性和方法复制到实例中。<br>3 将第一步创建的空对象做为类的参数调用类的构造函数<br>默认如果没有覆盖这个空对象的话,返回this<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Object</span>;</div><div class="line">a <span class="keyword">instanceof</span> <span class="built_in">Object</span>    为 <span class="literal">true</span></div></pre></td></tr></table></figure></p>
+<p>我们在看 f() 返回了 return f；那么也就是说这个新的对象是是自身,构造函数本身在 new 的过程中会返回一个表示该对象的实例。但是函数的返回值覆盖了这个实例，这个new 就形同虚设。果f的形式为 function f(){return this}或function f(){}就不一样。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> f();</div><div class="line">a <span class="keyword">instanceof</span> f  <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
+<p>值得注意的是 instanceof 检测的是原型。</p>
+<h2 id="题目十二"><a href="#题目十二" class="headerlink" title="题目十二"></a>题目十二</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = [<span class="keyword">typeof</span> x, <span class="keyword">typeof</span> y][<span class="number">1</span>];</div><div class="line"><span class="keyword">typeof</span> <span class="keyword">typeof</span> x;</div></pre></td></tr></table></figure>
+<p>这题目比较简单，注意下返回类型即可。x = [,][1]；即 x = typeof y = ‘undefind’。<br>typeof 返回的是string类型就可以了 ，typeof typeof必然就是’string’了。</p>
+<h2 id="题目十三"><a href="#题目十三" class="headerlink" title="题目十三"></a>题目十三</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">foo</span>)</span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="keyword">typeof</span> foo.bar;</div><div class="line">&#125;)(&#123; foo: &#123; bar: <span class="number">1</span> &#125; &#125;);</div></pre></td></tr></table></figure>
+<p>因为参数对象中没有bar属性<br>答案 “undefined”<br>又是一个恶心的题目，纯文字游戏，大家看仔细看。<br>先分解一下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> baz = &#123; foo: &#123; bar: <span class="number">1</span> &#125; &#125;;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">foo</span>)</span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="keyword">typeof</span> foo.bar;</div><div class="line">&#125;)(baz);</div></pre></td></tr></table></figure></p>
+<p>去掉函数关联<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> baz = &#123; foo: &#123; bar: <span class="number">1</span> &#125; &#125;;</div><div class="line"><span class="keyword">var</span> foo = baz;</div><div class="line"><span class="keyword">typeof</span> foo.bar;</div></pre></td></tr></table></figure></p>
+<p>最后，通过替代我们除去中间变量foo<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> baz = &#123; foo: &#123; bar: <span class="number">1</span> &#125; &#125;;</div><div class="line"><span class="keyword">typeof</span> baz.bar;</div></pre></td></tr></table></figure></p>
+<p>所以现在就很清晰了，属性中没有定义baz；它被定义为baz.foo上了，所以结果是：”undefined”。</p>
+<h2 id="题目十四"><a href="#题目十四" class="headerlink" title="题目十四"></a>题目十四</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> (<span class="function"><span class="keyword">function</span>(<span class="params">x, undefined</span>)</span>&#123;&#125;) length;</div></pre></td></tr></table></figure>
+<p>答案：2<br>with 限定了作用域是这个函数，function.length 返回函数的参数个数，所以是 2。<br>undefined 虽然是关键词，但可以被覆写。但 null 不能。</p>
+<p>本文参考<br><a href="http://www.techug.com/13-javascript-program" target="_blank" rel="external">一</a><br><a href="https://www.zhihu.com/question/34079683" target="_blank" rel="external">二</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS题目/" rel="tag">#JS题目</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/11/JavaScript中的面向对象编程/" rel="next" title="JavaScript中的面向对象编程">
+                <i class="fa fa-chevron-left"></i> JavaScript中的面向对象编程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/12/js中函数声明与函数表达式/" rel="prev" title="js中函数声明与函数表达式">
+                js中函数声明与函数表达式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/12/14道Javascript题，你会多少？/"
+           data-title="14道Javascript题，你会多少？" data-url="http://yoursite.com/2016/10/12/14道Javascript题，你会多少？/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目一"><span class="nav-number">1.</span> <span class="nav-text">题目一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目二"><span class="nav-number">1.1.</span> <span class="nav-text">题目二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目三"><span class="nav-number">2.</span> <span class="nav-text">题目三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目四"><span class="nav-number">3.</span> <span class="nav-text">题目四</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目五"><span class="nav-number">4.</span> <span class="nav-text">题目五</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目六"><span class="nav-number">5.</span> <span class="nav-text">题目六</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目七"><span class="nav-number">6.</span> <span class="nav-text">题目七</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目八"><span class="nav-number">7.</span> <span class="nav-text">题目八</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目九"><span class="nav-number">8.</span> <span class="nav-text">题目九</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目十"><span class="nav-number">9.</span> <span class="nav-text">题目十</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目十一"><span class="nav-number">10.</span> <span class="nav-text">题目十一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目十二"><span class="nav-number">11.</span> <span class="nav-text">题目十二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目十三"><span class="nav-number">12.</span> <span class="nav-text">题目十三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目十四"><span class="nav-number">13.</span> <span class="nav-text">题目十四</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="js的解析器对函数声明与函数表达式并不是一视同仁对待的。对于函数声明，js解析器会优先读取，函数名提升优先于变量提升，确保在所有代码执行之前声明已经被解析，而函数表达式，如同定义其他基本类型的变量一样，只在执行到某一句时会对其进行解析。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中函数声明与函数表达式">
+<meta property="og:url" content="http://yoursite.com/2016/10/12/js中函数声明与函数表达式/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="js的解析器对函数声明与函数表达式并不是一视同仁对待的。对于函数声明，js解析器会优先读取，函数名提升优先于变量提升，确保在所有代码执行之前声明已经被解析，而函数表达式，如同定义其他基本类型的变量一样，只在执行到某一句时会对其进行解析。">
+<meta property="og:updated_time" content="2016-10-12T08:15:09.035Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js中函数声明与函数表达式">
+<meta name="twitter:description" content="js的解析器对函数声明与函数表达式并不是一视同仁对待的。对于函数声明，js解析器会优先读取，函数名提升优先于变量提升，确保在所有代码执行之前声明已经被解析，而函数表达式，如同定义其他基本类型的变量一样，只在执行到某一句时会对其进行解析。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/12/js中函数声明与函数表达式/"/>
+
+  <title> js中函数声明与函数表达式 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js中函数声明与函数表达式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T10:19:46+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/js中函数声明与函数表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/js中函数声明与函数表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="http://legold.cc/mine/my_deal.js"></script>
+
+
+<blockquote>
+<p>js的解析器对函数声明与函数表达式并不是一视同仁对待的。对于函数声明，js解析器会优先读取，函数名提升优先于变量提升，确保在所有代码执行之前声明已经被解析，而函数表达式，如同定义其他基本类型的变量一样，只在执行到某一句时会对其进行解析。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>目前为止，我们一直没有对函数声明和函数表达式加以区别。而实际上，解析器在向执行环境中加载数据时，对函数声明和函数表达式并非一视同仁。解析器会率先读取函数声明，并使其在执行任何代码之前可用（可以访问）；至于函数表达式，则必须等到解析器执行到它所在的代码行，才会真正被解释执行。如下例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(sum(<span class="number">10</span>,<span class="number">10</span>));</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">n1,n2</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> n1+n2;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以上代码完全可以正确执行，因为在代码开始执行之前，解析器就已经通过一个名为<strong>函数声明提升（function declaration hoisting）</strong>的过程，读取并将函数声明添加到执行环境中。对代码求值时，JavaScript引擎在第一遍会声明函数并将它们放到源代码树的顶部。所以，即使声明函数的代码在调用它的代码后面，<strong>JavaScript引擎也能把函数声明提升到顶部</strong>。如果像下面的例子所示，把上面的函数声明改为等价的函数表达式，就会在执行的时候出现错误。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(sum(<span class="number">10</span>,<span class="number">10</span>));</div><div class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">n1,n2</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> n1+n2;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>以上代码会在运行的时候出现错误，原因在于函数位于一个初始化语句中，而不是一个函数声明。换句话讲，在执行到函数所在的语句之前，变量sum中不会保存有对函数的引用；而且，由于第一行代码就会导致“unexpected identifier”（意外标识符）错误，实际上也不会执行到下一行。<br>除了声明时候可以通过变量访问函数这一点区别之外，函数声明与函数表达式的语法其实是等价的。<br>　　注：也可以同时调用函数声明和函数表达式，例如 var sum=function sum(){}。不过，这种语法在Safari中会导致错误。</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</div></pre></td></tr></table></figure>
+<p>函数 foo 将会在整个程序执行前被 hoisting (提升)，因此它在定义 foo 函数的整个 scope (作用域)中都是可用的。即使在函数定义之前调用它也没问题。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">foo();<span class="comment">// works because foo was created before this code runs</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h3><p>对于函数声明，函数的名称是必须的，而对于函数表达式而言则是可选的，因此，就出现了匿名函数表达式和命名函数表达式。如下：<br>函数声明: function functionName (){  }<br>函数声明: function functionName<a href="">可选</a>{  }<br>如果没有函数名的话，一定就是函数表达式，但是对于有函数名的情况该如何判断呢？<br>Javascript 规定如果整个函数体是作为表达式的一部分时，那么它就是函数表达式，否则即是函数声明。以下为表达式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fuc = foo()&#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p>我们再举几个极端的表达式例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">!<span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"><span class="literal">true</span> &amp;&amp; <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</div></pre></td></tr></table></figure></p>
+<p>以上的语句这里只是为了区分函数表达式，一般不会这样写。那么用一个对比的例子来看看效果：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">foo1();<span class="comment">//foo1 is not defined </span></div><div class="line">foo2();<span class="comment">//works because foo2 was created before this code runs</span></div><div class="line">!<span class="function"><span class="keyword">function</span> <span class="title">foo1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="string">'foo1 works'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(<span class="string">'foo2 works'</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>匿名函数表达式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong>上面的例子将一个匿名函数赋值给了变量 foo。</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">foo; <span class="comment">// 'undefined'</span></div><div class="line">foo(); <span class="comment">// this raises a TypeError</span></div><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong>由于 var 是一个声明所以这里对变量 foo 进行 hoist (提升)，因此当程序执行时，变量 foo 是可调用的。<br>但是由于赋值语句只有在运行时才生效，所以变量 foo 的值为 undefined。</strong></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="陷阱1"><a href="#陷阱1" class="headerlink" title="陷阱1"></a>陷阱1</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">1</span>);</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(f) <span class="comment">// function g()&#123;console.log(1);&#125;</span></div><div class="line"><span class="built_in">console</span>.log(g)  <span class="comment">// Uncaught ReferenceError: g is not defined(…)</span></div><div class="line"><span class="comment">//g在外部作用域是没有被定义的，g只有在函数内部才能被访问到</span></div></pre></td></tr></table></figure>
+<p>上面说的就是命名函数表达式的赋值。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	bar();  <span class="comment">// works</span></div><div class="line">&#125;;</div><div class="line">bar();  <span class="comment">// Renferene error</span></div></pre></td></tr></table></figure></p>
+<p>在这里，命名函数 bar 赋值给了变量 foo，所以在函数声明外是不可见的，但在 bar 函数内部仍然可以调用。这是因为 Javascript 对命名函数处理的机制，函数的名称永远在函数内部的作用域中有效。</p>
+<hr>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">~<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="string">'hello world!'</span>);</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<p>试一下就知道这段代码的意思就是声明一个函数，然后立刻执行，因为Javascript中的变量作用域是基于函数的，所以这样可以避免变量污染，但这里的位运算符“~”乍一看让人摸不到头脑，如果去掉它再运行则会报错：SyntaxError。<br>为什么去掉位操作符“~”后运行会报错，这是因为从语法解析的角度看，Javascript不允许在函数声明的后面直接使用小括号，而函数表达式则没有这个限制，通过在函数声明前面加上一个“~”操作符，就可以让语法解析器把后面看成是函数表达式，同样的，在函数声明前面加上“!，+，-”等操作符也是可行的。<br>那我们为什么不使用下面这种函数表达式的方式呢？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </div><div class="line">alert(<span class="string">"hello, world."</span>); </div><div class="line">&#125;();</div></pre></td></tr></table></figure></p>
+<p><strong>虽然从语法解析的角度看没有问题，但是上面的代码存在弊端，它引入了一个变量，可能会污染现有的运行环境，带来潜在的问题。</strong><br>使用位操作符“~”的方法多少显得有点奇技淫巧，其实把函数声明用小括号套起来更易读：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </div><div class="line">alert(<span class="string">"hello, world."</span>); </div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>或者这样<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </div><div class="line">alert(<span class="string">"hello, world."</span>); </div><div class="line">&#125;());</div></pre></td></tr></table></figure></p>
+<hr>
+<p>下面来几个小测试<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line"> &#125;</div><div class="line"> <span class="keyword">return</span> bar();</div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">8</span>;</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">alert(foo());</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line"> &#125;;</div><div class="line"> <span class="keyword">return</span> bar();</div><div class="line"> <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">8</span>;</div><div class="line"> &#125;;</div><div class="line">&#125;</div><div class="line">alert(foo());</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">alert(foo());</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line"> &#125;;</div><div class="line"> <span class="keyword">return</span> bar();</div><div class="line"> <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">8</span>;</div><div class="line"> &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="keyword">return</span> bar();</div><div class="line"> <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line"> &#125;;</div><div class="line"> <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">8</span>;</div><div class="line"> &#125;;</div><div class="line">&#125;</div><div class="line">alert(foo());</div></pre></td></tr></table></figure>
+<p>如果你的答案不是8、3、3和 [Type Error: bar is not a function] 的话，就继续往下读吧……（即使答对了也要继续读哦）<br>现在来解释下前面的测试。<br>Question 1 用了 function declaration，也就是说它们 get hoisted（被提升）了……<br><strong>等一下，什么是 Hoisting？</strong><br>这里引用 Ben Cherry的话：“Function declaration和function variable（函数变量）通常会被 JavaScript 解释器移（‘hoisted’）到当前作用域顶部”。<br>function declaration 被提升时，整个函数体都会随之提升，所以 Question 1 的代码经过解释器解释后是像这样运行的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//**Simulated processing sequence for Question 1**</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="comment">//define bar once</span></div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line"> &#125;</div><div class="line"> <span class="comment">//redefine it</span></div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">8</span>;</div><div class="line"> &#125;</div><div class="line"> <span class="comment">//return its invocation</span></div><div class="line"> <span class="keyword">return</span> bar(); <span class="comment">//8</span></div><div class="line">&#125;</div><div class="line">alert(foo());</div></pre></td></tr></table></figure></p>
+<p>Function Expression 会被提升吗？<br>这取决于表达式。比如 Question 2 中的第一个表达式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="number">3</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>等号左边的（var bar）是 Variable Declaration。Variable Declaration 会被提升，但是 Assignment Expression（赋值表达式）不会。所以当 bar 提升时，解释器会这样初始化：var bar = undefined。而函数定义本身不会被提升。<br>因此 Question 2 的代码会按以下顺序运行：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//**Simulated processing sequence for Question 2**</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="comment">//a declaration for each function expression</span></div><div class="line"> <span class="keyword">var</span> bar = <span class="literal">undefined</span>;</div><div class="line"> <span class="keyword">var</span> bar = <span class="literal">undefined</span>;</div><div class="line"> <span class="comment">//first Function Expression is executed</span></div><div class="line"> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line"> &#125;;</div><div class="line"> <span class="comment">// Function created by first Function Expression is invoked</span></div><div class="line"> <span class="keyword">return</span> bar();</div><div class="line"> <span class="comment">// second Function Expression unreachable</span></div><div class="line">&#125;</div><div class="line">alert(foo()); <span class="comment">//3</span></div></pre></td></tr></table></figure></p>
+<p>把代码保存在 HTML 文件中，之后在 Firefox 上运行试试。或者在 IE8、Chrome 或 Safari 控制台中运行。显然 Firebug 控制台在“global（全局）”作用域（实际并不是全局的，而是特有的“Firebug”作用域——试着在 Firebug 控制台中运行“this == window”你就知道了）运行代码时，不会将函数提升。<br>Question 3 和 Question 1 的逻辑相似。这次是 foo 函数被提升了。<br>Question 4 就很简单了，根本就没有函数提升……<br>可以这么说，但是如果根本没有提升的话，TypeError 会是“bar not defined”，而不是“bar not a function”。此例中确实没有函数提升，但是有变量提升。因此 bar 在开始就被声明了，但是它的值并没有定义。其它代码都是按顺序执行的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js基础/" rel="tag">#js基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/12/14道Javascript题，你会多少？/" rel="next" title="14道Javascript题，你会多少？">
+                <i class="fa fa-chevron-left"></i> 14道Javascript题，你会多少？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/12/js中函数声明与函数表达式/"
+           data-title="js中函数声明与函数表达式" data-url="http://yoursite.com/2016/10/12/js中函数声明与函数表达式/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">2.</span> <span class="nav-text">区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数声明"><span class="nav-number">2.1.</span> <span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数表达式"><span class="nav-number">2.2.</span> <span class="nav-text">函数表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">3.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#陷阱1"><span class="nav-number">3.1.</span> <span class="nav-text">陷阱1</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
