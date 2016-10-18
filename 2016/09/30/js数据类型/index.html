@@ -86,20 +86,20 @@
 
 <meta name="description" content="数据类型
 
-ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。">
+ECMAScript中有5种简单数据类型（也称为基本数据类型或原始数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。JavaScript不支持任何创建自定义类型的机制，所有值最终都将是上述6种数据类型之一。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js数据类型">
 <meta property="og:url" content="http://yoursite.com/2016/09/30/js数据类型/index.html">
 <meta property="og:site_name" content="legold">
 <meta property="og:description" content="数据类型
 
-ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。">
-<meta property="og:updated_time" content="2016-09-30T07:29:40.734Z">
+ECMAScript中有5种简单数据类型（也称为基本数据类型或原始数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。JavaScript不支持任何创建自定义类型的机制，所有值最终都将是上述6种数据类型之一。">
+<meta property="og:updated_time" content="2016-10-14T07:27:21.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js数据类型">
 <meta name="twitter:description" content="数据类型
 
-ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。">
+ECMAScript中有5种简单数据类型（也称为基本数据类型或原始数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型——Object，Object本质上是由一组无序的名值对组成的。JavaScript不支持任何创建自定义类型的机制，所有值最终都将是上述6种数据类型之一。">
 
 
 
@@ -301,17 +301,36 @@ ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefi
       
         <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><script src="http://legold.cc/mine/my_deal.js"></script>
 
-<p>ECMAScript中有5种简单数据类型（也称为基本数据类型）：<code>Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>和<code>String</code>。还有一种复杂数据类型——<code>Object</code>，<code>Object</code>本质上是由一组无序的名值对组成的。</p>
+<p>ECMAScript中有5种简单数据类型（也称为基本数据类型或原始数据类型）：<code>Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>和<code>String</code>。还有一种复杂数据类型——<code>Object</code>，<code>Object</code>本质上是由一组无序的名值对组成的。JavaScript不支持任何创建自定义类型的机制，所有值最终都将是上述6种数据类型之一。</p>
 <a id="more"></a>
-<h3 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h3><p><code>typeof</code>检测给定变量的数据类型<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message = <span class="string">'some string'</span>;</div><div class="line">alert(<span class="keyword">typeof</span> message);  <span class="comment">// 'string'</span></div><div class="line">alert(<span class="keyword">typeof</span>(message));  <span class="comment">// 'string'</span></div><div class="line">alert(<span class="keyword">typeof</span> <span class="number">88</span>);  <span class="comment">// 'number'</span></div></pre></td></tr></table></figure></p>
-<h3 id="Undefined-类型"><a href="#Undefined-类型" class="headerlink" title="Undefined 类型"></a>Undefined 类型</h3><p><code>Undefined</code>类型只有一个值，即特殊的<code>undefined</code>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message; <span class="comment">//在使用var声明变量但未对其加以初始化时，这个变量的值就默认为 undefined</span></div><div class="line">alert(message == <span class="literal">undefined</span>); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<h3 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h3><p><code>typeof</code>检测给定变量的数据类型<br>鉴于JavaSript是松散类型的，因此需要有一种手段来检测给定变量的数据类型，<code>typeof</code>就是负责提供这方面信息的运算符。对一个值使用<code>typeof</code>运算符可能返回下列某个字符串：</p>
+<ul>
+<li><code>&quot;undefined&quot;</code>：如果这个值未声明或已声明但未初始化。</li>
+<li><code>&quot;boolean&quot;</code>：如果这个值是布尔值。</li>
+<li><code>&quot;string&quot;</code>：如果这个值是字符串。</li>
+<li><code>&quot;number&quot;</code>：如果这个值是数值。</li>
+<li><code>&quot;object&quot;</code>：如果这个值是<code>对象</code>或<code>null</code>。</li>
+<li><code>&quot;function&quot;</code>：如果这个值是函数。<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message = <span class="string">'some string'</span>;</div><div class="line">alert(<span class="keyword">typeof</span> message);  <span class="comment">// 'string'</span></div><div class="line">alert(<span class="keyword">typeof</span>(message));  <span class="comment">// 'string'  不提倡用圆括号</span></div><div class="line">alert(<span class="keyword">typeof</span> <span class="number">88</span>);  <span class="comment">// 'number'</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>从以上例子可以看出，typeof 运算符既可以对变量使用，又可以对字面量使用。由于 typeof 是一个运算符而不是函数，因此例子中的圆括号尽管可以使用，但并不提倡。</p>
+<h3 id="Undefined-类型"><a href="#Undefined-类型" class="headerlink" title="Undefined 类型"></a>Undefined 类型</h3><p><code>Undefined</code>类型只有一个值，即特殊的<code>undefined</code>。<br>Undefined 类型只有1个值，即 undefined。使用 var 声明变量但未对其加以初始化时，这个变量的值就是 undefined，直接使用未声明的变量会产生错误。对未声明或已声明但未初始化的变量执行 typeof 运算符会返回 “undefined” 值，例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message; <span class="comment">//在使用var声明变量但未对其加以初始化时，这个变量的值就默认为 undefined</span></div><div class="line"><span class="comment">// var age   // 这个变量并没有声明</span></div><div class="line"><span class="built_in">console</span>.log(message);  <span class="comment">// "undefined"</span></div><div class="line"><span class="built_in">console</span>.log(age);  <span class="comment">// error 会报错，提示 age is not defined</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> message);  <span class="comment">// "undefined"</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> age);  <span class="comment">// "undefined"</span></div><div class="line">alert(message == <span class="literal">undefined</span>); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
 <p>下面的这个例子使用<code>undefined</code>值显式初始化了变量<code>message</code>。但我们没有必要这么做，因为未经初始化的值默认就会取得<code>undefined</code>值。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message = <span class="literal">undefined</span>;</div><div class="line">alert(message == <span class="literal">undefined</span>);  <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
 <p>不过，包含<code>undefined</code>值得变量与尚未声明定义的变量还是不一样的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message;  <span class="comment">// 这个变量声明后默认取得了 undefined 值</span></div><div class="line"><span class="comment">//  下面这个变量并未声明</span></div><div class="line"><span class="comment">//   var age</span></div><div class="line">alert(message); <span class="comment">// 'undefined'</span></div><div class="line">alert(age);  <span class="comment">// 会报错，提示 age is not defined</span></div></pre></td></tr></table></figure></p>
 <p>运行以上代码，第一个警告框会显示变量message的值，即 “undefined” 。而第二个警告框——由于传递给 alert() 函数的是尚未声明的变量 age ——则会导致一个错误。对于尚未声明过的变量，只能执行一项操作，即使用typeof 操作符检测其数据类型（对未经声明的变量调用delete 不会导致错误，但这样做没什么实际意义，而且在严格模式下确实会导致错误） 。</p>
 <p>令人困惑的是：对未初始化的变量执行 typeof 操作符会返回 undefined 值，而对未声明的变量执行 typeof 操作符同样也会返回 undefined 值。来看下面的例子：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message; <span class="comment">// 这个变量声明之后默认取得了 undefined 值</span></div><div class="line"><span class="comment">// 下面这个变量并没有声明</span></div><div class="line"><span class="comment">// var age</span></div><div class="line">alert(<span class="keyword">typeof</span> message); <span class="comment">// "undefined"</span></div><div class="line">alert(<span class="keyword">typeof</span> age); <span class="comment">// "undefined"</span></div></pre></td></tr></table></figure>
 <p>这一点一定要搞清楚，即使一个变量没有被声明，直接使用typeof来检测，也会得到 undefined。因此，如果用 typeof meg == ‘undefined’ 来判断是否定义还是并未初始化会出错的。<br>结果表明，对未初始化和未声明的变量执行 typeof 操作符都返回了 undefined 值；这个结果有其逻辑上的合理性。因为虽然这两种变量从技术角度看有本质区别，但实际上无论对哪种变量也不可能执行真正的操作。</p>
-<h3 id="Null类型"><a href="#Null类型" class="headerlink" title="Null类型"></a>Null类型</h3><p>Null类型是第二个只有一个值得数据类型，从逻辑角度来看， null 值表示一个空对象指针，而这也正是使用 typeof 操作符检测 null 值时会返回”object”的原因。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> car = <span class="literal">null</span>;</div><div class="line">alert(<span class="keyword">typeof</span> car);  <span class="comment">// 'object'</span></div></pre></td></tr></table></figure></p>
+<h3 id="Null类型"><a href="#Null类型" class="headerlink" title="Null类型"></a>Null类型</h3><p>Null类型是第二个只有一个值得数据类型，它的值就是<code>null</code>，它用来表示值得空缺。你可以认为 undefined 是表示系统级的、出乎意料的或类似错误的值的空缺，而 null 是表示程序级的、正常的或在意料之中的值的空缺。<br>从逻辑角度来看， null 值表示一个空对象指针，而这也正是使用 typeof 操作符检测 null 值时会返回”object”的原因。<br>在下列场景中应当使用<code>null</code>。</p>
+<ul>
+<li>用来初始化一个变量，这个变量可能赋值为一个对象。</li>
+<li>用来和一个已经初始化的变量比较，这个变量可以是也可以不是一个对象。</li>
+<li>当函数的参数期望是对象时，作为参数传入。</li>
+<li>当函数的返回值期望是对象时，作为返回值传出。<br>在下列场景中不应当使用<code>null</code>。</li>
+<li>不要使用 <code>null</code> 来检测是否传入了某个参数。</li>
+<li>不要使用 <code>null</code> 来检测一个未初始化的变量。<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> car = <span class="literal">null</span>;</div><div class="line">alert(<span class="keyword">typeof</span> car);  <span class="comment">// 'object'</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>undefined值是派生自null值得，对它们的相等性测试要返回true.</p>
 <pre><code>alert(null == undefined);  // true
 </code></pre><p>Boolean类型</p>
@@ -353,10 +372,24 @@ ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefi
 </tr>
 </tbody>
 </table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message = <span class="string">"Hello world!"</span>;</div><div class="line"><span class="keyword">if</span> (message)&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Value is true."</span>);  <span class="comment">// 被执行</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> messageAsBoolean = <span class="built_in">Boolean</span>(message);</div><div class="line"><span class="built_in">console</span>.log(messageAsBoolean);  <span class="comment">// true</span></div></pre></td></tr></table></figure>
 <h3 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h3><p>Number 类型分为整数和浮点数值</p>
 <p>八进制字面值的第一位必须是零（0） ，然后是八进制数字序列（0～7） 。如果字面值中的数值超出了范围，那么前导零将被忽略，后面的数值将被当作十进制数值解析。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> octalNum1 = <span class="number">070</span>; <span class="comment">// 八进制的 56</span></div><div class="line"><span class="keyword">var</span> octalNum2 = <span class="number">079</span>; <span class="comment">// 无效的八进制数值——解析为 79</span></div><div class="line"><span class="keyword">var</span> octalNum3 = <span class="number">08</span>; <span class="comment">// 无效的八进制数值——解析为 8</span></div></pre></td></tr></table></figure></p>
 <p>八进制字面量在严格模式下是无效的，会导致支持的 JavaScript 引擎抛出错误。</p>
 <p>十六进制字面值的前两位必须是 0x</p>
+<h3 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h3><p>NaN（not a number），是一个特殊的数值。之所以称它为「非数值」，是因为它不能参与算数运算，任何涉及 NaN 的操作都返回 NaN。并且 NaN 与任何值都不相等（包括自身）。例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">NaN</span>);      <span class="comment">// "number"</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="number">0</span> / <span class="number">0</span>);                 <span class="comment">// NaN</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> - <span class="literal">NaN</span>);             <span class="comment">// NaN</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">Infinity</span> - <span class="literal">Infinity</span>);   <span class="comment">// NaN</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="literal">NaN</span>;</div><div class="line"><span class="built_in">console</span>.log(a === a);   <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
+<p>JavaScript 提供了 isNaN() 函数，来确定一个数是不是 NaN。例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">isNaN</span>(<span class="number">100</span>));        <span class="comment">//  false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">isNaN</span>(<span class="string">"100"</span>));      <span class="comment">//  false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">isNaN</span>(<span class="literal">true</span>));       <span class="comment">//  false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">isNaN</span>(<span class="string">"sss"</span>));      <span class="comment">//  true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">isNaN</span>(<span class="literal">NaN</span>));        <span class="comment">//  true</span></div></pre></td></tr></table></figure></p>
+<h3 id="Number-、parseInt-、parseFloat-转型函数"><a href="#Number-、parseInt-、parseFloat-转型函数" class="headerlink" title="Number()、parseInt()、parseFloat()转型函数"></a><code>Number()</code>、<code>parseInt()</code>、<code>parseFloat()</code>转型函数</h3><p><code>isNaN()</code>函数在接收到一个值之后，会尝试使用转型函数 Number() 将这个值转换为数值，转换规则如下：</p>
+<ul>
+<li><code>undefined</code> 转换为 <code>NaN</code>；</li>
+<li><code>null</code> 转换为 0；</li>
+<li><code>true</code> 转换为 <code>1</code>、<code>false</code> 转换为 <code>0</code>；</li>
+<li><code>number</code> 整数转换为十进制，小数不变；</li>
+<li><code>string</code> 如果只包含十进制数和小数，则返回对应的数值，如果只包含八进制数，则忽略前导0返回剩余部分，如果只包含十六进制，则返回十进制数，空字符串转换为0，其它字符串转换为 <code>NaN</code>；</li>
+<li>如果 <code>object</code> 具有 <code>valueOf()</code> 方法，且返回一个原始值（5种简单数据类型），则将这个原始值转换为数字，并返回这个数字；否则，如果 <code>object</code> 具有 <code>toString()</code> 方法，且返回一个原始值，则将这个原始值转换为数字，并返回这个数字；否则，抛出一个类型错误异常。<br>由于 <code>Number()</code> 转型函数在转换字符串时不够理想，因此还有两个专门用来转换字符串的函数 <code>parseInt()</code> 和 <code>parseFloat()</code> 函数。<br><code>parseInt()</code> 函数会忽略字符串前面的空格，直至找到第一个非空格字符，只要第一个非空格字符不是数字或者正负号，一律返回 <code>NaN</code>， 如果第一个非空格字符是数字字符，<code>parseInt()</code> 会继续解析第二个字符，直到解析完所有后续字符或者遇到了一个非数字字符。例如：<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">""</span>));          <span class="comment">// NaN（Number("")返回 0）</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">"123S"</span>));      <span class="comment">// 123</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">"12.4"</span>));      <span class="comment">// 12</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>parseFloat()</code> 函数也会忽略字符串前面的空格，直至找到第一个非空格字符，只要第一个非空格字符不是数字或者正负号或者小数点，一律返回 <code>NaN</code>， 如果第一个非空格字符是上述字符之一，<code>parseFloat()</code> 会继续解析第二个字符，直到解析完所有后续字符或者遇到了一个非浮点数值。例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">"098.2"</span>));       <span class="comment">// 98.2</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">"123.23.23"</span>));   <span class="comment">// 123.23</span></div></pre></td></tr></table></figure></p>
 <h3 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h3><p>String 类型用于表示由零或多个 16 位 Unicode 字符组成的字符序列，即字符串。字符串可以由单引号或双引号表示：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> aa = <span class="string">'string'</span>;</div><div class="line"><span class="keyword">var</span> bb = <span class="string">'string'</span>;</div></pre></td></tr></table></figure></p>
 <p>ECMAScript中用双引号表示的字符串和用单引号表示的字符串完全相同。</p>
 <h4 id="字符字面量"><a href="#字符字面量" class="headerlink" title="字符字面量"></a>字符字面量</h4><p>String数据类型包含一些特殊的字符字面量</p>
@@ -504,7 +537,7 @@ ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefi
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -514,7 +547,7 @@ ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefi
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -563,7 +596,7 @@ ECMAScript中有5种简单数据类型（也称为基本数据类型）：Undefi
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#typeof操作符"><span class="nav-number">1.1.</span> <span class="nav-text">typeof操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Undefined-类型"><span class="nav-number">1.2.</span> <span class="nav-text">Undefined 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Null类型"><span class="nav-number">1.3.</span> <span class="nav-text">Null类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Number类型"><span class="nav-number">1.4.</span> <span class="nav-text">Number类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String类型"><span class="nav-number">1.5.</span> <span class="nav-text">String类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符字面量"><span class="nav-number">1.5.1.</span> <span class="nav-text">字符字面量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object类型"><span class="nav-number">1.6.</span> <span class="nav-text">Object类型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#typeof操作符"><span class="nav-number">1.1.</span> <span class="nav-text">typeof操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Undefined-类型"><span class="nav-number">1.2.</span> <span class="nav-text">Undefined 类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Null类型"><span class="nav-number">1.3.</span> <span class="nav-text">Null类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Number类型"><span class="nav-number">1.4.</span> <span class="nav-text">Number类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NaN"><span class="nav-number">1.5.</span> <span class="nav-text">NaN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Number-、parseInt-、parseFloat-转型函数"><span class="nav-number">1.6.</span> <span class="nav-text">Number()、parseInt()、parseFloat()转型函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String类型"><span class="nav-number">1.7.</span> <span class="nav-text">String类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符字面量"><span class="nav-number">1.7.1.</span> <span class="nav-text">字符字面量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object类型"><span class="nav-number">1.8.</span> <span class="nav-text">Object类型</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

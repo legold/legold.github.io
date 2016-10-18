@@ -1,0 +1,658 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js函数," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="函数是js里的一等公民，所以学好用好函数为js的学习以及以后封装一些组件大有必要。
+
+本文总结了一些js函数，js技巧，以此来加深我的印象与时常学习，复习。PS：此文档，我会持续更新。
+好了，直接进入正题吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="好用的js函数汇总(持续更新)">
+<meta property="og:url" content="http://yoursite.com/2016/10/18/好用的js函数汇总-持续更新/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="函数是js里的一等公民，所以学好用好函数为js的学习以及以后封装一些组件大有必要。
+
+本文总结了一些js函数，js技巧，以此来加深我的印象与时常学习，复习。PS：此文档，我会持续更新。
+好了，直接进入正题吧。">
+<meta property="og:updated_time" content="2016-10-18T10:07:47.744Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="好用的js函数汇总(持续更新)">
+<meta name="twitter:description" content="函数是js里的一等公民，所以学好用好函数为js的学习以及以后封装一些组件大有必要。
+
+本文总结了一些js函数，js技巧，以此来加深我的印象与时常学习，复习。PS：此文档，我会持续更新。
+好了，直接进入正题吧。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/18/好用的js函数汇总-持续更新/"/>
+
+  <title> 好用的js函数汇总(持续更新) | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                好用的js函数汇总(持续更新)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T17:05:22+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/18/好用的js函数汇总-持续更新/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/18/好用的js函数汇总-持续更新/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>函数是js里的一等公民，所以学好用好函数为js的学习以及以后封装一些组件大有必要。</p>
+</blockquote>
+<p>本文总结了一些js函数，js技巧，以此来加深我的印象与时常学习，复习。<script src="http://legold.cc/mine/my_deal.js"></script><br>PS：此文档，我会持续更新。</p>
+<p>好了，直接进入正题吧。<br><a id="more"></a></p>
+<h2 id="log"><a href="#log" class="headerlink" title="log"></a>log</h2><p>使用log方法来代替console.log<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>)</span>&#123; <span class="built_in">console</span>.log.apply(<span class="built_in">console</span>,<span class="built_in">arguments</span>); &#125;</div></pre></td></tr></table></figure></p>
+<h2 id=""><a href="#" class="headerlink" title="$$"></a>$$</h2><p>通过ID来获取元素<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">$$</span>(<span class="params">id</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">typeof</span> id === <span class="string">'string'</span> ? <span class="built_in">document</span>.getElementById(id) : id;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="getByClass"><a href="#getByClass" class="headerlink" title="getByClass"></a>getByClass</h2><p>通过class来获取元素<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getClass</span>(<span class="params">oParent,sClass</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">document</span>.getElementsByClassName)&#123;<span class="comment">//兼容处理</span></div><div class="line">    	sClass = <span class="built_in">arguments</span>.length == <span class="number">1</span>?<span class="built_in">arguments</span>[<span class="number">0</span>]:<span class="built_in">arguments</span>[<span class="number">1</span>];</div><div class="line">    	<span class="keyword">return</span> <span class="built_in">document</span>.getElementsByClassName(sClass);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">    	<span class="keyword">if</span>(<span class="built_in">arguments</span>.length==<span class="number">1</span>)&#123;</div><div class="line">    		sClass = <span class="built_in">arguments</span>[<span class="number">0</span>];</div><div class="line">    		oParent = <span class="built_in">document</span>;</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">var</span> aResult = [];    	</div><div class="line">    	<span class="keyword">var</span> aEle = oParent.getElementsByTagName(<span class="string">'*'</span>);</div><div class="line">    	<span class="keyword">var</span> re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'\\b'</span>+sClass+<span class="string">'\\b'</span>,<span class="string">'g'</span>);</div><div class="line">    	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,l=aEle.length;i&lt;l;i++)&#123;</div><div class="line">    		<span class="keyword">if</span>(aEle[i].className.search(re) != <span class="string">'-1'</span>)&#123;</div><div class="line">    			aResult.push(aEle[i]);</div><div class="line">    		&#125;</div><div class="line">    	&#125;</div><div class="line">    	<span class="keyword">return</span> aResult;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当然，可以直接用querySelector()或者querySelectorAll()来选取某个或者某一类元素。</p>
+<h2 id="myAddEvent"><a href="#myAddEvent" class="headerlink" title="myAddEvent"></a>myAddEvent</h2><p>添加事件绑定<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myAddEvent</span>(<span class="params">obj,sEvent,fn</span>)</span>&#123;</div><div class="line">   <span class="keyword">if</span>(obj.attachEvent)&#123;</div><div class="line">      obj.attachEvent(<span class="string">'on'</span>+sEvent,fn);</div><div class="line">   &#125;<span class="keyword">else</span> <span class="keyword">if</span>(obj.addEventListener)&#123;</div><div class="line">      obj.addEventListener(sEvent,fn,<span class="literal">false</span>);</div><div class="line">   &#125;<span class="keyword">else</span>&#123;</div><div class="line">      obj[<span class="string">'on'</span>+sEvent] = fn;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="loopAtr"><a href="#loopAtr" class="headerlink" title="loopAtr"></a>loopAtr</h2><p>for in 循环枚举对象的所有属性<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loopAtr</span>(<span class="params">o</span>)</span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> o)&#123;</div><div class="line">	   <span class="built_in">console</span>.log(i+<span class="string">' : '</span>+o[i]);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="sum"><a href="#sum" class="headerlink" title="sum"></a>sum</h2><p>数组求和sum<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> result = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</div><div class="line">	   result += arr[i];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> sum;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="trim"><a href="#trim" class="headerlink" title="trim"></a>trim</h2><p>js去除空格<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim</span>(<span class="params">str</span>)</span>&#123;  <span class="comment">//删除左右两端的空格</span></div><div class="line">	<span class="keyword">return</span> str.replace(<span class="regexp">/(^\s*)|(\s*$)/g</span>,<span class="string">''</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ltrim</span>(<span class="params">str</span>)</span>&#123;  <span class="comment">//删除左边空格</span></div><div class="line">	<span class="keyword">return</span> str.replace(<span class="regexp">/(^\s*)/g</span>,<span class="string">''</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">rtrim</span>(<span class="params">str</span>)</span>&#123;  <span class="comment">//删除右边空格</span></div><div class="line">	<span class="keyword">return</span> str.replace(<span class="regexp">/(\s*$)/g</span>,<span class="string">''</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="getStyle"><a href="#getStyle" class="headerlink" title="getStyle"></a>getStyle</h2><p>获取样式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span>(<span class="params">obj,attr</span>)</span>&#123;</div><div class="line">	<span class="keyword">if</span>(obj.currentStyle)&#123;</div><div class="line">		<span class="keyword">return</span> obj.currentStyle[attr];</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">return</span> getComputedStyle(obj,<span class="literal">false</span>)[attr];</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="setStyle"><a href="#setStyle" class="headerlink" title="setStyle"></a>setStyle</h2><p>设置样式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setStyle</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> b)&#123;</div><div class="line">		a.style[i] = b[i];</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="getPosition"><a href="#getPosition" class="headerlink" title="getPosition"></a>getPosition</h2><p>获取页面任意元素的位置<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPosition</span>(<span class="params">o</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> left = <span class="number">0</span>;</div><div class="line">	<span class="keyword">var</span> top = <span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(o.offsetParent)&#123;<span class="comment">//如果父级定位元素存在</span></div><div class="line">		left += o.offsetLeft;</div><div class="line">		top += o.offsetTop;</div><div class="line">		o = o.offsetParent;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> &#123;</div><div class="line">		x:left,y:top  <span class="comment">//返回json数据</span></div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="gAjax"><a href="#gAjax" class="headerlink" title="gAjax"></a>gAjax</h2><p>使用ajax的函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">gAjax</span>(<span class="params">url,fnSucc,fnFail</span>)</span>&#123;</div><div class="line">	<span class="comment">//1,创建ajax对象</span></div><div class="line">	<span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</div><div class="line">		<span class="comment">// code for IE7+,Firefox,Chrome,Opera,Safari</span></div><div class="line">		<span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		<span class="comment">//code for IE6,IE5</span></div><div class="line">		<span class="keyword">var</span> xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">'Microsoft.XMLHTTP'</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//2，连接服务器</span></div><div class="line">	xhr.open(<span class="string">'GET'</span>,url,<span class="literal">true</span>);  <span class="comment">//true表示异步，false表示同步</span></div><div class="line"></div><div class="line">	<span class="comment">//3，发送请求</span></div><div class="line">	xhr.send();</div><div class="line">	xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//跟服务器发生交互的时候会响应的事件</span></div><div class="line">       <span class="comment">//xhr.readyState--浏览器和服务器，进行到哪一步了</span></div><div class="line">		<span class="keyword">if</span>(xhr.readyState == <span class="number">4</span>)&#123;</div><div class="line">			<span class="comment">//xhr.readyState--读取完成</span></div><div class="line">            <span class="comment">//xhr.status--http状态码--成功 200代表成功</span></div><div class="line">            <span class="comment">//404代表页面找不到了</span></div><div class="line">			<span class="keyword">if</span>(xhr.status == <span class="number">200</span>)&#123;</div><div class="line">				fnSucc(xhr.responseText);</div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				<span class="keyword">if</span>(fnFail)&#123;</div><div class="line">					fnFail();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><p>设置cookie，读取cookie，删除cookie<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置cookie</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name,value,iDay</span>)</span>&#123;  <span class="comment">//设置cookie</span></div><div class="line">	<span class="keyword">var</span> oDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">	oDate.setDate(oDate.getDate()+iDay);</div><div class="line">	<span class="built_in">document</span>.cookie = name+<span class="string">'='</span>+value+<span class="string">';expires='</span>+oDate;</div><div class="line">	<span class="comment">//console.log(document.cookie);</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//调用方式</span></div><div class="line"><span class="comment">//setCookie('user','huanglei',1);</span></div><div class="line"><span class="comment">//setCookie('name','licheng',1);</span></div><div class="line"></div><div class="line"><span class="comment">//获取cookie</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> arr = <span class="built_in">document</span>.cookie.split(<span class="string">'; '</span>);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</div><div class="line">		<span class="keyword">var</span> arr2 = arr[i].split(<span class="string">'='</span>);</div><div class="line">		<span class="keyword">if</span>(arr2[<span class="number">0</span>] == name)&#123;</div><div class="line">			<span class="keyword">return</span> arr2[<span class="number">1</span>];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="string">''</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//删除不用cookie，释放内存</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeCookie</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">	setCookie(name,<span class="number">1</span>,<span class="number">-1</span>); <span class="comment">//-1表示已经过期了，浏览器会自动删除掉</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="checkTime"><a href="#checkTime" class="headerlink" title="checkTime"></a>checkTime</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkTime</span>(<span class="params">i</span>)</span>&#123;<span class="comment">//检测时间是否是个位,如果是，补个0</span></div><div class="line">    <span class="keyword">if</span>(i&lt;<span class="number">10</span>) i = <span class="string">'0'</span>+i;</div><div class="line">    <span class="keyword">return</span> i;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="hasClass"><a href="#hasClass" class="headerlink" title="hasClass"></a>hasClass</h2><p>js判断某个元素是否含有某个class<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">youClass</span>(<span class="params">ele,sClass</span>)</span>&#123;</div><div class="line">	<span class="comment">//( \\s|^ ) 判断前面是否有空格或者以传入的sClass开头 （\\s | $ ）判断后面是否有空格，或者以传入的sClass结尾 两个感叹号为转换为布尔值 以方便做判断 </span></div><div class="line">	<span class="keyword">return</span> !!ele.className.match(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'(\\s|^)'</span>+sClass+<span class="string">'(\\s|$)'</span>));   	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js函数/" rel="tag">#js函数</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/13/总结一下JavaScript中的this/" rel="next" title="总结一下JavaScript中的this">
+                <i class="fa fa-chevron-left"></i> 总结一下JavaScript中的this
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/18/好用的js函数汇总-持续更新/"
+           data-title="好用的js函数汇总(持续更新)" data-url="http://yoursite.com/2016/10/18/好用的js函数汇总-持续更新/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#log"><span class="nav-number">1.</span> <span class="nav-text">log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text">$$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getByClass"><span class="nav-number">3.</span> <span class="nav-text">getByClass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#myAddEvent"><span class="nav-number">4.</span> <span class="nav-text">myAddEvent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loopAtr"><span class="nav-number">5.</span> <span class="nav-text">loopAtr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sum"><span class="nav-number">6.</span> <span class="nav-text">sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trim"><span class="nav-number">7.</span> <span class="nav-text">trim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getStyle"><span class="nav-number">8.</span> <span class="nav-text">getStyle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setStyle"><span class="nav-number">9.</span> <span class="nav-text">setStyle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getPosition"><span class="nav-number">10.</span> <span class="nav-text">getPosition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gAjax"><span class="nav-number">11.</span> <span class="nav-text">gAjax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie"><span class="nav-number">12.</span> <span class="nav-text">cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#checkTime"><span class="nav-number">13.</span> <span class="nav-text">checkTime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hasClass"><span class="nav-number">14.</span> <span class="nav-text">hasClass</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
