@@ -1,0 +1,645 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js面向对象," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在Ajax兴起以前，很多人写js可以说都是毫无章法可言的，基本上是想到什么就写什么，就是一个接一个的function，也不怕全局污染或者函数同名造成的bug，遇到重复的还得copy，如果一不小心真的重名了，还真不知道从何处查找错误。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS面向对象编程实例一看就懂">
+<meta property="og:url" content="http://yoursite.com/2016/10/19/JS面向对象编程实例一看就懂/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="在Ajax兴起以前，很多人写js可以说都是毫无章法可言的，基本上是想到什么就写什么，就是一个接一个的function，也不怕全局污染或者函数同名造成的bug，遇到重复的还得copy，如果一不小心真的重名了，还真不知道从何处查找错误。">
+<meta property="og:updated_time" content="2016-10-19T05:18:16.218Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS面向对象编程实例一看就懂">
+<meta name="twitter:description" content="在Ajax兴起以前，很多人写js可以说都是毫无章法可言的，基本上是想到什么就写什么，就是一个接一个的function，也不怕全局污染或者函数同名造成的bug，遇到重复的还得copy，如果一不小心真的重名了，还真不知道从何处查找错误。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/19/JS面向对象编程实例一看就懂/"/>
+
+  <title> JS面向对象编程实例一看就懂 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JS面向对象编程实例一看就懂
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-19T10:22:14+08:00" content="2016-10-19">
+              2016-10-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/19/JS面向对象编程实例一看就懂/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/19/JS面向对象编程实例一看就懂/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在Ajax兴起以前，很多人写js可以说都是毫无章法可言的，<script src="http://legold.cc/mine/my_deal.js"></script>基本上是想到什么就写什么，就是一个接一个的function，也不怕全局污染或者函数同名造成的bug，遇到重复的还得copy，如果一不小心真的重名了，还真不知道从何处查找错误。<br><a id="more"></a><br>因为大家总是用面向过程的编程思想来写js代码，而且也由于网络上充斥了太多小“巧”的JS代码段，很多都是随意而为，很不规范，这也就造成了大家对js的误解，一味的认为它就是一个辅助的小玩意，而不适合做大型的开发。但是自从Ajax兴起，以及近几年的JS的发展，大量的JS代码编写要求人们具备像写JAVA类似的代码一样，能够用面向对象的思维进行开发。<br>其实使用JS进行面向对象开发也不难，因为在JS中每一个function也是一个对象。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">HelloWorld</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="string">'hello world!'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>那么我们在使用的时候就可以把它当成一个对象来使用（转变思路），比如使用如下的测试函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> obj = <span class="keyword">new</span> HelloWorld();</div><div class="line">&#125;</div><div class="line"><span class="comment">// 或者这样测试</span></div><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> obj = <span class="keyword">new</span> HelloWorld();</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>那么在调用test方法后就会弹出hello world!的提示框，<strong>也就是说调用了HelloWorld()对象（函数）</strong>。在这里HelloWorld这个对象没有任何属性和方法，它只有一个构造方法HelloWorld()，我们可以把它想象成JAVA中的一个没有任何属性和方法的类，当使用new进行对象创建的时候，就调用了它的构造方法。<br>这也是最简单的对象了，当然，一个对象肯定是要赋予它属性和方法的，在JS中我们使用<code>prototype</code>原型关键字进行赋值，比如我要给 HelloWorld 对象增加一个 sayHello 方法和一个 name 属性，那么就可以这样添加：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HelloWorld.prototype = &#123;</div><div class="line">	name:<span class="string">'JavaScript'</span>,</div><div class="line">	sayHello:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       alert(<span class="keyword">this</span>.name);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这样，就可以为HelloWorld添加一个name属性和sayHello方法了。<br>再改一下test方法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> obj = <span class="keyword">new</span> HelloWorld();</div><div class="line">	obj.sayHello();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>那么调用test方法后就会先后打印hello world!和JavaScript（一个是构造方法中的alert，一个是sayHello中的alert.）<br>对于向一个对象添加实例方法和属性，我们可以采用上述的方式，即用prototype关键字进行赋值。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">对象名称.prototype = &#123;</div><div class="line">	属性一:属性值,</div><div class="line">	属性二:属性值,</div><div class="line">	方法一:<span class="function"><span class="keyword">function</span>(<span class="params">参数列表</span>)</span>&#123;</div><div class="line">	  方法体;</div><div class="line">	&#125;,</div><div class="line">	方法二:<span class="function"><span class="keyword">function</span>(<span class="params">参数列表</span>)</span>&#123;</div><div class="line">	  方法体;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>可以按照如上方式对一个对象进行多个属性和方法的定义，这样在new一个对象后，就可以使用<code>实例名称.属性或方法</code>来获取属性或执行方法了。<br>在上面的方法中，对象的属性是可以直接访问的，比如访问HelloWorld对象的name属性就可以使用obj.name直接获取。这就好比JAVA中的公有属性，而且还可以直接对name属性进行赋值操作。<br>那么，如何给一个对象赋一个私有成员变量呢？那就要改一下HelloWorld类的声明方式了，不适用prototype进行类的属性和方法声明，而是直接使用内嵌函数和属性进行声明，修改的HelloWorld如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">HelloWorld2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> privateProp = <span class="string">'hello world2!'</span>;</div><div class="line">	<span class="keyword">this</span>.method = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	   alert(privateProp);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>看到HelloWorld2的类声明方式了没？是直接在函数内部进行了函数嵌套声明，而且还设置了一个局部变量privateProp，即<strong>私有成员变量</strong>，该变量只能被HelloWorld2内部的函数进行访问，外部是访问不到的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> obj2 = <span class="keyword">new</span> HelloWorld2();</div><div class="line">	obj2.method(); <span class="comment">// hello world2!</span></div><div class="line">	alert(obj2.privateProp); <span class="comment">// undefined</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>如何为一个类添加静态类方法和静态类属性呢？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">HelloWorld.age = <span class="number">22</span>;</div><div class="line">HelloWorld.hello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(HelloWorld.age);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong>注意，在使用的时候直接使用类名进行访问，但是不能使用实例进行访问的</strong>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> obj = <span class="keyword">new</span> HelloWorld();</div><div class="line">	obj.sayHello(); <span class="comment">// true 实例方法-通过实例进行访问</span></div><div class="line">	HelloWorld.hello();  <span class="comment">// true 静态方法-通过类名进行直接访问</span></div><div class="line">	obj.hello(); <span class="comment">// false 不能通过实例访问静态方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最后上一个总结的代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//构造函数</span></div><div class="line"> <span class="comment">//使自己的对象多次复制，同时实例根据设置的访问等级可以访问其内部的属性和方法</span></div><div class="line"> <span class="comment">//当对象被实例化后，构造函数会立即执行它所包含的任何代码</span></div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">myObject</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">     <span class="comment">//特权属性(公有属性)</span></div><div class="line">     <span class="keyword">this</span>.myMsg = msg; <span class="comment">//只在被实例化后的实例中可调用</span></div><div class="line">     <span class="keyword">this</span>.address = <span class="string">'上海'</span>;</div><div class="line">     </div><div class="line">     <span class="comment">//私有属性</span></div><div class="line">     <span class="keyword">var</span> name = <span class="string">'豪情'</span>;</div><div class="line">     <span class="keyword">var</span> age = <span class="number">29</span>;</div><div class="line">     <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">     </div><div class="line">     <span class="comment">//私有方法</span></div><div class="line">     <span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">         alert(that.name);</div><div class="line">     &#125;</div><div class="line">     <span class="comment">//特权方法(公有方法)</span></div><div class="line">     <span class="comment">//能被外部公开访问</span></div><div class="line">     <span class="comment">//这个方法每次实例化都要重新构造而prototype是原型共享，所有实例化后，都共同引用同一个</span></div><div class="line">     <span class="keyword">this</span>.sayAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">         alert(name); <span class="comment">//在公有方法中可以访问私有成员</span></div><div class="line">     &#125;</div><div class="line">     <span class="comment">//私有和特权成员在函数的内部，在构造函数创建的每个实例中都会包含同样的私有和特权成员的副本，</span></div><div class="line">     <span class="comment">//因而实例越多占用的内存越多</span></div><div class="line"> &#125;</div><div class="line"> <span class="comment">//公有方法</span></div><div class="line"> <span class="comment">//适用于通过new关键字实例化的该对象的每个实例</span></div><div class="line"> <span class="comment">//向prototype中添加成员将会把新方法添加到构造函数的底层中去</span></div><div class="line"> myObject.prototype.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     alert(<span class="string">'hello everyone!'</span>);</div><div class="line"> &#125;</div><div class="line"> <span class="comment">//静态属性</span></div><div class="line"> <span class="comment">//适用于对象的特殊实例，就是作为Function对象实例的构造函数本身</span></div><div class="line"> myObject.name = <span class="string">'china'</span>;</div><div class="line"> <span class="comment">//静态方法</span></div><div class="line"> myObject.alertname = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     alert(<span class="keyword">this</span>.name);</div><div class="line"> &#125;</div><div class="line"> <span class="comment">//实例化</span></div><div class="line"> <span class="keyword">var</span> m1 = <span class="keyword">new</span> myObject(<span class="string">'111'</span>);</div><div class="line"> <span class="comment">//---- 测试属性 ----//</span></div><div class="line"> <span class="comment">//console.log(myObject.name); //china</span></div><div class="line"> <span class="comment">//console.log(m1.name); //undefined, 静态属性不适用于一般实例</span></div><div class="line"> <span class="comment">//console.log(m1.constructor.name); //china, 想访问类的静态属性，先访问该实例的构造函数，然后在访问该类静态属性</span></div><div class="line"> <span class="comment">//console.log(myObject.address); //undefined, myObject中的this指的不是函数本身，而是调用address的对象，而且只能是对象</span></div><div class="line"> <span class="comment">//console.log(m1.address); //上海 此时this指的是实例化后的m1</span></div><div class="line"> </div><div class="line"> <span class="comment">//---- 测试方法 ----//</span></div><div class="line"> <span class="comment">//myObject.alertname(); //china,直接调用函数的类方法</span></div><div class="line"> <span class="comment">//m1.alertname(); //FF: m1.alertname is not a function, alertname 是myObject类的方法，和实例对象没有直接关系</span></div><div class="line"> <span class="comment">//m1.constructor.alertname(); //china, 调用该对象构造函数（类函数）的方法（函数）</span></div><div class="line"> <span class="comment">//m1.sayHello(); //hello everyone, myObject类的prototype原型下的方法将会被实例继承</span></div><div class="line"> <span class="comment">//myObject.sayHello(); //myObject.sayHello is not a function，sayHello是原型方法，不是类的方法</span></div><div class="line"> </div><div class="line"> <span class="comment">//---- 测试prototype ----//</span></div><div class="line"> <span class="comment">//console.log(m1.prototype); //undefined, 实例对象没有prototype</span></div><div class="line"> <span class="comment">//console.log(myObject.prototype); //Object </span></div><div class="line"> <span class="comment">//alert(myObject.prototype.constructor); //console.log返回myObject(msg)，此时alert()更清楚，相当于myObject</span></div><div class="line"> <span class="comment">//console.log(myObject.prototype.constructor.name); //china, 相当于myObject.name;</span></div></pre></td></tr></table></figure></p>
+<p>本文参考 <a href="http://www.cnblogs.com/jikey/archive/2011/05/13/2045005.html" target="_blank" rel="external">1</a><br><a href="http://www.doc88.com/p-9899351055863.html" target="_blank" rel="external">2</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js面向对象/" rel="tag">#js面向对象</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/18/好用的js函数汇总-持续更新/" rel="next" title="好用的js函数汇总(持续更新)">
+                <i class="fa fa-chevron-left"></i> 好用的js函数汇总(持续更新)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/19/JS函数参数之选项对象/" rel="prev" title="JS函数参数之选项对象">
+                JS函数参数之选项对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/19/JS面向对象编程实例一看就懂/"
+           data-title="JS面向对象编程实例一看就懂" data-url="http://yoursite.com/2016/10/19/JS面向对象编程实例一看就懂/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
