@@ -1,0 +1,645 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js面向对象," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="对面向对象不熟悉的可以参考我之前总结的两篇文章，JavaScript中创建对象的7种模式和js面向对象之创建对象的方式这两篇文章，尤其后一篇讲的很详细也很清晰。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js面向对象的一些案例">
+<meta property="og:url" content="http://yoursite.com/2016/10/25/js面向对象的一些案例/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="对面向对象不熟悉的可以参考我之前总结的两篇文章，JavaScript中创建对象的7种模式和js面向对象之创建对象的方式这两篇文章，尤其后一篇讲的很详细也很清晰。">
+<meta property="og:updated_time" content="2016-10-25T07:39:20.562Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js面向对象的一些案例">
+<meta name="twitter:description" content="对面向对象不熟悉的可以参考我之前总结的两篇文章，JavaScript中创建对象的7种模式和js面向对象之创建对象的方式这两篇文章，尤其后一篇讲的很详细也很清晰。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/25/js面向对象的一些案例/"/>
+
+  <title> js面向对象的一些案例 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js面向对象的一些案例
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-25T14:02:12+08:00" content="2016-10-25">
+              2016-10-25
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/25/js面向对象的一些案例/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/25/js面向对象的一些案例/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对面向对象不熟悉的可以参考我之前总结的两篇文章，<a href="http://legold.cc/2016/09/26/JavaScript%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%847%E7%A7%8D%E6%A8%A1%E5%BC%8F/" target="_blank" rel="external">JavaScript中创建对象的7种模式</a><script src="http://legold.cc/mine/my_deal.js"></script>和<a href="http://legold.cc/2016/10/24/js%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F/" target="_blank" rel="external">js面向对象之创建对象的方式</a><br>这两篇文章，尤其后一篇讲的很详细也很清晰。<br><a id="more"></a></p>
+<blockquote>
+<ul>
+<li>具有默认值的构造函数</li>
+<li>遍历对象属性和方法</li>
+<li>属性的添加与删除</li>
+<li>将一个对象赋值给另一个对象的属性</li>
+<li>创建两个继承关系的对象</li>
+</ul>
+</blockquote>
+<h2 id="具有默认值的构造函数"><a href="#具有默认值的构造函数" class="headerlink" title="具有默认值的构造函数"></a>具有默认值的构造函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hero</span>(<span class="params">type,home,weapon</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.type = type;</div><div class="line">  <span class="keyword">this</span>.home = home;</div><div class="line">  <span class="keyword">this</span>.weapon = weapon;</div><div class="line">  <span class="keyword">if</span>(weapon == <span class="literal">undefined</span>)&#123;</div><div class="line">    <span class="keyword">this</span>.weapon = <span class="string">'剑'</span>;</div><div class="line">  &#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="keyword">this</span>.weapon = weapon;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//或者也可以写为一个短路表达式</span></div><div class="line">  <span class="comment">// this.weapon = weapon || '剑'; </span></div><div class="line">  <span class="comment">// this.weapon = weapon?weapon:'剑';</span></div><div class="line">  <span class="comment">//weapon &amp;&amp; this.weapon = weapon;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> Hero(<span class="string">'战士'</span>,<span class="string">'曹林'</span>);</div><div class="line">alert(user.type+<span class="string">'\n'</span>+user.home+<span class="string">'\n'</span>+user.weapon);</div><div class="line"><span class="keyword">var</span> user1 = <span class="keyword">new</span> Hero(<span class="string">'射手'</span>,<span class="string">'杨巷'</span>,<span class="string">'锤子'</span>);</div><div class="line">alert(user1.type+<span class="string">'\n'</span>+user1.home+<span class="string">'\n'</span>+user1.weapon);</div></pre></td></tr></table></figure>
+<h2 id="for-in-遍历对象的属性和方法"><a href="#for-in-遍历对象的属性和方法" class="headerlink" title="for in 遍历对象的属性和方法"></a>for in 遍历对象的属性和方法</h2><p>通过for in 语句遍历对象中的数据，包括属性和方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hero</span>(<span class="params">name,type,home,weapon</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.type = type;</div><div class="line">  <span class="keyword">this</span>.home = home;</div><div class="line">  <span class="keyword">this</span>.weapon = weapon?weapon:<span class="string">'剑'</span>;</div><div class="line">  <span class="keyword">this</span>.skill = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="keyword">this</span>.name+<span class="string">'向敌人发动了普通攻击'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> Hero(<span class="string">'阿东'</span>,<span class="string">'战士'</span>,<span class="string">'北京'</span>);</div><div class="line"><span class="built_in">document</span>.write(<span class="string">'user包含如下属性和方法：&lt;hr&gt;'</span>);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> user)&#123;</div><div class="line">  <span class="built_in">document</span>.write(i+<span class="string">' : '</span>+user[i]+<span class="string">'&lt;br&gt;'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过for in 语句和if判断分别遍历对象的属性和方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hero</span>(<span class="params">name,type,home,weapon</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.type = type;</div><div class="line">  <span class="keyword">this</span>.home = home;</div><div class="line">  <span class="keyword">this</span>.weapon = weapon?weapon:<span class="string">'剑'</span>;</div><div class="line">  <span class="keyword">this</span>.skill = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="keyword">this</span>.name+<span class="string">'向敌人发动了普通攻击'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> Hero(<span class="string">'阿东'</span>,<span class="string">'战士'</span>,<span class="string">'北京'</span>);</div><div class="line"><span class="built_in">document</span>.write(<span class="string">'user包含如下属性和方法：&lt;hr&gt;'</span>);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> user)&#123;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> user[i] == <span class="string">'function'</span>)&#123;</div><div class="line">    <span class="built_in">document</span>.write(<span class="string">'方法-'</span>+i+<span class="string">' : '</span>+user[i]+<span class="string">'&lt;br&gt;'</span>);</div><div class="line">  &#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="built_in">document</span>.write(<span class="string">'属性-'</span>+i+<span class="string">' : '</span>+user[i]+<span class="string">'&lt;br&gt;'</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//document.write(i+' : '+user[i]+'&lt;br&gt;');</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="属性的添加与删除"><a href="#属性的添加与删除" class="headerlink" title="属性的添加与删除"></a>属性的添加与删除</h2><p>使用 <code>delete</code> 删除对象的属性和方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hero</span>(<span class="params">name,type,home,weapon</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.type = type;</div><div class="line">  <span class="keyword">this</span>.home = home;</div><div class="line">  <span class="keyword">this</span>.weapon = weapon?weapon:<span class="string">'剑'</span>;</div><div class="line">  <span class="keyword">this</span>.skill = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="keyword">this</span>.name+<span class="string">'向敌人发动了普通攻击'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> Hero(<span class="string">'阿东'</span>,<span class="string">'战士'</span>,<span class="string">'北京'</span>);</div><div class="line"><span class="keyword">delete</span> user.name; <span class="comment">// 删除name属性</span></div><div class="line"><span class="keyword">delete</span> user.skill; <span class="comment">// 删除skill方法</span></div><div class="line">user.sex = <span class="string">'男'</span>; <span class="comment">//有删除，也可以添加</span></div><div class="line"><span class="built_in">document</span>.write(<span class="string">'user包含如下属性和方法：&lt;hr&gt;'</span>);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> user)&#123;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> user[i] == <span class="string">'function'</span>)&#123;</div><div class="line">    <span class="built_in">document</span>.write(<span class="string">'方法-'</span>+i+<span class="string">' : '</span>+user[i]+<span class="string">'&lt;br&gt;'</span>);</div><div class="line">  &#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="built_in">document</span>.write(<span class="string">'属性-'</span>+i+<span class="string">' : '</span>+user[i]+<span class="string">'&lt;br&gt;'</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//document.write(i+' : '+user[i]+'&lt;br&gt;');</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="将一个对象赋值给另一个对象的属性"><a href="#将一个对象赋值给另一个对象的属性" class="headerlink" title="将一个对象赋值给另一个对象的属性"></a>将一个对象赋值给另一个对象的属性</h2><p>对象的属性可以是任何类型的值，包括另一个对象。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hero</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.type = type;</div><div class="line">  <span class="keyword">this</span>.home = home;</div><div class="line">  <span class="keyword">this</span>.weapon = weapon?weapon:<span class="string">'剑'</span>;</div><div class="line">  <span class="keyword">this</span>.skill = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="keyword">this</span>.name+<span class="string">'向敌人发动了普通攻击'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sword</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.Att = <span class="number">100</span>;</div><div class="line">  <span class="keyword">this</span>.Level = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> xsj = <span class="keyword">new</span> Sword();</div><div class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> Hero(<span class="string">'阿东'</span>,<span class="string">'战士'</span>,<span class="string">'北京'</span>,xsj);</div><div class="line">alert(user.weapon); <span class="comment">//此时武器是一个对象</span></div><div class="line">alert(user.weapon.Att); <span class="comment">// 100</span></div></pre></td></tr></table></figure></p>
+<h2 id="创建两个继承关系的对象"><a href="#创建两个继承关系的对象" class="headerlink" title="创建两个继承关系的对象"></a>创建两个继承关系的对象</h2><p>先创建一个人对象，然后创建一个学生对象，让学生对象去继承人对象的属性和方法，同时学生对象又有自己的属性和方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.type = <span class="string">'人'</span>;</div><div class="line">&#125;</div><div class="line">People.prototype.getType = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert(<span class="string">'这是一个'</span>+<span class="keyword">this</span>.type);</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name,sex</span>)</span>&#123;</div><div class="line">  People.call(<span class="keyword">this</span>); <span class="comment">//不会获取到原型对象上的属性和方法</span></div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.sex = sex;</div><div class="line">&#125;</div><div class="line">Student.prototype = <span class="keyword">new</span> People(); <span class="comment">//把父类生成的实例对象赋给子类的原型属性，子类对应的原型对象也就会继父类的原型属性和方法</span></div><div class="line">Student.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert(<span class="string">'我是一名学生！'</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> Student(<span class="string">'小明'</span>,<span class="string">'男'</span>);</div><div class="line">alert(s1.type);  <span class="comment">// 人</span></div><div class="line">alert(s1.name);  <span class="comment">// 小明</span></div><div class="line">s1.getType();  <span class="comment">// 这是一个人</span></div><div class="line">s1.say(); <span class="comment">// 我是一名学生</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js面向对象/" rel="tag">#js面向对象</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/24/js面向对象之创建对象的方式/" rel="next" title="js面向对象之创建对象的方式">
+                <i class="fa fa-chevron-left"></i> js面向对象之创建对象的方式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/25/js面向对象的一些案例/"
+           data-title="js面向对象的一些案例" data-url="http://yoursite.com/2016/10/25/js面向对象的一些案例/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#具有默认值的构造函数"><span class="nav-number">1.</span> <span class="nav-text">具有默认值的构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-in-遍历对象的属性和方法"><span class="nav-number">2.</span> <span class="nav-text">for in 遍历对象的属性和方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性的添加与删除"><span class="nav-number">3.</span> <span class="nav-text">属性的添加与删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将一个对象赋值给另一个对象的属性"><span class="nav-number">4.</span> <span class="nav-text">将一个对象赋值给另一个对象的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建两个继承关系的对象"><span class="nav-number">5.</span> <span class="nav-text">创建两个继承关系的对象</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
