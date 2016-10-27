@@ -1,0 +1,653 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这个知识点我感觉比较有意思，因为很多时候我们在处理js的时候都需要和dom打交道，当然react大神就绕过吧!如果要获取节点的兄弟，父级，子级元素，需要先理清dom节点的知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原生JS获取节点的兄弟，父级，子级元素">
+<meta property="og:url" content="http://yoursite.com/2016/10/27/原生JS获取节点的兄弟，父级，子级元素/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="这个知识点我感觉比较有意思，因为很多时候我们在处理js的时候都需要和dom打交道，当然react大神就绕过吧!如果要获取节点的兄弟，父级，子级元素，需要先理清dom节点的知识。">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/test.png">
+<meta property="og:updated_time" content="2016-10-27T04:37:17.139Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原生JS获取节点的兄弟，父级，子级元素">
+<meta name="twitter:description" content="这个知识点我感觉比较有意思，因为很多时候我们在处理js的时候都需要和dom打交道，当然react大神就绕过吧!如果要获取节点的兄弟，父级，子级元素，需要先理清dom节点的知识。">
+<meta name="twitter:image" content="http://mytu-10064593.cos.myqcloud.com/test.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/27/原生JS获取节点的兄弟，父级，子级元素/"/>
+
+  <title> 原生JS获取节点的兄弟，父级，子级元素 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                原生JS获取节点的兄弟，父级，子级元素
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-27T10:58:45+08:00" content="2016-10-27">
+              2016-10-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/27/原生JS获取节点的兄弟，父级，子级元素/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/27/原生JS获取节点的兄弟，父级，子级元素/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这个知识点我感觉比较有意思，因为很多时候我们在处理js的时候都需要和dom打交道，当然react大神就绕过吧!<script src="http://legold.cc/mine/my_deal.js"></script><br>如果要获取节点的兄弟，父级，子级元素，需要先理清dom节点的知识。<br><a id="more"></a></p>
+<h2 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h2><p>众所周知，DOM有三大节点：<strong>元素节点</strong>+<strong>属性节点</strong>+<strong>文本节点</strong><br>这三种节点，我们要通过什么把她们区分开呢？需要从三个方面，分别是<code>nodeType</code>、<code>nodeName</code>、<code>nodeValue</code>。<br>nodeType:</p>
+<ul>
+<li>元素节点：1</li>
+<li>属性节点：2</li>
+<li>文本节点：3</li>
+</ul>
+<h3 id="元素节点"><a href="#元素节点" class="headerlink" title="元素节点"></a>元素节点</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"demo"</span> <span class="attr">name</span>=<span class="string">"lei"</span>&gt;</span>leige<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">//demo</span></div><div class="line"><span class="comment">//元素节点</span></div><div class="line"><span class="keyword">var</span> d = <span class="built_in">document</span>.getElementById(<span class="string">'demo'</span>);</div><div class="line"><span class="built_in">console</span>.log(d.nodeType);   <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(d.nodeName);   <span class="comment">// DIV</span></div><div class="line"><span class="built_in">console</span>.log(d.nodeValue);  <span class="comment">// null</span></div><div class="line"></div><div class="line"><span class="comment">//属性节点</span></div><div class="line"><span class="keyword">var</span> d1 = <span class="built_in">document</span>.getElementById(<span class="string">'demo'</span>).getAttributeNode(<span class="string">'name'</span>);</div><div class="line"><span class="built_in">console</span>.log(d1.nodeType);  <span class="comment">// 2</span></div><div class="line"><span class="built_in">console</span>.log(d1.nodeName);  <span class="comment">// name</span></div><div class="line"><span class="built_in">console</span>.log(d1.nodeValue); <span class="comment">// lei</span></div><div class="line"></div><div class="line"><span class="comment">//文本节点</span></div><div class="line"><span class="keyword">var</span> d3 = <span class="built_in">document</span>.getElementById(<span class="string">'demo'</span>).firstChild;</div><div class="line"><span class="built_in">console</span>.log(d3.nodeType);  <span class="comment">// 3</span></div><div class="line"><span class="built_in">console</span>.log(d3.nodeName);  <span class="comment">// #text</span></div><div class="line"><span class="built_in">console</span>.log(d3.nodeValue); <span class="comment">// leige</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>注意，元素节点的 <code>nodeValue</code> 是 <code>null</code>。<br>所有文本节点的 <code>nodeName</code> 都是固定的 <code>#text</code>。<br>获取属性节点的方法是 <code>getAttributeNode()</code>。</p>
+<h2 id="childNodes"><a href="#childNodes" class="headerlink" title="childNodes"></a>childNodes</h2><p><code>childNodes</code>属性返回节点的子节点集合，是一个NodeList对象。<br>这个子节点包括<code>元素节点</code>和<code>文本节点</code>。而我们一般只需要元素节点，不需要文本节点，因此，就要想办法将文本节点删除掉，让childNodes获得的只有元素节点。<br>先来一个小测试验证一下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span></div><div class="line">    文本节点1</div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span>11<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span>22<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">$$</span>(<span class="params">id</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">typeof</span> id === <span class="string">'string'</span>?<span class="built_in">document</span>.getElementById(id):id;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> test = $$(<span class="string">'test'</span>);</div><div class="line"><span class="keyword">var</span> a = test.getElementsByTagName(<span class="string">'div'</span>);</div><div class="line"><span class="keyword">var</span> b = test.childNodes;</div><div class="line"><span class="built_in">console</span>.log(a.length);  <span class="comment">// 2</span></div><div class="line"><span class="built_in">console</span>.log(b.length);  <span class="comment">// 5</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>其中我们可以看到childNodes获得的节点有5个，其中包括<strong>文本节点1和换行组成的第一个节点，然后剩下的两个换行组成的两个节点，剩下两个元素节点</strong>。<br>请看下图：<br><img src="http://mytu-10064593.cos.myqcloud.com/test.png" alt="节点演示"><br>然后我们来遍历循环一下，看看这5个节点的nodeType、nodeName、nodeValue分别是什么：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;b.length;i++)&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'nodeType: '</span>+b[i].nodeType+<span class="string">' ; '</span>+<span class="string">'nodeName: '</span>+b[i].nodeName+<span class="string">' ; '</span>+<span class="string">'nodeValue: '</span>+b[i].nodeValue);</div><div class="line">	<span class="built_in">console</span>.log(<span class="regexp">/\s/</span>.test(b[i].nodeValue)); <span class="comment">//验证是否有换行或者空格    	</span></div><div class="line">&#125;</div><div class="line"><span class="comment">/*  显示情况为</span></div><div class="line">nodeType: 3 ; nodeName: #text ; nodeValue: </div><div class="line">    文本节点1</div><div class="line"></div><div class="line">true	</div><div class="line">nodeType: 1 ; nodeName: DIV ; nodeValue: null</div><div class="line">false</div><div class="line">nodeType: 3 ; nodeName: #text ; nodeValue: </div><div class="line"></div><div class="line">true</div><div class="line">nodeType: 1 ; nodeName: DIV ; nodeValue: null</div><div class="line">false</div><div class="line">nodeType: 3 ; nodeName: #text ; nodeValue: </div><div class="line"></div><div class="line">true</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<p>因此从上面我们可以看到，<code>换行</code>它的节点类型是文本节点，nodeType是3，nodeName是#text，nodeValue是包括一个换行。<br>如何判断它是一个文本节点类型并且是换行或者空格呢？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(b[i].nodeName == <span class="string">'#text'</span> &amp;&amp; <span class="regexp">/\s/</span>.test(b[i].nodeValue))&#123;</div><div class="line">	test.removeChild(b[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>整合一下，我们封装一个函数来删除换行。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">del_hh</span>(<span class="params">ele</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> es = ele.childNodes;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;es.length;i++)&#123;</div><div class="line">	  <span class="keyword">if</span>(es[i].nodeName == <span class="string">'#text'</span> &amp;&amp; <span class="regexp">/\s/</span>.test(es[i].nodeValue))&#123;</div><div class="line">	    ele.removeChild(es[i]);</div><div class="line">	  &#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>OK,当我们执行完这个函数后，再来打印一下剩余的节点。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;b.length;i++)&#123;    		</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'nodeType: '</span>+b[i].nodeType+<span class="string">' ; '</span>+<span class="string">'nodeName: '</span>+b[i].nodeName+<span class="string">' ; '</span>+<span class="string">'nodeValue: '</span>+b[i].nodeValue);</div><div class="line">&#125;</div><div class="line"><span class="comment">//打印结果</span></div><div class="line"><span class="comment">/*</span></div><div class="line">nodeType: 1 ; nodeName: DIV ; nodeValue: null</div><div class="line">nodeType: 1 ; nodeName: DIV ; nodeValue: null</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<p>可看到上面的结果是，成功打印了两次元素节点DIV。这才是我们想要的，我们想要操作的。而且还要注意的是用到了正则判断。<br><code>\s</code>和<code>\S</code>是不同的。</p>
+<ul>
+<li><code>\s</code> 元字符用于查找空白字符。</li>
+<li><code>\S</code> 元字符用于查找非空白字符。<br>好的，经过这么一处理后，我们就可以放心大胆的使用childNodes来获取节点之类的信息了。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">dom</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> s = <span class="built_in">document</span>.getElementById(<span class="string">'test'</span>);</div><div class="line">	del_hh(s);  <span class="comment">//清理换行空格</span></div><div class="line">	<span class="keyword">var</span> chils = s.childNodes; <span class="comment">//得到s的全部子节点</span></div><div class="line">	<span class="keyword">var</span> par = s.parentNode;  <span class="comment">//得到s的父节点</span></div><div class="line">	<span class="keyword">var</span> ns = s.nextSibling;  <span class="comment">//得到s的下一个兄弟节点</span></div><div class="line">	<span class="keyword">var</span> ps = s.previousSibling; <span class="comment">//得到s的上一个兄弟节点</span></div><div class="line">	<span class="keyword">var</span> fs = s.firstChild; <span class="comment">//得到s的第一个子节点</span></div><div class="line">	<span class="keyword">var</span> ls = s.lastChild;  <span class="comment">//得到s的最后一个子节点</span></div><div class="line">&#125;</div><div class="line">dom(); </div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>当然，我们为了便捷，通过更倾向于使用jQuery。<br>下面介绍JQUERY的父，子，兄弟节点查找方法<br>jQuery.parent(expr)  找父亲节点，可以传入expr进行过滤，比如$(“span”).parent()或者$(“span”).parent(“.class”)<br>jQuery.parents(expr),类似于jQuery.parents(expr),但是是查找所有祖先元素，不限于父元素<br>jQuery.children(expr).返回所有子节点，这个方法只会返回直接的孩子节点，不会返回所有的子孙节点<br>jQuery.contents(),返回下面的所有内容，包括节点和文本。这个方法和children()的区别就在于，包括空白文本，也会被作为一个<br>jQuery对象返回，children()则只会返回节点<br>jQuery.prev()，返回上一个兄弟节点，不是所有的兄弟节点<br>jQuery.prevAll()，返回所有之前的兄弟节点<br>jQuery.next(),返回下一个兄弟节点，不是所有的兄弟节点<br>jQuery.nextAll()，返回所有之后的兄弟节点<br>jQuery.siblings(),返回兄弟姐妹节点，不分前后<br>jQuery.find(expr),跟jQuery.filter(expr)完全不一样。jQuery.filter()是从初始的jQuery对象集合中筛选出一部分，而jQuery.find()<br>的返回结果，不会有初始集合中的内容，比如$(“p”),find(“span”),是从<code>&lt;p&gt;</code>元素开始找<code>&lt;span&gt;</code>,等同于$(“p span”)</p>
+<p>好的，本文就到这里，欢迎指正。<br>本文参考<br><a href="http://www.cnblogs.com/bigdataZJ/p/JSReading1.html" target="_blank" rel="external">dom节点</a><br><a href="http://blog.csdn.net/duanshuyong/article/details/7562423" target="_blank" rel="external">js获取节点</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js基础/" rel="tag">#js基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/js闭包的一些坑/" rel="next" title="js闭包的一些坑">
+                <i class="fa fa-chevron-left"></i> js闭包的一些坑
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/27/原生JS获取节点的兄弟，父级，子级元素/"
+           data-title="原生JS获取节点的兄弟，父级，子级元素" data-url="http://yoursite.com/2016/10/27/原生JS获取节点的兄弟，父级，子级元素/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM节点"><span class="nav-number">1.</span> <span class="nav-text">DOM节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#元素节点"><span class="nav-number">1.1.</span> <span class="nav-text">元素节点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#childNodes"><span class="nav-number">2.</span> <span class="nav-text">childNodes</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
