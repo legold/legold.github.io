@@ -1,0 +1,652 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="图片预加载，很多项目都会用到这个需求，H5活动展示页面，一些涉及到用户体验的页面等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="由图片预加载引发的思考">
+<meta property="og:url" content="http://yoursite.com/2016/10/27/由图片预加载引发的思考/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="图片预加载，很多项目都会用到这个需求，H5活动展示页面，一些涉及到用户体验的页面等。">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/img.gif">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/load2.gif">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/load1.png">
+<meta property="og:updated_time" content="2016-10-27T07:39:49.724Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="由图片预加载引发的思考">
+<meta name="twitter:description" content="图片预加载，很多项目都会用到这个需求，H5活动展示页面，一些涉及到用户体验的页面等。">
+<meta name="twitter:image" content="http://mytu-10064593.cos.myqcloud.com/img.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/27/由图片预加载引发的思考/"/>
+
+  <title> 由图片预加载引发的思考 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                由图片预加载引发的思考
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-27T13:27:57+08:00" content="2016-10-27">
+              2016-10-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/27/由图片预加载引发的思考/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/27/由图片预加载引发的思考/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>图片预加载，很多项目都会用到这个需求，H5活动展示页面，一些涉及到用户体验的页面等。<script src="http://legold.cc/mine/my_deal.js"></script><br><a id="more"></a><br>预备知识：</p>
+<ul>
+<li>new Image()</li>
+<li>图片加载事件</li>
+</ul>
+<h2 id="new-Image"><a href="#new-Image" class="headerlink" title="new Image()"></a>new Image()</h2><p>创建一个Image对象：var img = new Image();定义Image对象的src: img.src = “xxx.gif”; 当然这是一张，如果有很多张图片，那就需要用循环，和数组，数组里面存好所需要的img地址，然后用循环创建Image对象，最后再指定src。这样做就相当于给浏览器缓存了一张或多张图片。<br><strong><code>Image</code></strong>对象代表嵌入的图像。<code>&lt;img&gt;</code>标签没出现一次，一个<code>Image</code>对象就会被创建。<a href="http://www.w3school.com.cn/jsref/dom_obj_image.asp" target="_blank" rel="external"><strong>Image对象的属性</strong></a><br>建立图像对象：图像对象名称=new Image([宽度],[高度])<br>需要注意的是：src 属性一定要写到 onload 的后面，否则程序在 IE 中会出错。<br>预载入图像最简单的方法是在 JavaScript 中实例化一个新 Image() 对象，然后将需要载入的图像的 URL 作为参数传入。假设我们有一个图像，在用户的鼠标放到一个已经显示的图像之上时，我们希望显示这个图像。为了预载入这一图像从而得到较快的响应时间，我们简单地创建一个 Image() 对象，然后在 onLoad() 事件处理器中将其同时载入。</p>
+<h3 id="缓存一张图片"><a href="#缓存一张图片" class="headerlink" title="缓存一张图片"></a>缓存一张图片</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">//缓存一张图片</span></div><div class="line"><span class="built_in">document</span>.body.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//这样在body加载的时候就会缓存一张图片</span></div><div class="line">	<span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">	img.src = <span class="string">'http://pic.58pic.com/58pic/17/05/72/71b58PICgeR_1024.jpg'</span>;</div><div class="line">&#125;;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span>	</div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--浏览器已经缓存了一张图片，在鼠标滑动a的时候，让它换成缓存的那张图片--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span> <span class="attr">onmouseover</span>=<span class="string">"javascript:document.test.src='http://pic.58pic.com/58pic/17/05/72/71b58PICgeR_1024.jpg';"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"test.jpg"</span> <span class="attr">name</span>=<span class="string">"test"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span>	</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>OK,上面的代码，在head中的js，只是为了让浏览器缓存了一张图片，而且请注意，这里使用的方法只是为了先让浏览器缓存这些图片，避免了在用户操作的时候直接请求，而是预先，提前就缓存好这些图片，需要用到的时候，直接拿来使用就行了。这种方法对于优化用户体验起到了一定的作用。<br>图像标记本身不能处理 onMouseOver() 和 onMouseOut() 事件，这就是上例中<code>&lt;img&gt;</code> 标记被包含在一个<code>&lt;a&gt;</code>标记之中的原因，<code>&lt;a&gt;</code> 标记支持这两个事件类型。 </p>
+<h3 id="缓存多张图片（通过数组）"><a href="#缓存多张图片（通过数组）" class="headerlink" title="缓存多张图片（通过数组）"></a>缓存多张图片（通过数组）</h3><p>在实际应用中，我们可能需要预载入多个图像，而不止一个；例如，在一个包含多个图像翻卷的菜单栏中，或者在我们试图创建平滑效果时，都需要预载入多个图像。其实这并不困难，只要使用 JavaScript 的数组即可实现，如下例所示：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">//用数组缓存多张图片</span></div><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;	</div><div class="line">	<span class="comment">//一共九张图片，图片都比较大，用来测试比较好</span></div><div class="line">	<span class="keyword">var</span> imageList = [</div><div class="line">	   <span class="string">'http://img4.duitang.com/uploads/item/201405/12/20140512210327_dTshi.jpeg'</span>,</div><div class="line">	   <span class="string">'http://pic1.win4000.com/wallpaper/f/5427b8a07aa3c.jpg'</span>,</div><div class="line">	   <span class="string">'http://www.bz55.com/uploads/allimg/140928/1-14092Q21316.jpg'</span>,</div><div class="line">	   <span class="string">'http://img4.duitang.com/uploads/item/201208/27/20120827092239_J8nLX.jpeg'</span>,</div><div class="line">	   <span class="string">'http://www.1377.com/hyyx/uploads/allimg/140425/3-1404251K142Y5.jpg'</span>,</div><div class="line">	   <span class="string">'http://img4.duitang.com/uploads/item/201406/26/20140626153227_4i5US.jpeg'</span>,</div><div class="line">	   <span class="string">'http://pic1.win4000.com/wallpaper/0/543b6f51e59b0.jpg'</span>,</div><div class="line">	   <span class="string">'http://img4.duitang.com/uploads/blog/201405/12/20140512161725_J2zBw.jpeg'</span>,</div><div class="line">	   <span class="string">'http://bz1080p.com/wp-content/uploads/2015/01/bz1080p.com_2015-01-22_15-15-28.jpg'</span></div><div class="line">	];</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,len=imageList.length;i&lt;len;i++)&#123;</div><div class="line">		<span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">		img.src = imageList[i];</div><div class="line">		</div><div class="line">		img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    		<span class="built_in">console</span>.log(<span class="string">'done!'</span>);</div><div class="line">    		<span class="built_in">document</span>.body.appendChild(<span class="keyword">this</span>);</div><div class="line">    	&#125;;</div><div class="line">    	img.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    		<span class="comment">//如果有没成功加载的，就用默认图片</span></div><div class="line">    		<span class="built_in">console</span>.log(<span class="string">'load error!'</span>);</div><div class="line">    	&#125;;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span>	</div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上面的代码是为浏览器缓存了多张图片，通过数组存储我们要加载的图片地址。然后通过for循环来创建Image对象，并且为每个对象添加对应的属性和方法。<br>请看如下演示图：<br><img src="http://mytu-10064593.cos.myqcloud.com/img.gif" alt="加载演示"><br>上图可视化的展示了浏览器缓存9张图片的过程，每次测试前，我们都要使用<code>ctrl+shift+del</code>清空一下浏览器的缓存。如果不清除，再次刷新的时候，图片就会瞬间加载完成，因为已经缓存过了，就直接拿来用了。<br>再次深入拓展一下，我们想知道的是所有图片都缓存成功的状态，以及每个图片缓存成功的状态。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">//用数组缓存多张图片</span></div><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//var i = 0;</span></div><div class="line">	<span class="comment">//一共九张图片，图片都比较大，用来测试比较好</span></div><div class="line">	<span class="keyword">var</span> imageList = [</div><div class="line">	   <span class="string">'http://img4.duitang.com/uploads/item/201405/12/20140512210327_dTshi.jpeg'</span>,</div><div class="line">	   <span class="string">'http://pic1.win4000.com/wallpaper/f/5427b8a07aa3c.jpg'</span>,</div><div class="line">	   <span class="string">'http://www.bz55.com/uploads/allimg/140928/1-14092Q21316.jpg'</span>,</div><div class="line">	   <span class="string">'http://img4.duitang.com/uploads/item/201208/27/20120827092239_J8nLX.jpeg'</span>,</div><div class="line">	   <span class="string">'http://www.1377.com/hyyx/uploads/allimg/140425/3-1404251K142Y5.jpg'</span>,</div><div class="line">	   <span class="string">'http://img4.duitang.com/uploads/item/201406/26/20140626153227_4i5US.jpeg'</span>,</div><div class="line">	   <span class="string">'http://pic1.win4000.com/wallpaper/0/543b6f51e59b0.jpg'</span>,</div><div class="line">	   <span class="string">'http://img4.duitang.com/uploads/blog/201405/12/20140512161725_J2zBw.jpeg'</span>,</div><div class="line">	   <span class="string">'http://bz1080p.com/wp-content/uploads/2015/01/bz1080p.com_2015-01-22_15-15-28.jpg'</span></div><div class="line">	];</div><div class="line">	<span class="keyword">var</span> sum = <span class="number">0</span>;</div><div class="line">	<span class="keyword">var</span> imgLen = imageList.length;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'一共有'</span>+imgLen+<span class="string">'张图片，别眨眼哦！'</span>);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;imageList.length;i++)&#123;</div><div class="line">		<span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">		img.src = imageList[i];</div><div class="line">		</div><div class="line">		<span class="comment">//使用闭包</span></div><div class="line">		(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">			img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	    		<span class="built_in">console</span>.log(<span class="string">'第'</span>+(i+<span class="number">1</span>)+<span class="string">'(索引)张图片缓存 ：'</span>+<span class="string">'done!'</span>);</div><div class="line">	    		<span class="built_in">document</span>.body.appendChild(<span class="keyword">this</span>);</div><div class="line">	    		sum++;</div><div class="line">	    		<span class="built_in">console</span>.log(<span class="string">'sum: '</span>+sum+<span class="string">' 剩余'</span>+(imgLen-sum)+<span class="string">'张'</span>);</div><div class="line">	    		<span class="keyword">if</span>(sum &gt;= imgLen)&#123;</div><div class="line">	    			<span class="comment">//所有图片加载完成后要执行的内容</span></div><div class="line">	    			<span class="built_in">console</span>.log(<span class="string">'all loaded!'</span>);</div><div class="line">	    			<span class="comment">//sum = 0;</span></div><div class="line">	    			<span class="built_in">console</span>.log(<span class="string">'最终sum的值为：'</span>+sum);</div><div class="line">	    			<span class="comment">//window.location.href = 'http://www.baidu.com';</span></div><div class="line">	    		&#125;</div><div class="line">	    	&#125;;</div><div class="line">		&#125;)(i);</div><div class="line">    	img.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    		<span class="comment">//如果有没成功加载的，就用默认图片</span></div><div class="line">    		<span class="built_in">console</span>.log(<span class="string">'load error!'</span>);</div><div class="line">    	&#125;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	</div><div class="line">&#125;;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><img src="http://mytu-10064593.cos.myqcloud.com/load2.gif" alt="过程演示"><br>加载结束后：<br><img src="http://mytu-10064593.cos.myqcloud.com/load1.png" alt="end"><br>并且由此可以看出，数组里面的图片地址并不是按照上下顺序依次加载的，加载顺序是不定的，没有规律的。<br>至此，我们已经可以控制，在所有图片加载完成后，要执行什么内容。</p>
+<h2 id="图像预载入-preload"><a href="#图像预载入-preload" class="headerlink" title="图像预载入(preload)"></a>图像预载入(preload)</h2><p>是该了解如何通过一个叫做图像预载入（preloading）的技巧来提高 Web 站点的访问速度的时候了。<br>对于浏览器载入图像来说，只有在对图像发送一个 HTTP请求之后，它们才会被浏览器载入，对图像的 HTTP 请求要么使用 ＜img＞ 标记，要么通过方法调用实现。如果使用 JavaScript 脚本来处理在 mouseover 事件时交换图像，或者在一段时间之后自动更改图像，那么在从服务器获取图像时可能要等上几秒钟到几分钟的时间。如果使用一个慢速的 Internet 连接，或者要获取的图像非常大，或者其它一些情况，这种现象就特别明显；这样，延迟就造成你不能达到自己期望的效果。<br>一些浏览器采用一些措施来缓解这一问题，比如试图通过在本地缓存中存储图像，从而使随后对图像的调用能够立即被满足；但是在图像第一次被调用时依然会存在一些延迟。预载入是在需要图像之前将其下载到缓存的一种方法。通过这一措施，当真正需要图像时，它就可以被立即从缓存中取出，从而能够立即显示。<a href="http://www.jb51.net/article/28113.htm" target="_blank" rel="external">链接</a></p>
+<h2 id="onload事件处理"><a href="#onload事件处理" class="headerlink" title="onload事件处理"></a>onload事件处理</h2><p>像很多 JavaScript 的其它对象一样，Image() 对象也有一些事件处理器。其中最有用的一个肯定是 onLoad() 处理器，它在图像完全载入之后调用。这个事件处理器可以与一个自定义函数联系起来，以在图像完全载入之后执行一些特定的任务。</p>
+<h2 id="综合应用"><a href="#综合应用" class="headerlink" title="综合应用"></a>综合应用</h2><p>未完待续 </p>
+<p>本文参考：</p>
+<ul>
+<li><a href="http://www.jb51.net/article/28113.htm" target="_blank" rel="external">js预载入和JavaScript Image()对象使用介绍</a></li>
+<li><a href="http://blog.csdn.net/z69183787/article/details/17393793" target="_blank" rel="external"> js判断网页是否加载完毕 包括图片</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js基础/" rel="tag">#js基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/27/原生JS获取节点的兄弟，父级，子级元素/" rel="next" title="原生JS获取节点的兄弟，父级，子级元素">
+                <i class="fa fa-chevron-left"></i> 原生JS获取节点的兄弟，父级，子级元素
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/27/由图片预加载引发的思考/"
+           data-title="由图片预加载引发的思考" data-url="http://yoursite.com/2016/10/27/由图片预加载引发的思考/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#new-Image"><span class="nav-number">1.</span> <span class="nav-text">new Image()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存一张图片"><span class="nav-number">1.1.</span> <span class="nav-text">缓存一张图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存多张图片（通过数组）"><span class="nav-number">1.2.</span> <span class="nav-text">缓存多张图片（通过数组）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像预载入-preload"><span class="nav-number">2.</span> <span class="nav-text">图像预载入(preload)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onload事件处理"><span class="nav-number">3.</span> <span class="nav-text">onload事件处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合应用"><span class="nav-number">4.</span> <span class="nav-text">综合应用</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
