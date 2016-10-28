@@ -1,0 +1,645 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这一文，我们来说说js中的两种变量：局部变量与全局变量。JS中有两种变量：局部变量与全局变量。全局变量都可以看做是window对象的属性，而全局函数都可以看做是window对象的方法。而且在全局作用域中，this指向的就是window对象，在node中指向global对象。局部变量在全局作用域中是无法访问的，是不可见的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中的局部变量与全局变量">
+<meta property="og:url" content="http://yoursite.com/2016/10/28/js中的局部变量与全局变量/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="这一文，我们来说说js中的两种变量：局部变量与全局变量。JS中有两种变量：局部变量与全局变量。全局变量都可以看做是window对象的属性，而全局函数都可以看做是window对象的方法。而且在全局作用域中，this指向的就是window对象，在node中指向global对象。局部变量在全局作用域中是无法访问的，是不可见的。">
+<meta property="og:updated_time" content="2016-10-28T04:18:33.606Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js中的局部变量与全局变量">
+<meta name="twitter:description" content="这一文，我们来说说js中的两种变量：局部变量与全局变量。JS中有两种变量：局部变量与全局变量。全局变量都可以看做是window对象的属性，而全局函数都可以看做是window对象的方法。而且在全局作用域中，this指向的就是window对象，在node中指向global对象。局部变量在全局作用域中是无法访问的，是不可见的。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/28/js中的局部变量与全局变量/"/>
+
+  <title> js中的局部变量与全局变量 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js中的局部变量与全局变量
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T10:24:59+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/28/js中的局部变量与全局变量/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/js中的局部变量与全局变量/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这一文，我们来说说js中的两种变量：局部变量与全局变量。<script src="http://legold.cc/mine/my_deal.js"></script><br>JS中有两种变量：局部变量与全局变量。全局变量都可以看做是<code>window</code>对象的属性，而全局函数都可以看做是<code>window</code>对象的方法。而且在全局作用域中，<code>this</code>指向的就是window对象，在<code>node</code>中指向<code>global</code>对象。局部变量在全局作用域中是无法访问的，是不可见的。<br><a id="more"></a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//全局作用域中</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span> === <span class="built_in">window</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
+<p>众所周知，js中没有块级作用域，当然ES6中的let,const可以定义块级作用域，这里先不详细说了。js中有函数作用域。局部变量是指只能在本变量声明的函数内部调用。全局变量时整个代码中都可以调用的变量。当然，单单从字面上理解肯定是不清楚的，下面我详细的介绍下：<br>变量是需要用var关键字声明的。但是javascript中也可以隐式的使用变量，就是不用声明，直接使用。而且，千万注意，javascript把隐式声明的变量总是当成全局变量来使用的。但是如果使用了<code>use strict</code>，还是会有区别的。<br>例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	i = <span class="string">'huanglei'</span>;  <span class="comment">//声明了一个全局变量并赋值，但是如果函数不执行，这个变量就不会被生成</span></div><div class="line">&#125;</div><div class="line">myName(); <span class="comment">// 执行后，生成了一个全局变量 </span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(i);</div><div class="line">&#125;</div><div class="line">sayName();  <span class="comment">// huanglei</span></div></pre></td></tr></table></figure></p>
+<p>这说明没用var声明的变量在函数执行完后就声明了一个全局变量。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> i = <span class="string">'huanglei'</span>;  <span class="comment">//声明了一个局部变量并赋值，在函数外是无法访问的</span></div><div class="line">&#125;</div><div class="line">myName(); <span class="comment">// 垃圾回收机制，函数执行完后，局部变量就会被销毁，所占用的内存就会被释放，如果不想销毁，就可以使用闭包</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(i);  </div><div class="line">&#125;</div><div class="line">sayName();  <span class="comment">// error : i is not defined</span></div></pre></td></tr></table></figure></p>
+<p>此时，游览器将没有任何输出结果，打开控制台后发现报了个错，<code>i is not defined</code>因为i 是在函数myName中定义的，所以它只是myName的局部变量，不可能被外部调用。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	i = <span class="string">'huanglei'</span>;  <span class="comment">//声明了一个全局变量并赋值，但是如果函数不执行，这个变量就不会被生成</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(i);</div><div class="line">&#125;</div><div class="line">sayName();  <span class="comment">// i is not defined</span></div></pre></td></tr></table></figure></p>
+<p>此时，浏览器会报错，<code>i is not defined</code>,因为即使在函数中，我们声明了一个全局变量并且也赋值了，但是函数并没有被执行，因此这个变量i是没有被创建的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	i = <span class="string">'huanglei'</span>;  <span class="comment">//声明了一个全局变量并赋值，但是如果函数不执行，这个变量就不会被生成</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(i);</div><div class="line">&#125;</div><div class="line">sayName(); <span class="comment">// i is not defined</span></div><div class="line">myName();</div></pre></td></tr></table></figure></p>
+<p>还是会报错，<code>i is not defined</code>，因为javascript代码的执行时从上到下的，在sayName()函数被调用时会检查变量i的值，此时函数myName尚未执行，也就是说i还没有被创建，所以会报错。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="string">'jack'</span>;  <span class="comment">//声明并赋值一个全局变量 i</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myLoveName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	i = <span class="string">'huanglei'</span>;</div><div class="line">&#125;</div><div class="line">myLoveName();  <span class="comment">// 重新对全局变量i进行赋值</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(i);</div><div class="line">&#125;</div><div class="line">myName(); <span class="comment">// huanglei</span></div></pre></td></tr></table></figure></p>
+<p>首先，全局变量i的原始值是jack，但是当调用myLoveName()函数之后，将i的值改为huanglei，所以最后的输出结果是huanglei。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="string">'jack'</span>;  <span class="comment">//声明并赋值一个全局变量 i</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myLoveName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> i = <span class="string">'huanglei'</span>;  <span class="comment">//声明一个局部变量并赋值，只能在函数内部或者子函数里使用</span></div><div class="line">&#125;</div><div class="line">myLoveName();  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(i);</div><div class="line">&#125;</div><div class="line">myName(); <span class="comment">// jack</span></div></pre></td></tr></table></figure></p>
+<p>此时的结果就是jack了，因为代码中的两个i不一样，一个是全局的，一个是局部的，也可以这样理解，虽然两个i的名字一样，但是这两个i的本质却不一样，好像有两个名字一样的人一样，虽然名字一样，但却不是同一个人。<br><strong>当全局变量跟局部变量重名时，局部变量的scope会覆盖掉全局变量的scope，当离开局部变量的scope后，又重回到全局变量的scope，而当全局变量遇上局部变量时，<br>怎样使用全局变量呢？用window.globalVariableName。</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f3</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="built_in">window</span>.a); <span class="comment">// 全局变量a  1</span></div><div class="line">	<span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">	<span class="built_in">console</span>.log(a); <span class="comment">//局部变量a 2</span></div><div class="line">&#125;</div><div class="line">f3();</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">//1</span></div></pre></td></tr></table></figure></p>
+<p>再来改动一下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="string">'jack'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myloveName</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> i = <span class="string">'huanglei'</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myName</span>(<span class="params"></span>) </span>&#123;</div><div class="line"> <span class="built_in">console</span>.log(i);</div><div class="line">&#125;</div><div class="line">myName(); <span class="comment">//jack</span></div><div class="line">myloveName(); <span class="comment">//此时i被重新赋值成 huanglei</span></div><div class="line"><span class="built_in">console</span>.log(i); <span class="comment">//huanglei</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="string">'jack'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myloveName</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  i = <span class="string">'huanglei'</span>;</div><div class="line">  <span class="built_in">console</span>.log(i);  <span class="comment">//huanglei</span></div><div class="line">&#125;</div><div class="line">myloveName();</div><div class="line"><span class="string">``</span><span class="string">`js</span></div><div class="line">var i = 'jack';</div><div class="line">function myloveName() &#123;</div><div class="line">  console.log(i);  //jack</div><div class="line">  i = 'huanglei';</div><div class="line">&#125;</div><div class="line">myloveName();</div></pre></td></tr></table></figure>
+<p>相信上面的这两种情况我们应该很清晰了。<br>改动一下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="string">'jack'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myloveName</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(i);  <span class="comment">//undefined</span></div><div class="line">  <span class="keyword">var</span> i = <span class="string">'huanglei'</span>;</div><div class="line">  <span class="built_in">console</span>.log(i); <span class="comment">//huanglei</span></div><div class="line">&#125;</div><div class="line">myloveName();</div></pre></td></tr></table></figure></p>
+<p>上面的前一个打印 <code>undefined</code>，后一个打印 <code>huanglei</code>，这是因为变量名的提升(hoisting)。变量会将声明提升至作用域的顶部，将赋值留在原地。函数名也会提升，而且优于变量名提升。<br>上面的代码就相当于：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="string">'jack'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myloveName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> i; <span class="comment">//声明提升至作用域顶部</span></div><div class="line">	<span class="built_in">console</span>.log(i);  <span class="comment">// undefined</span></div><div class="line">	i = <span class="string">'huanglei'</span>;</div><div class="line">	<span class="built_in">console</span>.log(i); <span class="comment">//huanglei</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>JavaScript在执行之前会对整个脚本文件进行预编译（对脚本文件的声明部分做分析，包括局部变量部分），从而确定变量的作用域：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(x); <span class="comment">//x的值为undefined！这个x并不是全局变量，因为在function scope已经又声明了一个重名的局部变量，所以全局变量的参数a被覆盖了。</span></div><div class="line">	x = <span class="number">3</span>;  </div><div class="line">	<span class="built_in">console</span>.log(x);  <span class="comment">//x值为3.但还是局部变量</span></div><div class="line">	<span class="keyword">var</span> x; <span class="comment">//声明了局部变量，但实际上会被提升至作用域的顶部</span></div><div class="line">	<span class="built_in">console</span>.log(x); <span class="comment">//3</span></div><div class="line">	<span class="built_in">console</span>.log(<span class="built_in">window</span>.x); <span class="comment">// 1 ,访问的是全局变量x</span></div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.x); <span class="comment">//此时this指向的是window</span></div><div class="line">&#125;</div><div class="line">f2();</div><div class="line"><span class="built_in">console</span>.log(x);  <span class="comment">//x值为1，并不是在function scope内，x的值为全局变量的值。</span></div></pre></td></tr></table></figure></p>
+<p>JavaScript scope 的划分标准是function函数块，不是以 if、while、for来划分的。<br>来看一个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="built_in">console</span>.log(<span class="string">"before for scope:"</span>+i);    </div><div class="line"> <span class="comment">//i未赋值（并不是没有声明！使用未声明变量或函数会导致致命错误从而中断脚本执行）</span></div><div class="line"> <span class="comment">//此时i值为undefined</span></div><div class="line">   <span class="keyword">for</span>（<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">3</span>;i++)&#123;</div><div class="line">       <span class="built_in">console</span>.log(<span class="string">"in for scope:"</span>+i);  <span class="comment">//i的值是0，1，2  </span></div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(<span class="string">"after for scope："</span>+<span class="number">1</span>);</div><div class="line">   <span class="comment">//i的值是3，此时已经在for scope之外，但i的值仍然保留为3</span></div><div class="line">   <span class="keyword">while</span>（<span class="literal">true</span>）&#123;</div><div class="line">       <span class="keyword">var</span> j=<span class="number">1</span>;</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(j);</div><div class="line">   <span class="comment">//j的值是1，此时已经在while scope之外，但j的值仍然保留为1</span></div><div class="line">   <span class="keyword">if</span>（<span class="literal">true</span>）&#123;</div><div class="line">      <span class="keyword">var</span> k=<span class="number">1</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(k);</div><div class="line">   <span class="comment">//k的值为1，此时已经在if scope之外，但k的值仍保留为1</span></div><div class="line">&#125;</div><div class="line">f1();</div><div class="line"><span class="comment">//此时在函数块外调用函数，再次输出存在于f1这个function scope里的i j k变量</span></div><div class="line"><span class="built_in">console</span>.log(i);</div><div class="line"><span class="comment">//error!!!原因是这里的i未声明（不是未赋值，区别f1的第一行输出），脚本错误，程序结束！</span></div><div class="line"><span class="built_in">console</span>.log(j);    </div><div class="line"><span class="comment">//未执行</span></div><div class="line"><span class="built_in">console</span>.log(k);</div><div class="line"><span class="comment">//未执行</span></div><div class="line"><span class="comment">//说明局部变量在函数外部是不可见的，是无法访问的。</span></div></pre></td></tr></table></figure></p>
+<p>其实上面的代码说明了，JavaScript scope 的划分标准是function函数块，不是以 if、while、for来划分的。if,while,for并不能划分js的作用域。<br>上面的代码等同于：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="keyword">var</span> i,j,k; <span class="comment">//局部变量声明提升至顶部</span></div><div class="line">   <span class="built_in">console</span>.log(<span class="string">"before for scope:"</span>+i);    </div><div class="line"> <span class="comment">//i未赋值（并不是没有声明！使用未声明变量或函数会导致致命错误从而中断脚本执行）</span></div><div class="line"> <span class="comment">//此时i值为undefined</span></div><div class="line">   <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">3</span>;i++)&#123;</div><div class="line">       <span class="built_in">console</span>.log(<span class="string">"in for scope:"</span>+i);  <span class="comment">//i的值是0，1，2  </span></div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(<span class="string">"after for scope："</span>+<span class="number">1</span>);</div><div class="line">   <span class="comment">//i的值是3，此时已经在for scope之外，但i的值仍然保留为3</span></div><div class="line">   <span class="keyword">while</span>（<span class="literal">true</span>）&#123;</div><div class="line">       j=<span class="number">1</span>;</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(j);</div><div class="line">   <span class="comment">//j的值是1，此时已经在while scope之外，但j的值仍然保留为1</span></div><div class="line">   <span class="keyword">if</span>（<span class="literal">true</span>）&#123;</div><div class="line">       k=<span class="number">1</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">console</span>.log(k);</div><div class="line">   <span class="comment">//k的值为1，此时已经在if scope之外，但k的值仍保留为1</span></div><div class="line">&#125;</div><div class="line">f1();</div><div class="line"><span class="comment">//此时在函数块外调用函数，再次输出存在于f1这个function scope里的i j k变量</span></div><div class="line"><span class="built_in">console</span>.log(i);</div><div class="line"><span class="comment">//error!!!原因是这里的i未声明（不是未赋值，区别f1的第一行输出），脚本错误，程序结束！</span></div><div class="line"><span class="built_in">console</span>.log(j);    </div><div class="line"><span class="comment">//未执行</span></div><div class="line"><span class="built_in">console</span>.log(k);</div><div class="line"><span class="comment">//未执行</span></div><div class="line"><span class="comment">//说明局部变量在函数外部是不可见的，是无法访问的。</span></div></pre></td></tr></table></figure></p>
+<p>注意，Javascript的变量的scope是根据方法块来划分的（也就是说以function的一对大括号｛ ｝来划分）。切记，是function块，而for、while、if块并不是作用域的划分标准<br>好了，先到这里吧！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js基础/" rel="tag">#js基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/27/由图片预加载引发的思考/" rel="next" title="由图片预加载引发的思考">
+                <i class="fa fa-chevron-left"></i> 由图片预加载引发的思考
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/28/js中的局部变量与全局变量/"
+           data-title="js中的局部变量与全局变量" data-url="http://yoursite.com/2016/10/28/js中的局部变量与全局变量/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
