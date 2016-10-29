@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js静态资源cdn," />
+  <meta name="keywords" content="原型与继承," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="整理一下国内好用的cdn静态资源公共库，然后写demo或者项目的时候也可以直接引入，速度较快。">
+<meta name="description" content="原型与继承是javascript面向对象中的一个难点，因此，在这里做一下我的笔记。总结一下，应该理解的原型与继承。
+
+在JavaScript的世界里，可以说，每一个JavaScript（null除外）都和另一个对象相关联，也可以说，继承另一个对象。另一个对象就是我们熟知的”原型”（prototype），每一个对象都从原型继承属性。只有null除外，它没有自己的原型对象。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[收藏]国内cdn常用js公共库">
-<meta property="og:url" content="http://yoursite.com/2016/10/21/收藏-国内cdn常用js公共库/index.html">
+<meta property="og:title" content="js中的原型与继承">
+<meta property="og:url" content="http://yoursite.com/2016/10/29/js中的原型与继承/index.html">
 <meta property="og:site_name" content="legold">
-<meta property="og:description" content="整理一下国内好用的cdn静态资源公共库，然后写demo或者项目的时候也可以直接引入，速度较快。">
-<meta property="og:updated_time" content="2016-10-21T02:12:29.739Z">
+<meta property="og:description" content="原型与继承是javascript面向对象中的一个难点，因此，在这里做一下我的笔记。总结一下，应该理解的原型与继承。
+
+在JavaScript的世界里，可以说，每一个JavaScript（null除外）都和另一个对象相关联，也可以说，继承另一个对象。另一个对象就是我们熟知的”原型”（prototype），每一个对象都从原型继承属性。只有null除外，它没有自己的原型对象。">
+<meta property="og:updated_time" content="2016-10-29T08:53:27.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[收藏]国内cdn常用js公共库">
-<meta name="twitter:description" content="整理一下国内好用的cdn静态资源公共库，然后写demo或者项目的时候也可以直接引入，速度较快。">
+<meta name="twitter:title" content="js中的原型与继承">
+<meta name="twitter:description" content="原型与继承是javascript面向对象中的一个难点，因此，在这里做一下我的笔记。总结一下，应该理解的原型与继承。
+
+在JavaScript的世界里，可以说，每一个JavaScript（null除外）都和另一个对象相关联，也可以说，继承另一个对象。另一个对象就是我们熟知的”原型”（prototype），每一个对象都从原型继承属性。只有null除外，它没有自己的原型对象。">
 
 
 
@@ -114,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/21/收藏-国内cdn常用js公共库/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/10/29/js中的原型与继承/"/>
 
-  <title> [收藏]国内cdn常用js公共库 | legold </title>
+  <title> js中的原型与继承 | legold </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +252,7 @@
             
             
               
-                [收藏]国内cdn常用js公共库
+                js中的原型与继承
               
             
           </h1>
@@ -258,8 +264,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-21T10:00:00+08:00" content="2016-10-21">
-              2016-10-21
+            <time itemprop="dateCreated" datetime="2016-10-29T12:11:45+08:00" content="2016-10-29">
+              2016-10-29
             </time>
           </span>
 
@@ -269,8 +275,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/21/收藏-国内cdn常用js公共库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/21/收藏-国内cdn常用js公共库/" itemprop="commentsCount"></span>
+                <a href="/2016/10/29/js中的原型与继承/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/29/js中的原型与继承/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -293,18 +299,21 @@
       
 
       
-        <p>整理一下国内好用的cdn静态资源公共库，然后写demo或者项目的时候也可以直接引入，速度较快。<script src="http://legold.cc/mine/my_deal.js"></script><br><a id="more"></a></p>
+        <blockquote>
+<p>原型与继承是javascript面向对象中的一个难点，因此，在这里做一下我的笔记。总结一下，应该理解的原型与继承。<script src="http://legold.cc/mine/my_deal.js"></script></p>
+</blockquote>
+<p>在JavaScript的世界里，可以说，每一个JavaScript（null除外）都和另一个对象相关联，也可以说，继承另一个对象。另一个对象就是我们熟知的”原型”（prototype），每一个对象都从原型继承属性。只有null除外，它没有自己的原型对象。<br><a id="more"></a><br>所有通过对象直接量创建的对象都具有同一个原型对象，并可以通过JavaScript代码 <code>Object.prototype</code> 获得对原型对象的引用。</p>
+<p><strong>通过关键字new和构造函数调用创建的实例对象的原型就是构造函数的prototype属性的值。比如：通过new Object()创建的对象继承自Object.prototype；通过new Array()创建的对象的原型就是Array.prototype。</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p><strong>JS中每个函数都有一个prototype(原型)属性，这个属性是一个指针，指向一个对象，它是所有通过new操作符使用函数创建的实例的原型对象。原型对象最大特点是，所有对象实例共享它所包含的属性和方法，也就是说，所有在原型对象中创建的属性或方法都直接被所有对象实例共享。</strong></p>
+<p><strong>原型是指向原型对象的，这个原型对象与构造函数没有太大关系，唯一的关系是函数的prototype属性是指向这个原型对象！构造函数的prototype属性指向这个原型对象。而基于构造函数创建的对象实例也包含一个内部指针为：<strong>prototype</strong>指向原型对象。</strong><br>没有原型的对象为数不多，Object.prototype就是其中之一，它不继承任何属性。<br>所有的内置构造函数都具有一个继承自Object.prototype的原型。</p>
+<hr>
+<p>而且，一定要记住的是：</p>
 <ul>
-<li>百度静态资源公共库<br>由于静态百度推出开放云平台，因此可能关闭了之前的静态资源公共库的目录索引。但是里面的文件地址还是存在的。因此，到目前为止还是可以用的。<br><a href="http://libs.baidu.com/jquery/1.10.0/jquery.min.js" target="_blank" rel="external">jquery-1.10.1.min.js</a></li>
-<li><a href="http://lib.sinaapp.com/" target="_blank" rel="external">新浪cdn</a></li>
-<li><a href="http://libs.useso.com/" target="_blank" rel="external">360cdn</a></li>
-<li><a href="http://jscdn.upai.com/" target="_blank" rel="external">又拍云</a></li>
-<li><a href="https://www.staticfile.org/" target="_blank" rel="external"><strong>七牛云</strong></a></li>
+<li>对象没有prototype属性，不管是原型对象还是实例对象，它们都是通过 <code>__proto__</code> 指向上一级原型对象，直到为null。</li>
+<li>函数有 <code>prototype</code> 属性，这个属性是一个指针，指向它的原型对象。</li>
 </ul>
-<ul>
-<li><a href="http://blog.wpjam.com/m/static-cdn-services/" target="_blank" rel="external">国内常用静态资源 CDN 公共库加速服务</a></li>
-</ul>
-<p>因此，我们一般使用百度的或者新浪的就OK了。</p>
+<p>来一个简单的例子解释一下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Car();  <span class="comment">// 圆括号可以不用写</span></div><div class="line"><span class="keyword">var</span> Cp = Car.prototype;</div><div class="line"><span class="keyword">var</span> c_p = c.__proto__;</div><div class="line"><span class="built_in">console</span>.log(Car.prototype);  <span class="comment">// 构造函数的prototype属性，作为指针指向Car的原型对象</span></div><div class="line"><span class="built_in">console</span>.log(c.__proto__);  <span class="comment">// 实例对象的__proto__属性，也指向Car的原型对象</span></div><div class="line"><span class="built_in">console</span>.log(Car.prototype.__proto__);  <span class="comment">// 原型对象也有__proto__属性，它指向Car原型对象的原型对象(Object.prototype)，也就是上一级的原型对象</span></div><div class="line"><span class="built_in">console</span>.log(Cp === c_p);  <span class="comment">//true</span></div><div class="line"><span class="comment">//可以看到Cp和c_p输出的是相同的，都指向Car的原型对象</span></div><div class="line"><span class="comment">//Car.prototype指向了Car的原型对象，此时它是一个原型对象</span></div><div class="line"><span class="built_in">console</span>.log(Car.prototype.__proto__ === c.__proto__.__proto__); <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(c.__proto__.__proto__);  <span class="comment">// 构造函数Object的原型对象 Object.prototype</span></div><div class="line"><span class="built_in">console</span>.log(c.__proto__.__proto__.__proto__); <span class="comment">// null 到头了</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype);  <span class="comment">// 构造函数Object的原型对象</span></div><div class="line"><span class="built_in">console</span>.log(Car.prototype.__proto__ === <span class="built_in">Object</span>.prototype); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__); <span class="comment">// null</span></div><div class="line"><span class="built_in">console</span>.log(Car.prototype.__proto__.__proto__);  <span class="comment">// null</span></div></pre></td></tr></table></figure></p>
+<p><code>null</code>是最顶级的了。它上面就没有原型对象了，到头了！<br>哈哈，都快把我搞懵了。以前没这么总结过，这样总结一下，感觉瞬间豁然开朗。</p>
 
       
     </div>
@@ -327,7 +336,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js静态资源cdn/" rel="tag">#js静态资源cdn</a>
+            <a href="/tags/原型与继承/" rel="tag">#原型与继承</a>
           
         </div>
       
@@ -336,17 +345,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/19/JS函数参数之选项对象/" rel="next" title="JS函数参数之选项对象">
-                <i class="fa fa-chevron-left"></i> JS函数参数之选项对象
+              <a href="/2016/10/28/JavaScript进阶-this的工作原理/" rel="next" title="JavaScript进阶-this的工作原理">
+                <i class="fa fa-chevron-left"></i> JavaScript进阶-this的工作原理
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/24/js面向对象之创建对象的方式/" rel="prev" title="js面向对象之创建对象的方式">
-                js面向对象之创建对象的方式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -372,8 +377,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/21/收藏-国内cdn常用js公共库/"
-           data-title="[收藏]国内cdn常用js公共库" data-url="http://yoursite.com/2016/10/21/收藏-国内cdn常用js公共库/">
+      <div class="ds-thread" data-thread-key="2016/10/29/js中的原型与继承/"
+           data-title="js中的原型与继承" data-url="http://yoursite.com/2016/10/29/js中的原型与继承/">
       </div>
       <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
         <script type="text/javascript">
