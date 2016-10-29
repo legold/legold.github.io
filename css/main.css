@@ -1548,7 +1548,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffa6e9;
+  background: #2282ed;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2479,12 +2479,12 @@ blockquote p {
 ::-webkit-scrollbar-button:start {
   width: 10px;
   height: 12px;
-  background: transparent url("/Public/images/arrow.png") no-repeat 0 0;
+  background: transparent url("/images/arrow.png") no-repeat 0 0;
 }
 ::-webkit-scrollbar-button:end {
   width: 10px;
   height: 12px;
-  background: transparent url("/Public/images/arrow.png") no-repeat -50px 0;
+  background: transparent url("/images/arrow.png") no-repeat -50px 0;
 }
 ::-webkit-scrollbar-button:start:hover {
   background-color: #eee;
