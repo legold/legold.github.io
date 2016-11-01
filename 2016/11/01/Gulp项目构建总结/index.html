@@ -1,0 +1,657 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Gulp," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一个优秀的前端工程师，在处理一个规模或大型的项目时，必定会用到一些项目自动化构建工具。比如Grunt、Gulp、FIS3、webpack等。这次我来总结一下Gulp的用法。使用 Gulp 来进行文件压缩，文件合并，js语法检查，css自动添加浏览器前缀，自动刷新页面，文件重命名，less/sass自动编译等。配置好 gulpfile.js文件，一个命令让整个流程都跑起来，想想也是非常的酷炫。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gulp项目构建总结">
+<meta property="og:url" content="http://yoursite.com/2016/11/01/Gulp项目构建总结/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="一个优秀的前端工程师，在处理一个规模或大型的项目时，必定会用到一些项目自动化构建工具。比如Grunt、Gulp、FIS3、webpack等。这次我来总结一下Gulp的用法。使用 Gulp 来进行文件压缩，文件合并，js语法检查，css自动添加浏览器前缀，自动刷新页面，文件重命名，less/sass自动编译等。配置好 gulpfile.js文件，一个命令让整个流程都跑起来，想想也是非常的酷炫。">
+<meta property="og:image" content="http://mytu-10064593.cos.myqcloud.com/node1.png">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/693683/201607/693683-20160724173750779-1294647344.png">
+<meta property="og:updated_time" content="2016-11-01T09:19:33.125Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gulp项目构建总结">
+<meta name="twitter:description" content="一个优秀的前端工程师，在处理一个规模或大型的项目时，必定会用到一些项目自动化构建工具。比如Grunt、Gulp、FIS3、webpack等。这次我来总结一下Gulp的用法。使用 Gulp 来进行文件压缩，文件合并，js语法检查，css自动添加浏览器前缀，自动刷新页面，文件重命名，less/sass自动编译等。配置好 gulpfile.js文件，一个命令让整个流程都跑起来，想想也是非常的酷炫。">
+<meta name="twitter:image" content="http://mytu-10064593.cos.myqcloud.com/node1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/01/Gulp项目构建总结/"/>
+
+  <title> Gulp项目构建总结 | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Gulp项目构建总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T15:34:54+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/01/Gulp项目构建总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/01/Gulp项目构建总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一个优秀的前端工程师，在处理一个规模或大型的项目时，必定会用到一些项目自动化构建工具。比如<code>Grunt</code>、<code>Gulp</code>、<code>FIS3</code>、<code>webpack</code>等。这次我来总结一下<code>Gulp</code>的用法。<script src="http://legold.cc/mine/my_deal.js"></script><br>使用 <code>Gulp</code> 来进行文件压缩，文件合并，js语法检查，css自动添加浏览器前缀，自动刷新页面，文件重命名，less/sass自动编译等。配置好 <code>gulpfile.js</code>文件，一个命令让整个流程都跑起来，想想也是非常的酷炫。<br><a id="more"></a><br>Gulp是基于流的管道式自动化构建系统。也是基于NodeJs的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li>安装<code>NodeJS</code>应用程序（现在nodejs都继承了npm包，所以不用单独安装）</li>
+<li>全局安装<code>Gulp</code>   </li>
+<li>本地安装（作为项目的开发依赖devDependencies）</li>
+</ul>
+<h3 id="安装nodeJS"><a href="#安装nodeJS" class="headerlink" title="安装nodeJS"></a>安装nodeJS</h3><p>到nodejs官网下载一个nodejs安装程序，然后安装nodejs，点击默认安装就行了。此时，会自动给系统添加一个环境变量，因此在系统的Path环境变量中就会有nodejs的安装路径，如果没有，自己手动添加即可。<br>由于现在nodejs都集成了npm，因此，打开命令行工具后，依次输入 <code>node -v</code>  ,  <code>npm -v</code> 看看是否能够成功打印出版本号，如果觉得npm版本过低，可以 用 <code>npm i npm -g</code>更新。i是install的缩写。此外还可以用 <code>npm config get prefix</code> 找到npm的安装路径。<br><img src="http://mytu-10064593.cos.myqcloud.com/node1.png" alt="node-v"></p>
+<h3 id="全局安装Gulp"><a href="#全局安装Gulp" class="headerlink" title="全局安装Gulp"></a>全局安装Gulp</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install gulp -g</div></pre></td></tr></table></figure>
+<p>安装完成后，gulp就安装在了npm下面的node_modules文件夹下。</p>
+<p>然后增加系统<code>NODE_PATH</code>的环境变量，一般都是在 <code>C:\Users\Administrator(这个根据你你自己的定)\AppData\Roaming\npm\node_modules</code><br>设置完成后，cmd中输入 gulp -v ，如果能够正确输出版本号，说明下载gulp成功，环境配置也成功了。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ gulp -v</div><div class="line">[<span class="number">16</span>:<span class="number">05</span>:<span class="number">14</span>] CLI version <span class="number">3.9</span><span class="number">.1</span></div><div class="line">[<span class="number">16</span>:<span class="number">05</span>:<span class="number">14</span>] Local version <span class="number">3.9</span><span class="number">.1</span></div></pre></td></tr></table></figure></p>
+<h3 id="本地安装项目依赖（devDependencies）"><a href="#本地安装项目依赖（devDependencies）" class="headerlink" title="本地安装项目依赖（devDependencies）"></a>本地安装项目依赖（devDependencies）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install gulp --save-dev</div></pre></td></tr></table></figure>
+<p>本地安装gulp项目，作为开发依赖。</p>
+<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>此时我们找个位置，比如桌面上，新建一个文件夹，建好目录结构。比如取名  gulp-demo，完后我们cd desktop/gulp-demo,就进入了gulp-demo项目了。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mkdir gulp-demo &amp;&amp; cd gulp-demo  <span class="comment">//创建项目并进入项目</span></div></pre></td></tr></table></figure></p>
+<p>首先，我们输入命令<code>npm init</code>,一路enter,该命令会保存我们的所用到的以及配置的信息，保存在<code>package.json</code>。方便我们在另一个环境上按照上面的信息来安装包。然后我们需要在本地，也就是在项目内安装gulp以及各种模块。 npm i gulp –save-dev （–save就会将模块信息保存到package.json中）  。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init  <span class="comment">//然后一路enter就可以了</span></div></pre></td></tr></table></figure></p>
+<p><strong>注： 使用 npm init 创建一个 package.json 存储依赖关系等配置信息</strong><br>然后我们安装本地开发依赖<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i gulp --save-dev   <span class="comment">//--save就会将模块信息保存到package.json中</span></div></pre></td></tr></table></figure></p>
+<p><strong>再在根目录新建一个gulpfile.js文件，来配置我们的任务。</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cd .&gt; gulpfile.js  <span class="comment">//windows下的创建文本文件的命令</span></div></pre></td></tr></table></figure></p>
+<p>安装依赖插件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save-dev gulp gulp-sass gulp-autoprefixer browser-sync gulp-notify</div></pre></td></tr></table></figure></p>
+<p>上述命名依次安装了 <code>gulp</code> 、 <code>gulp-sass</code> 、 <code>gulp-autoprefixer</code> 、 <code>browser-sync</code> 、 <code>gulp-notify</code> 等常用插件，其中：<br><code>gulp-sass</code> 用于将 Sass 文件编译为 CSS 文件<br><code>gulp-autoprefixer</code> 根据浏览器版本自动处理添加浏览器前缀<br><code>browser-sync</code>能让浏览器实时、快速响应文件更改（html、js、css、sass、less等）并自动刷新页面<br><code>gulp-notify</code> 用于任务提醒</p>
+<h3 id="default任务"><a href="#default任务" class="headerlink" title="default任务"></a>default任务</h3><p>gulp会默认执行该任务，是程序运行时的默认切入点，也是在项目根目录运行<code>gulp</code>时执行的任务。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line">gulp.task(<span class="string">'default'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'hello gulp!'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="子任务"><a href="#子任务" class="headerlink" title="子任务"></a>子任务</h3><p>通过在默认任务的第二个参数中指定其他任务即可，程序会依次执行 myTaskOne、myTaskTwo、default，我们可以对他们进行任务排序<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>)</div><div class="line">gulp.task(<span class="string">'myTaskOne'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'my taskOne!'</span>);</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'myTaskTwo'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'my taskTwo!'</span>);</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'default'</span>,[<span class="string">'myTaskOne'</span>,<span class="string">'myTaskTwo'</span>],<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'hello gulp!'</span>);</div><div class="line">&#125;); </div><div class="line"><span class="comment">//在项目根目录运行 gulp 后会先后打印出</span></div><div class="line"><span class="comment">// my taskOne</span></div><div class="line"><span class="comment">// my taskTwo</span></div><div class="line"><span class="comment">// hello gulp!</span></div></pre></td></tr></table></figure></p>
+<p>最后这个运行<code>gulp</code>时会先依次执行 <code>myTaskOne</code>和 <code>myTaskTwo</code>任务。然后再执行 <code>default</code>任务，这个任务执行的语句就是<code>function</code>函数里面的语句。</p>
+<p>ok!，来个综合示例，首先我的文件目录是： <code>tree /f</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; hl-gulp</div><div class="line">│  gulpfile.js</div><div class="line">│  package.json</div><div class="line">│</div><div class="line">├─dist</div><div class="line">│  │  index.html</div><div class="line">│  │</div><div class="line">│  ├─css</div><div class="line">│  ├─img</div><div class="line">│  └─js</div><div class="line">├─images</div><div class="line">├─node_modules</div><div class="line">└─src</div><div class="line">    ├─scripts</div><div class="line">    ├─stylesheets</div><div class="line">    └─templates</div><div class="line">        └─jade</div></pre></td></tr></table></figure></p>
+<p>解释一下，<code>src</code>中放入的是我的开发目录，<code>dist</code>中放入的是我的编译完成的目录，最后打包也是在这个目录。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//文件合并，文件压缩，语法检查，监听文件变化。先搞这四个吧。</span></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"><span class="keyword">var</span> jshint = <span class="built_in">require</span>(<span class="string">'gulp-jshint'</span>);<span class="comment">//语法检查</span></div><div class="line"><span class="keyword">var</span> concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);<span class="comment">//合并文件</span></div><div class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);<span class="comment">//压缩代码</span></div><div class="line"><span class="keyword">var</span> rename = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>);<span class="comment">//重命名</span></div><div class="line"><span class="comment">// 语法检查</span></div><div class="line">gulp.task(<span class="string">'jshint'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> gulp.src(<span class="string">'public/javascripts/*.js'</span>)</div><div class="line">	      .pipe(jshint())</div><div class="line">	      .pipe(jshint.reporter(<span class="string">'default'</span>));</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 合并文件之后压缩代码</span></div><div class="line">gulp.task(<span class="string">'minify'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> gulp.src(<span class="string">'public/javascripts/*.js'</span>)</div><div class="line">		   .pipe(concat(<span class="string">'all.js'</span>))</div><div class="line">		   .pipe(gulp.dest(<span class="string">'public/javascripts/dist'</span>))</div><div class="line">		   .pipe(uglify())</div><div class="line">		   .pipe(rename(<span class="string">'all.min.js'</span>))</div><div class="line">		   .pipe(gulp.dest(<span class="string">'public/javascripts/dist'</span>));</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 监视文件的变化</span></div><div class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">gulp.watch(<span class="string">'public/javascripts/*.js'</span>, [<span class="string">'jshint'</span>, <span class="string">'minify'</span>]);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 注册缺省任务</span></div><div class="line">gulp.task(<span class="string">'default'</span>, [<span class="string">'jshint'</span>, <span class="string">'minify'</span>, <span class="string">'watch'</span>]);</div></pre></td></tr></table></figure>
+<p><img src="http://images2015.cnblogs.com/blog/693683/201607/693683-20160724173750779-1294647344.png" alt="gulp"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Gulp/" rel="tag">#Gulp</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/01/js中的-和-操作符总结/" rel="next" title="js中的&&和||操作符总结">
+                <i class="fa fa-chevron-left"></i> js中的&&和||操作符总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/01/Gulp项目构建总结/"
+           data-title="Gulp项目构建总结" data-url="http://yoursite.com/2016/11/01/Gulp项目构建总结/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装nodeJS"><span class="nav-number">1.1.</span> <span class="nav-text">安装nodeJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局安装Gulp"><span class="nav-number">1.2.</span> <span class="nav-text">全局安装Gulp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地安装项目依赖（devDependencies）"><span class="nav-number">1.3.</span> <span class="nav-text">本地安装项目依赖（devDependencies）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战"><span class="nav-number">2.</span> <span class="nav-text">实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#default任务"><span class="nav-number">2.1.</span> <span class="nav-text">default任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子任务"><span class="nav-number">2.2.</span> <span class="nav-text">子任务</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

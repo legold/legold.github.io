@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js面向对象," />
+  <meta name="keywords" content="js基础," />
 
 
 
@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="今天好好理一理js中，函数以选项对象作为参数进行调用
-
-相信但凡写过js的都知道，有很多js函数在执行的时候，通常参数都是被包装成一个选项对象，就是花括号包着的一组无序的”名/值”对。有属性，也有方法，这种方法来实现函数的调用有利于对函数进行复杂功能的封装，比不用这种方式（比如，简单的几个参数）来的更加优雅与便捷。">
+<meta name="description" content="js中的&amp;amp;&amp;amp;和||操作符常被用作短路表达式，&amp;amp;&amp;amp;和||操作符链接的两个值最后取哪个值的问题，有点模糊和不好理解，比如下面的表达式输出什么？如果你能答对说明你对这个问题就掌握了没什么问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS函数参数之选项对象">
-<meta property="og:url" content="http://yoursite.com/2016/10/19/JS函数参数之选项对象/index.html">
+<meta property="og:title" content="js中的&&和||操作符总结">
+<meta property="og:url" content="http://yoursite.com/2016/11/01/js中的-和-操作符总结/index.html">
 <meta property="og:site_name" content="legold">
-<meta property="og:description" content="今天好好理一理js中，函数以选项对象作为参数进行调用
-
-相信但凡写过js的都知道，有很多js函数在执行的时候，通常参数都是被包装成一个选项对象，就是花括号包着的一组无序的”名/值”对。有属性，也有方法，这种方法来实现函数的调用有利于对函数进行复杂功能的封装，比不用这种方式（比如，简单的几个参数）来的更加优雅与便捷。">
-<meta property="og:updated_time" content="2016-10-29T02:16:36.020Z">
+<meta property="og:description" content="js中的&amp;amp;&amp;amp;和||操作符常被用作短路表达式，&amp;amp;&amp;amp;和||操作符链接的两个值最后取哪个值的问题，有点模糊和不好理解，比如下面的表达式输出什么？如果你能答对说明你对这个问题就掌握了没什么问题。">
+<meta property="og:updated_time" content="2016-11-01T07:17:42.373Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS函数参数之选项对象">
-<meta name="twitter:description" content="今天好好理一理js中，函数以选项对象作为参数进行调用
-
-相信但凡写过js的都知道，有很多js函数在执行的时候，通常参数都是被包装成一个选项对象，就是花括号包着的一组无序的”名/值”对。有属性，也有方法，这种方法来实现函数的调用有利于对函数进行复杂功能的封装，比不用这种方式（比如，简单的几个参数）来的更加优雅与便捷。">
+<meta name="twitter:title" content="js中的&&和||操作符总结">
+<meta name="twitter:description" content="js中的&amp;amp;&amp;amp;和||操作符常被用作短路表达式，&amp;amp;&amp;amp;和||操作符链接的两个值最后取哪个值的问题，有点模糊和不好理解，比如下面的表达式输出什么？如果你能答对说明你对这个问题就掌握了没什么问题。">
 
 
 
@@ -120,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/19/JS函数参数之选项对象/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/01/js中的-和-操作符总结/"/>
 
-  <title> JS函数参数之选项对象 | legold </title>
+  <title> js中的&&和||操作符总结 | legold </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -252,7 +246,7 @@
             
             
               
-                JS函数参数之选项对象
+                js中的&&和||操作符总结
               
             
           </h1>
@@ -264,8 +258,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-19T14:46:49+08:00" content="2016-10-19">
-              2016-10-19
+            <time itemprop="dateCreated" datetime="2016-11-01T14:42:49+08:00" content="2016-11-01">
+              2016-11-01
             </time>
           </span>
 
@@ -275,8 +269,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/19/JS函数参数之选项对象/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/19/JS函数参数之选项对象/" itemprop="commentsCount"></span>
+                <a href="/2016/11/01/js中的-和-操作符总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/01/js中的-和-操作符总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -299,18 +293,15 @@
       
 
       
-        <blockquote>
-<p>今天好好理一理js中，函数以选项对象作为参数进行调用<script src="http://legold.cc/mine/my_deal.js"></script></p>
-</blockquote>
-<p>相信但凡写过js的都知道，有很多js函数在执行的时候，通常参数都是被包装成一个选项对象，就是花括号包着的一组无序的”名/值”对。有属性，也有方法，这种方法来实现函数的调用有利于对函数进行复杂功能的封装，比不用这种方式（比如，简单的几个参数）来的更加优雅与便捷。</p>
+        <p>js中的<code>&amp;&amp;</code>和<code>||</code>操作符常被用作短路表达式，&amp;&amp;和||操作符链接的两个值最后取哪个值的问题，有点模糊和不好理解，比如下面的表达式输出什么？如果你能答对说明你对这个问题就掌握了没什么问题。</p>
+<script src="http://legold.cc/mine/my_deal.js"></script>
+
 <a id="more"></a>
-<h2 id="参数为选项对象"><a href="#参数为选项对象" class="headerlink" title="参数为选项对象"></a>参数为选项对象</h2><p>一般情况下，这种以选项对象作为参数来调用或生成实例的都是构造函数，比如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Person(&#123;</div><div class="line">bind:<span class="built_in">document</span>.getElementById(<span class="string">"rect"</span>), <span class="comment">// 绑定的DOM对象</span></div><div class="line">dire_h:<span class="literal">true</span>, <span class="comment">//true </span></div><div class="line">backfn:<span class="function"><span class="keyword">function</span>(<span class="params">o</span>)</span>&#123; <span class="comment">//回调事件</span></div><div class="line"> <span class="built_in">document</span>.getElementById(<span class="string">"dire"</span>).innerHTML = o.dire;</div><div class="line">&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>当然，普通函数也可以这么用，比如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">o</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">2</span>);</div><div class="line">	<span class="keyword">if</span>(o.callback)&#123;  <span class="comment">//如果有回调函数，就执行</span></div><div class="line">		o.callback();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">test(&#123;</div><div class="line">	callback:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'回调函数！'</span>);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>结果会在控制台中先后打印出 2 和 回调函数！<br>当然还可以转变一下写法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">o</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">2</span>);</div><div class="line">	<span class="keyword">if</span>(o.callback)&#123;  <span class="comment">//如果有回调函数，就执行</span></div><div class="line">		o.callback();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'回调函数'</span>);</div><div class="line">&#125;</div><div class="line">test(&#123;</div><div class="line">	callback:fn</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>不过这种方法有时候需要注意this的指向。</p>
-<h2 id="函数参数的默认值"><a href="#函数参数的默认值" class="headerlink" title="函数参数的默认值"></a>函数参数的默认值</h2><p>传统的参数默认值得实现方式是，先判断该参数是否为 <code>undefined</code> ，如果是则代表没传参数，需要手动给它赋一个值，如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> name;</div><div class="line">	<span class="keyword">if</span>(a === <span class="literal">undefined</span>)&#123; <span class="comment">// 判断参数是否传值</span></div><div class="line">	   name = <span class="string">'张三'</span>;  <span class="comment">// 没传，赋默认值</span></div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">	   name = a;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">console</span>.log(name);</div><div class="line">&#125;</div><div class="line">demo();   <span class="comment">//张三</span></div><div class="line">demo(<span class="string">'黄先森'</span>);  <span class="comment">//黄先森</span></div></pre></td></tr></table></figure></p>
-<p>除了使用 <code>if else</code>来判断是否传参，还可以通过 <code>短路表达式</code> 来快捷的判断。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> name;</div><div class="line">	name = a ? a : <span class="string">'张三'</span>;</div><div class="line">	<span class="comment">//或者使用逻辑运算符 或 ||</span></div><div class="line">	<span class="comment">// name = a || '张三';  </span></div><div class="line">	<span class="built_in">console</span>.log(name);</div><div class="line">&#125;</div><div class="line">demo();   <span class="comment">//张三</span></div><div class="line">demo(<span class="string">'黄先森'</span>);  <span class="comment">//黄先森</span></div></pre></td></tr></table></figure></p>
-<p>未完待续！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> val1 = <span class="number">123</span> &amp;&amp; <span class="number">234</span>; </div><div class="line"><span class="keyword">var</span> val2 = <span class="number">0</span> &amp;&amp; <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> val3 = <span class="number">1</span> &amp;&amp; <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> val4 = <span class="number">1</span> &amp;&amp; <span class="string">""</span>; </div><div class="line"><span class="keyword">var</span> val5 = <span class="string">""</span> &amp;&amp; <span class="number">1</span>; </div><div class="line"><span class="keyword">var</span> val6 = <span class="string">""</span> &amp;&amp; <span class="number">0</span>; </div><div class="line"><span class="keyword">var</span> val7 = <span class="number">0</span> &amp;&amp; <span class="string">""</span>;</div></pre></td></tr></table></figure>
+<p>&amp;&amp;和||操作符两边不是布尔类型时，系统会转换成布尔类型值再计算(空字符串、null、0都会被转成false)，结果本身不变。上述表达式的结果为：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> val1 = <span class="number">123</span> &amp;&amp; <span class="number">234</span>;    <span class="comment">//234</span></div><div class="line"><span class="keyword">var</span> val2 = <span class="number">0</span> &amp;&amp; <span class="number">1</span>;    <span class="comment">//0</span></div><div class="line"><span class="keyword">var</span> val3 = <span class="number">1</span> &amp;&amp; <span class="number">0</span>;    <span class="comment">//0</span></div><div class="line"><span class="keyword">var</span> val4 = <span class="number">1</span> &amp;&amp; <span class="string">""</span>;    <span class="comment">//""</span></div><div class="line"><span class="keyword">var</span> val5 = <span class="string">""</span> &amp;&amp; <span class="number">1</span>;    <span class="comment">//""</span></div><div class="line"><span class="keyword">var</span> val6 = <span class="string">""</span> &amp;&amp; <span class="number">0</span>;    <span class="comment">//""</span></div><div class="line"><span class="keyword">var</span> val7 = <span class="number">0</span> &amp;&amp; <span class="string">""</span>;    <span class="comment">//0</span></div></pre></td></tr></table></figure></p>
+<p><strong>&amp;&amp;操作符总结：只要一个false就取false的值，都是true取后面，都是false取前面。</strong><br>助记：一F即F取F，都F取前。<br>||操作符跟&amp;&amp;操作符相反，那么如下表示式 的结果是什么？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> val1 = <span class="number">1</span> || <span class="number">2</span>;    <span class="comment">//1</span></div><div class="line"><span class="keyword">var</span> val2 = <span class="number">0</span> || <span class="number">1</span>;    <span class="comment">//1</span></div><div class="line"><span class="keyword">var</span> val3 = <span class="number">1</span> || <span class="number">0</span>;    <span class="comment">//1</span></div><div class="line"><span class="keyword">var</span> val4 = <span class="number">1</span> || <span class="string">""</span>;    <span class="comment">//1</span></div><div class="line"><span class="keyword">var</span> val5 = <span class="number">0</span> || <span class="string">""</span>;    <span class="comment">//""</span></div><div class="line"><span class="keyword">var</span> val6 = <span class="string">""</span> || <span class="number">0</span>;    <span class="comment">//0</span></div><div class="line"><span class="keyword">var</span> val7 = <span class="number">0</span> || <span class="string">""</span>;    <span class="comment">//""</span></div></pre></td></tr></table></figure></p>
+<p><strong>||操作符总结：只要一个是true就取true的值，都是true取前面，都是false取后面。</strong><br>这个两个操作符需要注意的是，只有一边是false和true的情况，和都是false或true的情况。<br>这个连个操作符在DOM编程中经常使用，比如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj  =  <span class="built_in">document</span>.body.scrollTop  ||  <span class="built_in">document</span>.documentElement.scrollTop;</div></pre></td></tr></table></figure></p>
+<p>只需要记住其中一个操作符的特点即可。</p>
 
       
     </div>
@@ -333,7 +324,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js面向对象/" rel="tag">#js面向对象</a>
+            <a href="/tags/js基础/" rel="tag">#js基础</a>
           
         </div>
       
@@ -342,16 +333,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/19/JS面向对象编程实例一看就懂/" rel="next" title="JS面向对象编程实例一看就懂">
-                <i class="fa fa-chevron-left"></i> JS面向对象编程实例一看就懂
+              <a href="/2016/11/01/js中的call、apply、bind/" rel="next" title="js中的call、apply、bind">
+                <i class="fa fa-chevron-left"></i> js中的call、apply、bind
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/21/收藏-国内cdn常用js公共库/" rel="prev" title="[收藏]国内cdn常用js公共库">
-                [收藏]国内cdn常用js公共库 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/01/Gulp项目构建总结/" rel="prev" title="Gulp项目构建总结">
+                Gulp项目构建总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -378,8 +369,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/19/JS函数参数之选项对象/"
-           data-title="JS函数参数之选项对象" data-url="http://yoursite.com/2016/10/19/JS函数参数之选项对象/">
+      <div class="ds-thread" data-thread-key="2016/11/01/js中的-和-操作符总结/"
+           data-title="js中的&&和||操作符总结" data-url="http://yoursite.com/2016/11/01/js中的-和-操作符总结/">
       </div>
       <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
         <script type="text/javascript">
@@ -496,7 +487,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数为选项对象"><span class="nav-number">1.</span> <span class="nav-text">参数为选项对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数参数的默认值"><span class="nav-number">2.</span> <span class="nav-text">函数参数的默认值</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
