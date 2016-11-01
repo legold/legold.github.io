@@ -1,0 +1,686 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="js中的call、apply、bind很常用，尤其是在面向对象的编程中应用很广泛，很有必要深刻的理解它们。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中的call、apply、bind">
+<meta property="og:url" content="http://yoursite.com/2016/11/01/js中的call、apply、bind/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="js中的call、apply、bind很常用，尤其是在面向对象的编程中应用很广泛，很有必要深刻的理解它们。">
+<meta property="og:updated_time" content="2016-11-01T03:52:10.755Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js中的call、apply、bind">
+<meta name="twitter:description" content="js中的call、apply、bind很常用，尤其是在面向对象的编程中应用很广泛，很有必要深刻的理解它们。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/01/js中的call、apply、bind/"/>
+
+  <title> js中的call、apply、bind | legold </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js中的call、apply、bind
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T10:08:18+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/01/js中的call、apply、bind/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/01/js中的call、apply、bind/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>js中的call、apply、bind很常用，尤其是在面向对象的编程中应用很广泛，很有必要深刻的理解它们。<script src="http://legold.cc/mine/my_deal.js"></script></p>
+</blockquote>
+<a id="more"></a>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p><code>call(thisObj,arg1,arg2...)</code> 和 <code>apply(thisObj,[arg1,arg2...])</code>这两个方法是<strong><code>每个函数</code></strong>都包含的非继承的方法。<br>两者作用都是一样的，简单来说就是改变当前使用该方法的对象中的this指向，指向调用方法中的thisObj对象二者的区别（第一个参数是相同的）就是call方法中传入的参数是是一个个列举出来的，而apply方法中的参数二是一个数组。<br>来个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.color=<span class="string">'red'</span>;</div><div class="line"><span class="keyword">var</span> o = &#123;color:<span class="string">"blue"</span>&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="keyword">this</span>.color);</div><div class="line">&#125;</div><div class="line">sayColor(); <span class="comment">//red(全局函数，this是window)</span></div><div class="line">sayColor.call(<span class="keyword">this</span>); <span class="comment">//red(调用call方法，指定对象是this，这里的this是window，没什么意义)</span></div><div class="line">sayColor.call(<span class="built_in">window</span>); <span class="comment">//red(调用call方法，指定对象是window，没什么意义)</span></div><div class="line">sayColor.call(o); <span class="comment">//blue (调用call方法，指定对象是o，所以this指代对象o，这里由原来的window指向了o)</span></div><div class="line">sayColor.apply(o); <span class="comment">//blue (调用apply方法，指定对象是o，所以this指代对象o，这里由原来的window指向了o)</span></div></pre></td></tr></table></figure></p>
+<p>ECMAScript5中的bind()方法和前二种方法相似，bind()这个方法会创建一个函数的实例，这个实例的this值会被绑定到传递给bind()函数的值<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">y</span>)</span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="keyword">this</span>.x+y;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> o=&#123;x:<span class="number">1</span>&#125;;</div><div class="line"><span class="keyword">var</span> g=a.bind(o);</div><div class="line">g(<span class="number">2</span>);<span class="comment">//3</span></div></pre></td></tr></table></figure></p>
+<p>从例子中可以看出函数a绑定到对象o上了，并且返回了新的函数g，调用g时，a函数会当作对象o的方法来调用<br>bind()这个方法是将函数绑定到某个对象上，并且返回一个新的函数，这个新函数中传入的参数都将传入被绑定的函数上。</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>在JS中，这三者都是用来改变函数的this对象的指向的，他们有什么样的区别呢。<br>在说区别之前还是先总结一下三者的相似之处：<br>1、都是用来改变函数的this对象的指向的。<br>2、第一个参数都是this要指向的对象。<br>3、都可以利用后续参数传参。<br>先看一个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xw = &#123;</div><div class="line">    name : <span class="string">"小王"</span>,</div><div class="line">    gender : <span class="string">"男"</span>,</div><div class="line">    age : <span class="number">24</span>,</div><div class="line">    say : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(<span class="keyword">this</span>.name + <span class="string">" , "</span> + <span class="keyword">this</span>.gender + <span class="string">" ,今年"</span> + <span class="keyword">this</span>.age);                               </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> xh = &#123;</div><div class="line">    name : <span class="string">"小红"</span>,</div><div class="line">    gender : <span class="string">"女"</span>,</div><div class="line">    age : <span class="number">18</span></div><div class="line">&#125;</div><div class="line">xw.say();</div></pre></td></tr></table></figure></p>
+<p>本身没什么好说的，显示的肯定是小王 ， 男 ， 今年24。<br>那么如何用xw的say方法来显示xh的数据呢。<br>call:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xw.say.call(xh);</div></pre></td></tr></table></figure></p>
+<p>apply:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xw.say.apply(xh);</div></pre></td></tr></table></figure></p>
+<p>对于bind需要这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xw.say.bind(xh)();</div></pre></td></tr></table></figure></p>
+<p>如果直接写xw.say.bind(xh)是不会有任何结果的，看到区别了吗？call和apply都是对函数的直接调用，而bind方法返回的仍然是一个函数，因此后面还需要()来进行调用才可以。<br>那么call和apply有什么区别呢？我们把例子稍微改写一下。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xw = &#123;</div><div class="line">    name : <span class="string">"小王"</span>,</div><div class="line">    gender : <span class="string">"男"</span>,</div><div class="line">    age : <span class="number">24</span>,</div><div class="line">    say : <span class="function"><span class="keyword">function</span>(<span class="params">school,grade</span>) </span>&#123;</div><div class="line">        alert(<span class="keyword">this</span>.name + <span class="string">" , "</span> + <span class="keyword">this</span>.gender + <span class="string">" ,今年"</span> + <span class="keyword">this</span>.age + <span class="string">" ,在"</span> + school + <span class="string">"上"</span> + grade);                </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> xh = &#123;</div><div class="line">    name : <span class="string">"小红"</span>,</div><div class="line">    gender : <span class="string">"女"</span>,</div><div class="line">    age : <span class="number">18</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看到say方法多了两个参数，我们通过call/apply的参数进行传参。<br>对于call来说是这样的:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xw.say.call(xh,<span class="string">"实验小学"</span>,<span class="string">"六年级"</span>);</div></pre></td></tr></table></figure></p>
+<p>而对于apply来说是这样的:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xw.say.apply(xh,[<span class="string">"实验小学"</span>,<span class="string">"六年级"</span>]);</div></pre></td></tr></table></figure></p>
+<p>看到区别了吗，call后面的参数(以参数列表的形式)与say方法中是一一对应的，而apply的第二个参数是一个数组，数组中的元素是和say方法中一一对应的，这就是两者最大的区别。<br>那么bind怎么传参呢？它可以像call那样传参。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xw.say.bind(xh,<span class="string">"实验小学"</span>,<span class="string">"六年级"</span>)();</div></pre></td></tr></table></figure></p>
+<p>但是由于bind返回的仍然是一个函数，所以我们还可以在调用的时候再进行传参。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">xw.say.bind(xh)(<span class="string">"实验小学"</span>,<span class="string">"六年级"</span>);</div><div class="line"><span class="comment">//或者将返回的方法赋给一个变量</span></div><div class="line"><span class="keyword">var</span> g = xw.say.bind(xh);</div><div class="line">g(<span class="string">"实验小学"</span>,<span class="string">"六年级"</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>面试中经常会有如下问题：<br>1，怎么利用call、apply来求一个数组中最大或最小值<br>2，如何利用call、apply来做继承<br>3，apply、call、bind的区别与主要应用场景<br>首先问个问题，这三个函数的存在意义是什么？答案是改变函数执行时的上下文，再具体一点就是改变函数运行时的this指向。有了这个认识，接下来我们来看一下,怎么使用这三个函数。<br>栗子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line">Person.prototype = &#123;</div><div class="line">	<span class="keyword">constructor</span>:Person,</div><div class="line">	showName:function()&#123;</div><div class="line">	  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'huanglei'</span>);</div><div class="line">p1.showName(); <span class="comment">//huanglei</span></div></pre></td></tr></table></figure></p>
+<p>上面的代码中p1调用showName方法后会在浏览器的控制台输出 <code>huanglei</code><br>接下来，我们另外定义一个对象：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> animal = &#123;</div><div class="line">	name:<span class="string">'cat'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>上面代码中有一个对象字面量，他没有所谓的showName方法，但是我还是想用？怎么办？(坑爹了，这好像在让巧媳妇去做无米之炊)，不过没关系，call、apply、bind可以帮我们干这件事。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1 call</span></div><div class="line">p1.showName.call(animal);  <span class="comment">//cat</span></div><div class="line"><span class="comment">// 2 apply</span></div><div class="line">p1.showName.apply(animal);  <span class="comment">//cat</span></div><div class="line"><span class="comment">// 3 bind</span></div><div class="line">p1.showName.bind(animal)();  <span class="comment">//cat</span></div></pre></td></tr></table></figure></p>
+<p>控制台输出了三次 <code>cat</code><br>我们拿别人的showName方法，并动态改变其上下文帮自己输出了信息，说到底就是实现了复用</p>
+<h3 id="call、apply与bind的差别"><a href="#call、apply与bind的差别" class="headerlink" title="call、apply与bind的差别"></a>call、apply与bind的差别</h3><blockquote>
+<p>call和apply改变了函数的this上下文后便执行该函数,而bind则是返回改变了上下文后的一个函数。</p>
+</blockquote>
+<h3 id="call与apply的区别"><a href="#call与apply的区别" class="headerlink" title="call与apply的区别"></a>call与apply的区别</h3><p>他们俩之间的差别在于参数的区别，call和aplly的第一个参数都是要改变上下文的对象，而call从第二个参数开始以参数列表的形式展现，apply则是把除了改变上下文对象的参数放在一个数组里面作为它的第二个参数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fn.call(obj, arg1, arg2, arg3...);</div><div class="line">fn.apply(obj, [arg1, arg2, arg3...]);</div></pre></td></tr></table></figure></p>
+<h3 id="call被用作继承"><a href="#call被用作继承" class="headerlink" title="call被用作继承"></a>call被用作继承</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">age</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.name = [<span class="string">'mike'</span>,<span class="string">'jack'</span>,<span class="string">'smith'</span>];</div><div class="line">	<span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">age</span>)</span>&#123;</div><div class="line">	Parent.call(<span class="keyword">this</span>); <span class="comment">// 把函数Parent的属性通过call被Child继承，this指向当前的作用域</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> test=<span class="keyword">new</span> Child(<span class="number">21</span>);</div><div class="line"><span class="built_in">console</span>.log(test.age);<span class="comment">//21</span></div><div class="line"><span class="built_in">console</span>.log(test.name); <span class="comment">// mike,jack,smith,bill</span></div><div class="line">test.name.push(<span class="string">'bill'</span>);</div><div class="line"><span class="built_in">console</span>.log(test.name);<span class="comment">//mike,jack,smith,bill</span></div></pre></td></tr></table></figure>
+<p>来个综合的实例<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">   <span class="keyword">this</span>.name = name;</div><div class="line">   <span class="keyword">this</span>.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	 <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">   &#125;;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">   Animal.call(<span class="keyword">this</span>, name);</div><div class="line">&#125;</div><div class="line">Cat.prototype = <span class="keyword">new</span> Animal();</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">   Animal.apply(<span class="keyword">this</span>, name);</div><div class="line">&#125;</div><div class="line">Dog.prototype = <span class="keyword">new</span> Animal();</div><div class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat(<span class="string">"Black Cat"</span>); <span class="comment">//call必须是object</span></div><div class="line"><span class="keyword">var</span> dog = <span class="keyword">new</span> Dog([<span class="string">"Black Dog"</span>]); <span class="comment">//apply必须是array</span></div><div class="line">cat.showName(); <span class="comment">//Black Cat</span></div><div class="line">dog.showName(); <span class="comment">//Black Dog</span></div><div class="line"><span class="built_in">console</span>.log(cat <span class="keyword">instanceof</span> Animal);  <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(dog <span class="keyword">instanceof</span> Animal);  <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<h3 id="常用技巧"><a href="#常用技巧" class="headerlink" title="常用技巧"></a>常用技巧</h3><ul>
+<li>求数组中的最大和最小值</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">34</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">54</span>,<span class="number">6</span>,<span class="number">-67</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">-8</span>,<span class="number">687</span>];</div><div class="line"><span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, arr);  <span class="comment">//Math可以换成null或this</span></div><div class="line"><span class="built_in">Math</span>.max.call(<span class="built_in">Math</span>, <span class="number">34</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">54</span>,<span class="number">6</span>,<span class="number">-67</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">-8</span>,<span class="number">687</span>);</div><div class="line"><span class="built_in">Math</span>.min.apply(<span class="built_in">Math</span>, arr);</div><div class="line"><span class="built_in">Math</span>.min.call(<span class="built_in">Math</span>, <span class="number">34</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">54</span>,<span class="number">6</span>,<span class="number">-67</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">-8</span>,<span class="number">687</span>);</div><div class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, arr); </div><div class="line"><span class="built_in">Math</span>.max.apply(<span class="keyword">this</span>, arr);</div></pre></td></tr></table></figure>
+<ul>
+<li>将伪数组（比如nodeList对象）转化为数组</li>
+</ul>
+<p><strong>js中的伪数组(例如通过document.getElementsByTagName获取的元素)具有length属性，并且可以通过0、1、2…下标来访问其中的元素，但是没有Array中的push、pop等方法。我们可以利用call、apply来将其转化为真正的数组这样便可以方便地使用数组方法了。</strong><br>上面就是一个普通的对象字面量，怎么把它变成一个数组呢？最简单的方法就是<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = <span class="built_in">Array</span>.prototype.slice.call(arrayLike);</div></pre></td></tr></table></figure></p>
+<p>上面arr便是一个包含arrayLike元素的真正的数组啦( 注意数据结构必须是以数字为下标而且一定要有length属性 )<br>还有一个栗子是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</div></pre></td></tr></table></figure></p>
+<p>JavaScript 中每个函数内都能访问一个特别变量 arguments。这个变量维护着所有传递到这个函数中的参数列表。<br>arguments 变量不是一个数组（Array）。 尽管在语法上它有数组相关的属性 length，但它不从 Array.prototype 继承，实际上它是一个对象（Object）。<br>（注意: 由于 arguments 已经被定义为函数内的一个变量。 因此通过 var 关键字定义 arguments 或者将 arguments 声明为一个形式参数， 都将导致原生的 arguments 不会被创建。）<br>因此，无法对 arguments 变量使用标准的数组方法，比如 push, pop 或者 slice。 虽然使用 for 循环遍历也是可以的，但是为了更好的使用数组方法，最好把它转化为一个真正的数组。</p>
+<hr>
+<ul>
+<li><p>数组追加<br>在js中要往数组中添加元素，可以直接用push方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="keyword">var</span> arr2 = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</div><div class="line">[].push.apply(arr1, arr2);</div><div class="line"><span class="comment">// arr1 [1, 2, 3, 4, 5, 6]</span></div><div class="line"><span class="comment">// arr2 [4,5,6]</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>判断变量类型<br>对于对象型的数据类型，我们可以借助call来得知他的具体类型，例如数组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) == <span class="string">'[object Array]'</span>;</div><div class="line">&#125;</div><div class="line">isArray([]) <span class="comment">// true</span></div><div class="line">isArray(<span class="string">'huanglei'</span>) <span class="comment">// false</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>再补充一点基础知识:</p>
+<p>js中数组的<code>join()</code>方法<br>join() 方法用于把数组中的所有元素放入一个字符串。<code>把数组中的元素拼接成字符串，省略参数时，默认以逗号作为连接符</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'hello'</span>,<span class="string">'world'</span>,<span class="string">'lei'</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.join());  <span class="comment">// hello,world,lei</span></div><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,[<span class="number">5</span>,<span class="number">6</span>],[<span class="number">1</span>,<span class="number">4</span>,<span class="number">8</span>]];</div><div class="line"><span class="built_in">console</span>.log(a.join()); <span class="comment">//1,2,3,5,6,1,4,8</span></div><div class="line"><span class="keyword">typeof</span> a.join() <span class="comment">// string</span></div><div class="line"><span class="comment">//多维数组</span></div><div class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,[<span class="number">5</span>,<span class="number">6</span>],[<span class="number">1</span>,<span class="number">4</span>,<span class="number">8</span>]];</div><div class="line"><span class="keyword">var</span> ta=a.join(<span class="string">","</span>).split(<span class="string">","</span>);<span class="comment">//转化为一维数组</span></div><div class="line">alert(<span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,ta));<span class="comment">//最大值</span></div><div class="line">alert(<span class="built_in">Math</span>.min.apply(<span class="literal">null</span>,ta));<span class="comment">//最小值</span></div></pre></td></tr></table></figure></p>
+<p><code>Math.max()</code>函数返回<strong>一个或多个数中的最大的数</strong>。<br>该函数属于JavaScript的内置全局对象 <code>Math</code>，所有主流浏览器均支持该函数。</p>
+<ul>
+<li>Math.max(a,b,…,x,y);返回若干个数中的最大的数。</li>
+<li>如果max函数没有给出任何参数，返回 <code>-Infinity</code></li>
+<li>如果有<code>NaN</code>或者非数字类型的参数，返回 <code>NaN</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.write(<span class="built_in">Math</span>.max(<span class="number">5</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">-5</span>,<span class="number">-6</span>)); <span class="comment">//8</span></div><div class="line"><span class="built_in">document</span>.write(<span class="built_in">Math</span>.max());  <span class="comment">//-Infinity</span></div><div class="line"><span class="built_in">document</span>.write(<span class="built_in">Math</span>.max(<span class="string">"dreamdu"</span>,<span class="number">8</span>)); <span class="comment">//NaN</span></div><div class="line"><span class="built_in">document</span>.write(<span class="built_in">Math</span>.max(<span class="literal">NaN</span>,<span class="number">0</span>)); <span class="comment">//NaN</span></div><div class="line"><span class="comment">// 一个参数，就返回该数</span></div><div class="line"><span class="built_in">document</span>.writeln( <span class="built_in">Math</span>.max( <span class="number">2</span> ) );  <span class="comment">// 2</span></div><div class="line"><span class="comment">// 两个参数，返回较大的数</span></div><div class="line"><span class="built_in">document</span>.writeln( <span class="built_in">Math</span>.max( <span class="number">-3</span>, <span class="number">-3</span> ) ); <span class="comment">// -3</span></div><div class="line"><span class="comment">// 多个参数时，返回最大的数</span></div><div class="line"><span class="built_in">document</span>.writeln( <span class="built_in">Math</span>.max( <span class="number">-1</span>, <span class="number">2.1</span>, <span class="number">10.5</span>, <span class="number">7</span> ) );   <span class="comment">// 10.5</span></div><div class="line"><span class="comment">// 没有传递任何参数</span></div><div class="line"><span class="built_in">document</span>.writeln( <span class="built_in">Math</span>.max( ) );    <span class="comment">// -Infinity</span></div><div class="line"><span class="comment">//传递的参数中有NaN值</span></div><div class="line"><span class="built_in">document</span>.writeln( <span class="built_in">Math</span>.max( <span class="string">"张三"</span>, <span class="number">10</span>, <span class="number">5</span> ) );    <span class="comment">// NaN</span></div></pre></td></tr></table></figure>
+<p>返回数组中的最大值，var arr = [2, 4, 6, 8, 5, 0]; alert(Math.max.apply(this, arr));<br>因为apply后面的第二个参数是一个数组形式，正好放arr,然后前面的作用域指向this或者Math对象。</p>
+<p>参考文章：<br><a href="http://www.jb51.net/article/64397.htm" target="_blank" rel="external">浅谈javascript中call()、apply()、bind()的用法</a><br><a href="https://qianlongo.github.io/2016/04/26/js%E4%B8%ADcall%E3%80%81apply%E3%80%81bind%E9%82%A3%E4%BA%9B%E4%BA%8B/#more" target="_blank" rel="external">js中call、apply、bind那些事</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js基础/" rel="tag">#js基础</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/29/js中的原型与继承/" rel="next" title="js中的原型与继承">
+                <i class="fa fa-chevron-left"></i> js中的原型与继承
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/01/js中的call、apply、bind/"
+           data-title="js中的call、apply、bind" data-url="http://yoursite.com/2016/11/01/js中的call、apply、bind/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">2.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">3.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call、apply与bind的差别"><span class="nav-number">3.1.</span> <span class="nav-text">call、apply与bind的差别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call与apply的区别"><span class="nav-number">3.2.</span> <span class="nav-text">call与apply的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call被用作继承"><span class="nav-number">3.3.</span> <span class="nav-text">call被用作继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用技巧"><span class="nav-number">3.4.</span> <span class="nav-text">常用技巧</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
