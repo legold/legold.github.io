@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ES6," />
 
 
 
@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="梦想还是要有的">
-<meta property="og:type" content="website">
-<meta property="og:title" content="legold">
-<meta property="og:url" content="http://yoursite.com/tags/js数据类型/index.html">
+<meta name="description" content="为了让浏览器端支持commonJS模块规范，我们必须弄清楚一些知识。服务端模块机制和浏览器端的模块机制。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用ES6-如何让浏览器端支持模块">
+<meta property="og:url" content="http://yoursite.com/2016/11/03/使用ES6-如何让浏览器端支持模块/index.html">
 <meta property="og:site_name" content="legold">
-<meta property="og:description" content="梦想还是要有的">
+<meta property="og:description" content="为了让浏览器端支持commonJS模块规范，我们必须弄清楚一些知识。服务端模块机制和浏览器端的模块机制。">
+<meta property="og:updated_time" content="2016-11-03T07:40:18.503Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="legold">
-<meta name="twitter:description" content="梦想还是要有的">
+<meta name="twitter:title" content="使用ES6-如何让浏览器端支持模块">
+<meta name="twitter:description" content="为了让浏览器端支持commonJS模块规范，我们必须弄清楚一些知识。服务端模块机制和浏览器端的模块机制。">
 
 
 
@@ -113,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/js数据类型/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/03/使用ES6-如何让浏览器端支持模块/"/>
 
-  <title> 标签: js数据类型 | legold </title>
+  <title> 使用ES6-如何让浏览器端支持模块 | legold </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,46 +225,132 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        js数据类型
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用ES6-如何让浏览器端支持模块
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T15:14:20+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/03/使用ES6-如何让浏览器端支持模块/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/03/使用ES6-如何让浏览器端支持模块/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>为了让浏览器端支持commonJS模块规范，我们必须弄清楚一些知识。<script src="http://legold.cc/mine/my_deal.js"></script><br>服务端模块机制和浏览器端的模块机制。<br><a id="more"></a></p>
+<p><a href="http://yijiebuyi.com/blog/46fb97b11fb8f4055e0b04d1cecb1f69.html" target="_blank" rel="external">浏览器端 javascript 执行 CommonJS规范</a><br><a href="http://www.ruanyifeng.com/blog/2015/05/commonjs-in-browser.html" target="_blank" rel="external">浏览器加载 CommonJS 模块的原理与实现</a><br><a href="http://www.111cn.net/wy/js-ajax/87045.htm" target="_blank" rel="external">浏览器加载服务器端JavaScript的CommonJS模块的原理与实现</a><br>服务器端模块加载机制：同步加载，<code>require</code>.<br>服务器端javascript模块规范和浏览器端javascript规范<br>commonJS模块规范与<code>AMD/CMD</code>模块规范</p>
+<h2 id="commonJS模块规范"><a href="#commonJS模块规范" class="headerlink" title="commonJS模块规范"></a>commonJS模块规范</h2><p>CommonJS API定义很多普通应用程序（主要指非浏览器的应用）使用的API，从而填补了这个空白。它的终极目标是提供一个类似Python，Ruby和Java标 准库。</p>
+<p>npm 的模块都是 JavaScript 语言写的，但浏览器用不了，因为不支持 CommonJS 格式。要想让浏览器用上这些模块，必须转换格式。</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/09/30/js数据类型/" itemprop="url">
-              
-                <span itemprop="name">js数据类型</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-09-30T11:21:07+08:00"
-              content="2016-09-30" >
-          09-30
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ES6/" rel="tag">#ES6</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/03/使用ES6的正确姿势/" rel="next" title="使用ES6的正确姿势">
+                <i class="fa fa-chevron-left"></i> 使用ES6的正确姿势
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -271,6 +358,27 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/03/使用ES6-如何让浏览器端支持模块/"
+           data-title="使用ES6-如何让浏览器端支持模块" data-url="http://yoursite.com/2016/11/03/使用ES6-如何让浏览器端支持模块/">
+      </div>
+      <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+              var duoshuoQuery = {short_name:"legold"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+        </script>
+      <!-- 多说公共JS代码 end -->
+    
+  </div>
+
 
         </div>
         
@@ -290,8 +398,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -354,6 +471,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#commonJS模块规范"><span class="nav-number">1.</span> <span class="nav-text">commonJS模块规范</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -450,6 +578,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
