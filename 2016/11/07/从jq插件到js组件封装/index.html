@@ -1,0 +1,647 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js组件封装," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="其实js组件的封装实质就是利用面向对象的思维来对常用的方法进行封装，便于复用与定制。面向对象的方式来进行组件封装比简单的使用全局函数更加的有意义，因此学会js组件开发对于提高自己能力有很大帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从jq插件到js组件封装">
+<meta property="og:url" content="http://yoursite.com/2016/11/07/从jq插件到js组件封装/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="其实js组件的封装实质就是利用面向对象的思维来对常用的方法进行封装，便于复用与定制。面向对象的方式来进行组件封装比简单的使用全局函数更加的有意义，因此学会js组件开发对于提高自己能力有很大帮助。">
+<meta property="og:updated_time" content="2016-11-07T07:21:03.063Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从jq插件到js组件封装">
+<meta name="twitter:description" content="其实js组件的封装实质就是利用面向对象的思维来对常用的方法进行封装，便于复用与定制。面向对象的方式来进行组件封装比简单的使用全局函数更加的有意义，因此学会js组件开发对于提高自己能力有很大帮助。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/07/从jq插件到js组件封装/"/>
+
+
+  <title> 从jq插件到js组件封装 | legold </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                从jq插件到js组件封装
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-07T12:24:41+08:00" content="2016-11-07">
+              2016-11-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/07/从jq插件到js组件封装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/07/从jq插件到js组件封装/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>其实js组件的封装实质就是利用面向对象的思维来对常用的方法进行封装，便于复用与定制。面向对象的方式来进行组件封装比简单的使用全局函数更加的有意义，因此学会js组件开发对于提高自己能力有很大帮助。<script src="http://legold.cc/mine/my_deal.js"></script></p>
+<a id="more"></a>
+<h2 id="extend"><a href="#extend" class="headerlink" title="extend()"></a>extend()</h2><p>首先我们来了解一下extend()的用处。</p>
+<h3 id="合并对象或参数"><a href="#合并对象或参数" class="headerlink" title="合并对象或参数"></a>合并对象或参数</h3><p>一般我们在js封装的过程中肯定会设置默认参数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Boom</span>(<span class="params">cfg</span>)</span>&#123;  <span class="comment">//在new一个对象的时候自定义传递的参数</span></div><div class="line">	<span class="keyword">this</span>.config = &#123; <span class="comment">//设置默认参数   </span></div><div class="line">	    width          : <span class="number">250</span>,      </div><div class="line">	    height         : <span class="number">170</span>,                 </div><div class="line">	    str            : <span class="string">'正在处理'</span>,       </div><div class="line">	    windowDom      : <span class="built_in">window</span>,   </div><div class="line">	    setTime        : <span class="number">0</span>,     </div><div class="line">	    hasMask        : <span class="literal">true</span>,    </div><div class="line">	    hasMaskWhite   : <span class="literal">false</span>,   </div><div class="line">	    clickDomCancel : <span class="literal">false</span>,    </div><div class="line">	    callBack       : <span class="literal">null</span>, </div><div class="line">	    hasBtn         : <span class="literal">false</span>, </div><div class="line">	    type           : <span class="string">'success'</span>  </div><div class="line">	&#125;  </div><div class="line">	$.extend(<span class="keyword">this</span>.config,cfg); <span class="comment">//核心，就是将参数合并，自定义的参数合并到this.config中</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//生成一个实例对象</span></div><div class="line"><span class="keyword">var</span> boom = <span class="keyword">new</span> Boom(&#123;</div><div class="line">	width          : <span class="number">800</span>, <span class="comment">//重新设置参数值</span></div><div class="line">    height         : <span class="number">300</span>, <span class="comment">//重新设置参数值              </span></div><div class="line">    str            : <span class="string">'正在处理'</span>,       </div><div class="line">    windowDom      : <span class="built_in">window</span>,   </div><div class="line">    setTime        : <span class="number">0</span>,     </div><div class="line">    hasMask        : <span class="literal">true</span>,    </div><div class="line">    hasMaskWhite   : <span class="literal">false</span>,   </div><div class="line">    clickDomCancel : <span class="literal">false</span>,    </div><div class="line">    callBack       : <span class="literal">null</span>, </div><div class="line">    hasBtn         : <span class="literal">false</span>, </div><div class="line">    type           : <span class="string">'success'</span>,</div><div class="line">    hasTip         : <span class="literal">true</span>    <span class="comment">//自定义中多传的参数，如果构造函数中没有用到，这个参数传了也没意义</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>上面这段代码，在构造函数内部初始化了默认参数 <code>this.config</code> ,同时在生成实例对象的时候自定义设置相应的参数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1 = &#123;a:<span class="string">'a'</span>,b:<span class="string">'b'</span>&#125;;</div><div class="line"><span class="keyword">var</span> obj2 = &#123;x:&#123;xxx:<span class="string">'xxx'</span>,yyy:<span class="string">'yyy'</span>&#125;,y:<span class="string">'y'</span>&#125;;</div><div class="line">$.extend(obj1,obj2);  <span class="comment">// 将obj2的属性扩展到obj1中</span></div></pre></td></tr></table></figure></p>
+<h3 id="jQuery的扩展方法原型"><a href="#jQuery的扩展方法原型" class="headerlink" title="jQuery的扩展方法原型"></a><code>jQuery</code>的扩展方法原型</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.extend(dest,src1,src2,src3...);</div></pre></td></tr></table></figure>
+<p>它的含义是将src1,src2,src3…合并到dest中,返回值为合并后的dest,由此可以看出该方法合并后，<strong>是修改了dest的结构的</strong>。如果想要得到合并的结果却又不想修改dest的结构，可以如下使用：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> newSrc=$.extend(&#123;&#125;,src1,src2,src3...)<span class="comment">//也就是将"&#123;&#125;"作为dest参数</span></div></pre></td></tr></table></figure></p>
+<p>用这个方法，可以将所得的结果全部合并在<code>{}</code>中，并返回，而且还不会破坏原有的项的结构。<br>这样就可以将src1,src2,src3…进行合并，然后将合并结果返回给newSrc了。如下例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> result=$.extend(&#123;&#125;,&#123;name:<span class="string">"Tom"</span>,age:<span class="number">21</span>&#125;,&#123;name:<span class="string">"Jerry"</span>,sex:<span class="string">"Boy"</span>&#125;);</div></pre></td></tr></table></figure></p>
+<p>合并后不会改变其他扩展对象的解构，只是将他们都扩展到第一个空对象里面：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">result=&#123;name:<span class="string">"Jerry"</span>,age:<span class="number">21</span>,sex:<span class="string">"Boy"</span>&#125;;</div></pre></td></tr></table></figure></p>
+<p><strong>也就是说后面的参数如果和前面的参数存在相同的名称，那么后面的会覆盖前面的参数值。</strong></p>
+<h3 id="省略dest参数"><a href="#省略dest参数" class="headerlink" title="省略dest参数"></a>省略dest参数</h3><p>上述的extend方法原型中的dest参数是可以省略的，如果省略了，则该方法就只能有一个src参数，而且是将该src合并到调用extend方法的对象中去，如： 　　<br>1、<code>$.extend(src)</code> 该方法就是将src合并到jquery的全局对象中去，如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$.extend(&#123;</div><div class="line">   hello:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      alert(<span class="string">'hello'</span>);</div><div class="line">   &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>这就是将<code>hello</code>方法合并到jQuery的全局对象中。然后，调用的时候就这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.hello();  <span class="comment">// 弹出hello</span></div></pre></td></tr></table></figure></p>
+<p>该方法相当于为Jquery类添加了新的方法。<br>2、<code>$.fn.extend(src)</code> 该方法将src合并到jquery的实例对象中去,为每一个实例添加一个实例方法了，如:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$.fn.extend(&#123;</div><div class="line">   hello:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      alert(<span class="string">'hello'</span>);</div><div class="line">   &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>就是将hello方法合并到jquery的实例对象中。<br>然后这样调用：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#dom'</span>).hello();</div></pre></td></tr></table></figure></p>
+<p>下面例举几个常用的扩展实例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.extend(&#123;</div><div class="line">   net:&#123;&#125; <span class="comment">//扩展一个net命名空间</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>这是在jquery全局对象中扩展一个net命名空间。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.extend($.net,&#123; hello:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'hello'</span>);&#125; &#125;)</div></pre></td></tr></table></figure></p>
+<p>这是将hello方法扩展到之前扩展的Jquery的net命名空间中去。<br>还有一些比如深拷贝，浅拷贝之类的就不展开了，可以点<a href="http://www.jb51.net/article/29591.htm" target="_blank" rel="external">这里</a></p>
+<h2 id="extend-、-fn和-fn-extend"><a href="#extend-、-fn和-fn-extend" class="headerlink" title="$.extend()、$.fn和$fn.extend()"></a>$.extend()、$.fn和$fn.extend()</h2><p>jQuery为开发插件提拱了两个方法，分别是：<br>jQuery.fn.extend();<br>jQuery.extend();</p>
+<h3 id="jQuery-fn"><a href="#jQuery-fn" class="headerlink" title="jQuery.fn"></a>jQuery.fn</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">jQuery.fn = jQuery.prototype = &#123;</div><div class="line">　　　init: <span class="function"><span class="keyword">function</span>(<span class="params"> selector, context </span>) </span>&#123;<span class="comment">//….</span></div><div class="line"><span class="comment">//……</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>原来 <code>jQuery.fn = jQuery.prototype</code> 对prototype肯定不会陌生啦。</p>
+<h3 id="jQuery-extend-object"><a href="#jQuery-extend-object" class="headerlink" title="jQuery.extend(object)"></a>jQuery.extend(object)</h3><p>为jQuery类添加类方法，可以理解为添加静态方法。如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">jQuery.extend(&#123;</div><div class="line">   min: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123; <span class="keyword">return</span> a &lt; b ? a : b; &#125;,</div><div class="line">   max: <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</div><div class="line">&#125;);</div><div class="line">jQuery.min(<span class="number">2</span>,<span class="number">3</span>); <span class="comment">//  2 </span></div><div class="line">jQuery.max(<span class="number">4</span>,<span class="number">5</span>); <span class="comment">//  5</span></div></pre></td></tr></table></figure></p>
+<h3 id="Objectj-Query-extend-target-object1-objectN"><a href="#Objectj-Query-extend-target-object1-objectN" class="headerlink" title="Objectj Query.extend( target, object1, [objectN])"></a>Objectj Query.extend( target, object1, [objectN])</h3><p>用一个或多个其他对象来扩展一个对象，返回被扩展的对象<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> settings = &#123; validate: <span class="literal">false</span>, limit: <span class="number">5</span>, name: <span class="string">"foo"</span> &#125;; </div><div class="line"><span class="keyword">var</span> options = &#123; validate: <span class="literal">true</span>, name: <span class="string">"bar"</span> &#125;; </div><div class="line">jQuery.extend(settings, options); </div><div class="line">结果：settings == &#123; validate: <span class="literal">true</span>, limit: <span class="number">5</span>, name: <span class="string">"bar"</span> &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="jQuery-fn-extend-object"><a href="#jQuery-fn-extend-object" class="headerlink" title="jQuery.fn.extend(object)"></a>jQuery.fn.extend(object)</h3><p>对<code>jQuery.prototype</code>进行扩展，就是为jQuery类添加“成员函数”。jQuery类的实例可以使用这个“成员函数”。</p>
+<p>比如我们要开发一个插件，做一个特殊的编辑框，当它被点击时，便alert 当前编辑框里的内容。可以这么做：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$.fn.extend(&#123;          </div><div class="line">    alertWhileClick:<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;            </div><div class="line">          $(<span class="keyword">this</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;                 </div><div class="line">                 alert($(<span class="keyword">this</span>).val());           </div><div class="line">           &#125;);           </div><div class="line">     &#125;       </div><div class="line">&#125;);       </div><div class="line">$(<span class="string">"#input1"</span>).alertWhileClick(); <span class="comment">// 页面上为：</span></div></pre></td></tr></table></figure></p>
+<p>$(“#input1”)　为一个jQuery实例，当它调用成员方法 alertWhileClick后，便实现了扩展，每次被点击时它会先弹出目前编辑里的内容。<br>jQuery.extend() 的调用并不会把方法扩展到对象的实例上，引用它的方法也需要通过jQuery类来实现，如jQuery.init()，而 jQuery.fn.extend()的调用把方法扩展到了对象的prototype上，所以实例化一个jQuery对象的时候，它就具有了这些方法，这 是很重要的，在jQuery.JS中到处体现这一点</p>
+<p>jQuery.fn.extend = jQuery.prototype.extend<br>你可以拓展一个对象到jQuery的 prototype里去，这样的话就是插件机制了<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> $ </span>)</span>&#123;</div><div class="line">    $.fn.tooltip = <span class="function"><span class="keyword">function</span>(<span class="params"> options </span>) </span>&#123;&#125;;</div><div class="line">	<span class="comment">//等价于</span></div><div class="line">	<span class="keyword">var</span> tooltip = &#123;</div><div class="line">		<span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	$.fn.extend(tooltip) = $.prototype.extend(tooltip) = $.fn.tooltip</div><div class="line">&#125;)( jQuery );</div></pre></td></tr></table></figure></p>
+<p>参考文章：<br><a href="http://blog.csdn.net/xuemoyao/article/details/19021659" target="_blank" rel="external">$.extend()方法和(function($){…})(jQuery)详解</a><br><a href="http://caibaojian.com/jquery-extend-and-jquery-fn-extend.html" target="_blank" rel="external">理解jquery的$.extend()、$.fn和$.fn.extend()</a><br><a href="http://www.jb51.net/article/51079.htm" target="_blank" rel="external">jQuery $.extend()用法总结</a><br><a href="http://jingyan.baidu.com/article/fec4bce259ef67f2608d8b10.html" target="_blank" rel="external">jQuery.extend和jQuery.fn.extend的区别–通俗</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js组件封装/" rel="tag">#js组件封装</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/使用ES6-webpack模块构建工具/" rel="next" title="使用ES6-webpack模块构建工具">
+                <i class="fa fa-chevron-left"></i> 使用ES6-webpack模块构建工具
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/07/从jq插件到js组件封装/"
+           data-title="从jq插件到js组件封装" data-url="http://yoursite.com/2016/11/07/从jq插件到js组件封装/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#extend"><span class="nav-number">1.</span> <span class="nav-text">extend()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#合并对象或参数"><span class="nav-number">1.1.</span> <span class="nav-text">合并对象或参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery的扩展方法原型"><span class="nav-number">1.2.</span> <span class="nav-text">jQuery的扩展方法原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#省略dest参数"><span class="nav-number">1.3.</span> <span class="nav-text">省略dest参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extend-、-fn和-fn-extend"><span class="nav-number">2.</span> <span class="nav-text">$.extend()、$.fn和$fn.extend()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-fn"><span class="nav-number">2.1.</span> <span class="nav-text">jQuery.fn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-extend-object"><span class="nav-number">2.2.</span> <span class="nav-text">jQuery.extend(object)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objectj-Query-extend-target-object1-objectN"><span class="nav-number">2.3.</span> <span class="nav-text">Objectj Query.extend( target, object1, [objectN])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-fn-extend-object"><span class="nav-number">2.4.</span> <span class="nav-text">jQuery.fn.extend(object)</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

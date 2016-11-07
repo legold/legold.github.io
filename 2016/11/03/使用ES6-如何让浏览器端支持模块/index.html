@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="为了让浏览器端支持commonJS模块规范，我们必须弄清楚一些知识。服务端模块机制和浏览器端的模块机制。">
+<meta name="description" content="为了让浏览器端支持 commonJS 模块规范，我们必须弄清楚一些知识。服务端模块机制和浏览器端的模块机制。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用ES6-如何让浏览器端支持模块">
 <meta property="og:url" content="http://yoursite.com/2016/11/03/使用ES6-如何让浏览器端支持模块/index.html">
 <meta property="og:site_name" content="legold">
-<meta property="og:description" content="为了让浏览器端支持commonJS模块规范，我们必须弄清楚一些知识。服务端模块机制和浏览器端的模块机制。">
-<meta property="og:updated_time" content="2016-11-03T07:40:18.503Z">
+<meta property="og:description" content="为了让浏览器端支持 commonJS 模块规范，我们必须弄清楚一些知识。服务端模块机制和浏览器端的模块机制。">
+<meta property="og:updated_time" content="2016-11-04T10:39:54.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用ES6-如何让浏览器端支持模块">
-<meta name="twitter:description" content="为了让浏览器端支持commonJS模块规范，我们必须弄清楚一些知识。服务端模块机制和浏览器端的模块机制。">
+<meta name="twitter:description" content="为了让浏览器端支持 commonJS 模块规范，我们必须弄清楚一些知识。服务端模块机制和浏览器端的模块机制。">
 
 
 
@@ -294,10 +294,29 @@
       
 
       
-        <p>为了让浏览器端支持commonJS模块规范，我们必须弄清楚一些知识。<script src="http://legold.cc/mine/my_deal.js"></script><br>服务端模块机制和浏览器端的模块机制。<br><a id="more"></a></p>
-<p><a href="http://yijiebuyi.com/blog/46fb97b11fb8f4055e0b04d1cecb1f69.html" target="_blank" rel="external">浏览器端 javascript 执行 CommonJS规范</a><br><a href="http://www.ruanyifeng.com/blog/2015/05/commonjs-in-browser.html" target="_blank" rel="external">浏览器加载 CommonJS 模块的原理与实现</a><br><a href="http://www.111cn.net/wy/js-ajax/87045.htm" target="_blank" rel="external">浏览器加载服务器端JavaScript的CommonJS模块的原理与实现</a><br>服务器端模块加载机制：同步加载，<code>require</code>.<br>服务器端javascript模块规范和浏览器端javascript规范<br>commonJS模块规范与<code>AMD/CMD</code>模块规范</p>
-<h2 id="commonJS模块规范"><a href="#commonJS模块规范" class="headerlink" title="commonJS模块规范"></a>commonJS模块规范</h2><p>CommonJS API定义很多普通应用程序（主要指非浏览器的应用）使用的API，从而填补了这个空白。它的终极目标是提供一个类似Python，Ruby和Java标 准库。</p>
+        <p>为了让浏览器端支持 <code>commonJS</code> 模块规范，我们必须弄清楚一些知识。<script src="http://legold.cc/mine/my_deal.js"></script><br>服务端模块机制和浏览器端的模块机制。<br><a id="more"></a></p>
+<p>服务器端模块加载机制：同步加载，<code>require</code>.<br>服务器端javascript模块规范和浏览器端javascript规范<br>commonJS模块规范与<code>AMD/CMD</code>模块规范</p>
+<h2 id="模块及模块规范"><a href="#模块及模块规范" class="headerlink" title="模块及模块规范"></a>模块及模块规范</h2><p>模块的重要性：因为有了模块，我们就可以更方便地使用别人的代码，想要什么功能，就加载什么模块。<br>规范的重要性：但是，这样做有一个前提，那就是大家必须以同样的方式编写模块。<br>目前，通行的Javascript模块规范共有两种：<a href="http://wiki.commonjs.org/wiki/Modules/1.1" target="_blank" rel="external">CommonJS</a>和<a href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_blank" rel="external">AMD</a></p>
+<h2 id="commonJS模块规范"><a href="#commonJS模块规范" class="headerlink" title="commonJS模块规范"></a>commonJS模块规范</h2><p>2009年，美国程序员Ryan Dahl创造了node.js项目，将javascript语言用于服务器端编程。这标志”Javascript模块化编程”正式诞生。</p>
+<p>在浏览器环境下，没有模块也不是特别大的问题，毕竟网页程序的复杂性有限；但是在服务器端，一定要有模块，与操作系统和其他应用程序互动，否则根本没法编程。</p>
+<p>node.js的模块系统，就是参照CommonJS规范实现的。在CommonJS中，有一个全局性方法require()，用于加载模块。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">'math'</span>);</div><div class="line">math.add(<span class="number">2</span>, <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<p>第二行math.add(2, 3)，在第一行require(‘math’)之后运行，因此必须等math.js加载完成。也就是说，如果加载时间很长，整个应用就会停在那里等。这对服务器端不是一个问题，因为所有的模块都存放在本地硬盘，可以同步加载完成，等待时间就是硬盘的读取时间。但是，对于浏览器，这却是一个大问题，因为模块都放在服务器端，等待时间取决于网速的快慢，可能要等很长时间，浏览器处于”假死”状态。</p>
+<p>因此，浏览器端的模块，不能采用”同步加载”（synchronous），只能采用”异步加载”（asynchronous）。这就是AMD规范诞生的背景。</p>
+<p>CommonJS API定义很多普通应用程序（主要指非浏览器的应用）使用的API，从而填补了这个空白。它的终极目标是提供一个类似Python，Ruby和Java标 准库。</p>
 <p>npm 的模块都是 JavaScript 语言写的，但浏览器用不了，因为不支持 CommonJS 格式。要想让浏览器用上这些模块，必须转换格式。</p>
+<h2 id="浏览器端模块（AMD-CMD）"><a href="#浏览器端模块（AMD-CMD）" class="headerlink" title="浏览器端模块（AMD/CMD）"></a>浏览器端模块（AMD/CMD）</h2><p>我主要说的是<code>AMD</code>( Asynchronous Module Definition )<br>“异步模块定义”，它采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。</p>
+<p>目前，主要有两个Javascript库实现了AMD规范：<a href="http://requirejs.org/" target="_blank" rel="external">require.js</a>和<a href="https://github.com/cujojs/curl" target="_blank" rel="external">curl.js</a>。</p>
+<h2 id="前端模块化"><a href="#前端模块化" class="headerlink" title="前端模块化"></a>前端模块化</h2><blockquote>
+<p>如果我们 前端 javascript 能像 node.js 一样 require 去引用一个依赖包,那么前端的世界就不会像现在这么乱<br>现在为什么这么乱？</p>
+</blockquote>
+<p>假设:<br>a.js  依赖 b.js<br>b.js  依赖 c.js<br>c.js   依赖 d.js<br>如果在我们前端去引用这些依赖的时候,往往是这样的:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'a.js'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'b.js'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'c.js'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'d.js'</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上面的引用方式造成一个问题<br>不管你进入哪个页面,这些js 都要去加载…造成不必要的浪费<br>在一开始，我们先讲一下它和以往我们所用的模块管理工具有什么不一样。在最开始的阶段，Js并没有这些模块机制，各种Js到处飞，得不到有效妥善的管理。后来前端圈开始制定规范，最耳熟能详的是CommonJs和AMD。<br>CommonJs是应用在NodeJs，是一种同步的模块机制。它的写法大致如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> firstModule = <span class="built_in">require</span>(<span class="string">"firstModule"</span>);</div><div class="line"></div><div class="line"><span class="comment">//your code...</span></div><div class="line"></div><div class="line"><span class="built_in">module</span>.export = anotherModule</div></pre></td></tr></table></figure></p>
+<p>AMD的应用场景则是浏览器，异步加载的模块机制。require.js的写法大致如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">define([<span class="string">'firstModule'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">module</span>)</span>&#123;</div><div class="line">   </div><div class="line">   <span class="comment">//your code...</span></div><div class="line">   <span class="keyword">return</span> anotherModule</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p><strong>其实我们单比较写法，就知道CommonJs是更为优秀的。它是一种同步的写法，对Human友好，而且代码也不会繁琐臃肿。但更重要的原因是，随着npm成为主流的JavaScript组件发布平台，越来越多的前端项目也依赖于npm上的项目，或者自身就会发布到npm平台。所以我们对如何可以使用npm包中的模块是我们的一大需求。所以browserify工具就出现了，它支持我们直接使用require()的同步语法去加载npm模块。</strong></p>
+<p><strong>当然我们这里不得不说的是，ES2015（ES6）里也有了自己的模块机制，也就是说ES6的模块机制是官方规定的，我们通过babel（一种6to5的编译器）可以使用比较多的新特性了，包括我们提到的模块机制，而它的写法大致如下：</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;someModule&#125; <span class="keyword">from</span> <span class="string">"someModule"</span>;</div><div class="line"></div><div class="line"><span class="comment">// your codes...</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> anotherModule;</div></pre></td></tr></table></figure></p>
+<p>所以，为了解决能让浏览器端运行<code>commonJS</code>规范的代码，我们就需要模块构建工具了，比如<code>browserify</code>或者<code>webpack</code>，但是<code>webpack</code>更胜一筹。</p>
+<p>下一节，我会总结一下<code>webpack</code>的使用技巧与方法。</p>
+<p>参考文章：<br><a href="http://www.jianshu.com/p/43594e3f6c26" target="_blank" rel="external">Javascript模块化：模块规范</a><br><a href="http://blog.chinaunix.net/uid-26672038-id-4112229.html" target="_blank" rel="external"> JavaSript模块规范 - AMD规范与CMD规范介绍-总结的很详细 </a><br><a href="http://www.cnblogs.com/dolphinX/p/4381855.html" target="_blank" rel="external">前端模块化</a><br><a href="http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html" target="_blank" rel="external">Javascript模块化编程（二）：AMD规范</a><br><a href="http://yijiebuyi.com/blog/46fb97b11fb8f4055e0b04d1cecb1f69.html" target="_blank" rel="external">浏览器端 javascript 执行 CommonJS规范</a><br><a href="http://www.ruanyifeng.com/blog/2015/05/commonjs-in-browser.html" target="_blank" rel="external">浏览器加载 CommonJS 模块的原理与实现</a><br><a href="http://www.111cn.net/wy/js-ajax/87045.htm" target="_blank" rel="external">浏览器加载服务器端JavaScript的CommonJS模块的原理与实现</a></p>
 
       
     </div>
@@ -336,6 +355,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/使用ES6-webpack模块构建工具/" rel="prev" title="使用ES6-webpack模块构建工具">
+                使用ES6-webpack模块构建工具 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -407,7 +430,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -417,7 +440,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -466,7 +489,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#commonJS模块规范"><span class="nav-number">1.</span> <span class="nav-text">commonJS模块规范</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模块及模块规范"><span class="nav-number">1.</span> <span class="nav-text">模块及模块规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#commonJS模块规范"><span class="nav-number">2.</span> <span class="nav-text">commonJS模块规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器端模块（AMD-CMD）"><span class="nav-number">3.</span> <span class="nav-text">浏览器端模块（AMD/CMD）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端模块化"><span class="nav-number">4.</span> <span class="nav-text">前端模块化</span></a></li></ol></div>
             
           </div>
         </section>
