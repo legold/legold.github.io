@@ -1,0 +1,641 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="模块化seaJS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="模块化开发，你干你的，我干我的，不用担心全局变量命名冲突的影响，只安心开发就OK了。想想这样做是不是很酷炫。
+
+分工协作，多人团队的时候，模块化的概念应该会很重要，但是这也要求你的技术必须过硬了，不然别人都开发完了，就等你了，是不是立即就暴露出自己很弱了，[邪恶]。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模块化开发seaJS">
+<meta property="og:url" content="http://yoursite.com/2016/11/09/模块化开发seaJS/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="模块化开发，你干你的，我干我的，不用担心全局变量命名冲突的影响，只安心开发就OK了。想想这样做是不是很酷炫。
+
+分工协作，多人团队的时候，模块化的概念应该会很重要，但是这也要求你的技术必须过硬了，不然别人都开发完了，就等你了，是不是立即就暴露出自己很弱了，[邪恶]。">
+<meta property="og:updated_time" content="2016-11-09T06:30:49.573Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模块化开发seaJS">
+<meta name="twitter:description" content="模块化开发，你干你的，我干我的，不用担心全局变量命名冲突的影响，只安心开发就OK了。想想这样做是不是很酷炫。
+
+分工协作，多人团队的时候，模块化的概念应该会很重要，但是这也要求你的技术必须过硬了，不然别人都开发完了，就等你了，是不是立即就暴露出自己很弱了，[邪恶]。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/09/模块化开发seaJS/"/>
+
+
+  <title> 模块化开发seaJS | legold </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                模块化开发seaJS
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-09T10:25:34+08:00" content="2016-11-09">
+              2016-11-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/09/模块化开发seaJS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/09/模块化开发seaJS/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>模块化开发，你干你的，我干我的，不用担心全局变量命名冲突的影响，只安心开发就OK了。想想这样做是不是很酷炫。<script src="http://legold.cc/mine/my_deal.js"></script></p>
+</blockquote>
+<p>分工协作，多人团队的时候，模块化的概念应该会很重要，但是这也要求你的技术必须过硬了，不然别人都开发完了，就等你了，是不是立即就暴露出自己很弱了，[邪恶]。<br><a id="more"></a></p>
+<p><a href="http://www.jianshu.com/p/9171c5496c8e" target="_blank" rel="external">前端模块化的那些事儿</a><br><a href="http://study.163.com/course/courseLearn.htm?courseId=717031#/learn/video?lessonId=900193&amp;courseId=717031" target="_blank" rel="external">模块化开发例子</a><br><a href="http://seajs.org/docs/#intro" target="_blank" rel="external">seaJS官网</a><br><strong><a href="http://www.jb51.net/article/47507.htm" target="_blank" rel="external">模块的载入和引用</a></strong><br><a href="http://www.jb51.net/article/83606.htm" target="_blank" rel="external">Sea.JS知识总结</a><br><a href="http://www.mamicode.com/info-detail-860853.html" target="_blank" rel="external">Sea.Js的运行原理–资源定位</a></p>
+<h2 id="模块的载入和引用"><a href="#模块的载入和引用" class="headerlink" title="模块的载入和引用"></a>模块的载入和引用</h2><h3 id="模块的寻址算法"><a href="#模块的寻址算法" class="headerlink" title="模块的寻址算法"></a>模块的寻址算法</h3><p>上文说过一个模块对应一个js文件，而载入模块时一般都是提供一个字符串参数告诉载入函数需要的模块，所以就需要有一套从字符串标识到实际模块所在文件路径的解析算法。SeaJS支持如下标识：<br>绝对地址——给出js文件的绝对路径。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">"http://example/js/a"</span>);</div></pre></td></tr></table></figure></p>
+<p>就代表载入 <code>http://example/js/a.js</code> 。<br>相对地址——用相对调用载入函数所在js文件的相对地址寻找模块。<br>例如在 <a href="http://example/js/b.js" target="_blank" rel="external">http://example/js/b.js</a> 中载入<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">"./c"</span>);  <span class="comment">// 表示载入的是和b.js处于同级目录下的c.js文件</span></div></pre></td></tr></table></figure></p>
+<p>则载入 <code>http://example/js/c.js</code><br><code>./</code>表示<code>同级目录</code>, <code>require(&quot;./c&quot;)</code>表示载入的是和<code>b.js</code>处于同级目录下的<code>c.js</code>文件。<br>基址地址——如果载入字符串标识既不是绝对路径也不是以”./”开头，则相对SeaJS全局配置中的“base”来寻址，这种方法稍后讨论。<br><strong>注意上面在载入模块时都不用传递后缀名“.js”，SeaJS会自动添加“.js”。</strong>但是下面三种情况下不会添加：<br>载入css时，如:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">"./module1-style.css"</span>);</div></pre></td></tr></table></figure></p>
+<p>路径中含有”?”时，如:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://example/js/a.json?cb=func"</span>&gt;</span>http://example/js/a.json?cb=func<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>);</div></pre></td></tr></table></figure></p>
+<p>路径以”#”结尾时，如:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">"http://example/js/a.json#"</span>);</div></pre></td></tr></table></figure></p>
+<p>根据应用场景的不同，SeaJS提供了三个载入模块的API，分别是seajs.use，require和require.async，下面分别介绍。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模块化seaJS/" rel="tag">#模块化seaJS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/09/前端模块化/" rel="next" title="前端模块化">
+                <i class="fa fa-chevron-left"></i> 前端模块化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/09/移动端手势库的运用-zepto-touch模块/" rel="prev" title="移动端手势库的运用-zepto+touch模块">
+                移动端手势库的运用-zepto+touch模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/09/模块化开发seaJS/"
+           data-title="模块化开发seaJS" data-url="http://yoursite.com/2016/11/09/模块化开发seaJS/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模块的载入和引用"><span class="nav-number">1.</span> <span class="nav-text">模块的载入和引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模块的寻址算法"><span class="nav-number">1.1.</span> <span class="nav-text">模块的寻址算法</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
