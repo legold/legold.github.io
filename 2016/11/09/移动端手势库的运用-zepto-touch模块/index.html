@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="可以参考慕课网的有一个视频[移动端相册组件]">
+<meta name="description" content="可以参考慕课网的有一个视频[移动端相册组件]从哪里下载 zepto 呢？zeptoJS官网 或者也可以直接从 github 上面搜索。而且注意在移动端需要使用 touch 模块。当然，也有很多其他的模块，根据自己的需要引入吧。也可以参照腾讯的motion.js。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="移动端手势库的运用-zepto+touch模块">
 <meta property="og:url" content="http://yoursite.com/2016/11/09/移动端手势库的运用-zepto-touch模块/index.html">
 <meta property="og:site_name" content="legold">
-<meta property="og:description" content="可以参考慕课网的有一个视频[移动端相册组件]">
-<meta property="og:updated_time" content="2016-11-09T04:18:59.630Z">
+<meta property="og:description" content="可以参考慕课网的有一个视频[移动端相册组件]从哪里下载 zepto 呢？zeptoJS官网 或者也可以直接从 github 上面搜索。而且注意在移动端需要使用 touch 模块。当然，也有很多其他的模块，根据自己的需要引入吧。也可以参照腾讯的motion.js。">
+<meta property="og:updated_time" content="2016-11-11T09:50:51.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端手势库的运用-zepto+touch模块">
-<meta name="twitter:description" content="可以参考慕课网的有一个视频[移动端相册组件]">
+<meta name="twitter:description" content="可以参考慕课网的有一个视频[移动端相册组件]从哪里下载 zepto 呢？zeptoJS官网 或者也可以直接从 github 上面搜索。而且注意在移动端需要使用 touch 模块。当然，也有很多其他的模块，根据自己的需要引入吧。也可以参照腾讯的motion.js。">
 
 
 
@@ -294,7 +294,27 @@
       
 
       
-        <p>可以参考慕课网的有一个视频[移动端相册组件]<script src="http://legold.cc/mine/my_deal.js"></script></p>
+        <p>可以参考慕课网的有一个视频[移动端相册组件]<script src="http://legold.cc/mine/my_deal.js"></script><br>从哪里下载 <code>zepto</code> 呢？<a href="http://www.zeptojs.com" target="_blank" rel="external">zeptoJS官网</a> 或者也可以直接从 <code>github</code> 上面搜索。而且注意在移动端需要使用 <code>touch</code> 模块。<br>当然，也有很多其他的模块，根据自己的需要引入吧。<br>也可以参照腾讯的<code>motion.js</code>。</p>
+<a id="more"></a>
+<p>在PC上，我们一般都为了方便快速，直接引入<code>jQuery</code>这个<code>DOM</code>操作库。jQuery兼容了所有主流浏览器，这就导致它的大量代码对移动端的浏览器是无用的而且浪费流量的。</p>
+<p>而 Zepto 只针对移动端浏览器编写，因此体积更小、效率更高，更重要的是，它的 API 完全仿照 jQuery ，所以学习成本也很低。</p>
+<h2 id="下载-Zepto"><a href="#下载-Zepto" class="headerlink" title="下载 Zepto"></a>下载 Zepto</h2><p>这个问题看起来很蠢，从官网下载不就行了嘛！可是你有没有发现下载链接上面有行小字呢？<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">There are more modules; a list <span class="keyword">of</span> all modules is available <span class="keyword">in</span> the README.</div></pre></td></tr></table></figure></p>
+<p>在这个 <code>README</code> 里面你会惊奇地发现，Zepto 源码中有 14 个模块，而官网提供的标准版里面只有 7 个模块！而且居然不包含对移动端开发非常重要的 touch 模块（提供对触摸事件的支持）！</p>
+<p>所以我的建议是，不要从官网下载，而是从 Github 下载了源代码之后自己 Build 一个版本，这样你可以自行挑选适合的模块。比如我挑选的模块是这么几个：</p>
+<ul>
+<li>polyfill，zepto，detect，event，ajax，form，fx 这7个就是标准版包含的模块</li>
+<li>fx_methods 有了这个模块之后，.show() .hide() 等几个方法才能支持动画了，比如 .show(‘fast’)</li>
+<li>data 提供对 .data() 方法的完整支持，像 jQuery 一样用内存对象存储</li>
+<li>assets 移除 img 元素后做一些特殊处理，用来清理内存</li>
+<li>selector 更多的选择器的支持，后面会提到</li>
+<li>touch 对触摸事件的支持，比如 tap 事件</li>
+</ul>
+<h2 id="简单开发目录"><a href="#简单开发目录" class="headerlink" title="简单开发目录"></a>简单开发目录</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">zepto开发---&gt;</div><div class="line">│  index.html</div><div class="line">│</div><div class="line">├─css</div><div class="line">├─images</div><div class="line">└─js</div><div class="line">        touch.js</div><div class="line">        zepto.js</div><div class="line">        zepto.min.js</div></pre></td></tr></table></figure>
+<h2 id="抛弃click事件，拥抱tap事件"><a href="#抛弃click事件，拥抱tap事件" class="headerlink" title="抛弃click事件，拥抱tap事件"></a>抛弃click事件，拥抱tap事件</h2><p>这个估计已经广为人知了，因为 click 事件有 200~300 ms 的延迟，为了更快的响应，最好用 Zepto 提供的 tap 事件</p>
+<p>来个<code>demo</code>测试一下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> t1,t2;</div><div class="line">$(<span class="built_in">document</span>).tap(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  t1 = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">  t1 *= <span class="number">1</span>;</div><div class="line">&#125;);</div><div class="line">$(<span class="built_in">document</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  t2 = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">  t2 *= <span class="number">1</span>;</div><div class="line">  <span class="built_in">console</span>.log(t2-t1);  <span class="comment">//会发现每次点击时，控制台都有打印</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>看到这里相信你已经了解为什么我说” Zepto 还远未成熟“，目前它其实还仅仅处于“能用”，远未达到 jQuery “好用”的地步</p>
+<p>用<code>zepto</code>要谨慎。</p>
+<p>详细请参考：<br><a href="http://blog.163.com/litianyichuanqi@126/blog/static/115979441201421910275988/" target="_blank" rel="external">移动开发js库Zepto.js使用中的一些注意点</a></p>
 
       
     </div>
@@ -467,7 +487,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载-Zepto"><span class="nav-number">1.</span> <span class="nav-text">下载 Zepto</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单开发目录"><span class="nav-number">2.</span> <span class="nav-text">简单开发目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抛弃click事件，拥抱tap事件"><span class="nav-number">3.</span> <span class="nav-text">抛弃click事件，拥抱tap事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
           </div>
         </section>
