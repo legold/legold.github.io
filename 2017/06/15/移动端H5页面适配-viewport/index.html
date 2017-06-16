@@ -1,0 +1,691 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="H5适配," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="这篇文章，我将研究一下head中的meta[name=&amp;quot;viewport&amp;quot;]，也就是meta中设置的区别。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端H5页面适配-viewport">
+<meta property="og:url" content="http://yoursite.com/2017/06/15/移动端H5页面适配-viewport/index.html">
+<meta property="og:site_name" content="legold">
+<meta property="og:description" content="这篇文章，我将研究一下head中的meta[name=&amp;quot;viewport&amp;quot;]，也就是meta中设置的区别。">
+<meta property="og:updated_time" content="2017-06-16T03:17:45.901Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端H5页面适配-viewport">
+<meta name="twitter:description" content="这篇文章，我将研究一下head中的meta[name=&amp;quot;viewport&amp;quot;]，也就是meta中设置的区别。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/15/移动端H5页面适配-viewport/"/>
+
+
+  <title> 移动端H5页面适配-viewport | legold </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">legold</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">好的代码像首诗</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动端H5页面适配-viewport
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-15T16:15:31+08:00" content="2017-06-15">
+              2017-06-15
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/15/移动端H5页面适配-viewport/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/15/移动端H5页面适配-viewport/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="http://legold.cc/mine/my_deal.js"></script>
+
+<blockquote>
+<p>这篇文章，我将研究一下head中的<code>meta[name=&quot;viewport&quot;]</code>，也就是meta中设置的区别。</p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>假设我们的测试都是在设备屏幕宽度为<code>531px</code>的情况下测试的，且测试大部分是在谷歌浏览器的网页模拟器上实现的。</p>
+</blockquote>
+<h2 id="基本解释"><a href="#基本解释" class="headerlink" title="基本解释"></a>基本解释</h2><h3 id="物理像素（physical-pixel）：又叫设备像素或者设备物理像素-（物理分辨率）（硬件可以支持的）"><a href="#物理像素（physical-pixel）：又叫设备像素或者设备物理像素-（物理分辨率）（硬件可以支持的）" class="headerlink" title="物理像素（physical pixel）：又叫设备像素或者设备物理像素 （物理分辨率）（硬件可以支持的）"></a>物理像素（physical pixel）：又叫设备像素或者设备物理像素 （物理分辨率）（硬件可以支持的）</h3><p> 一个物理像素是显示器（手机屏幕）上最小的物理显示单元，可以理解为我们平时说的分辨率。</p>
+<p>  显示屏幕的的最小物理单位，每个dp包含自己的颜色、亮度。</p>
+<h3 id="设备独立像素（density-independent-pixel）：又叫css像素或密度无关像素-（逻辑分辨率）（软件可以达到的）"><a href="#设备独立像素（density-independent-pixel）：又叫css像素或密度无关像素-（逻辑分辨率）（软件可以达到的）" class="headerlink" title="设备独立像素（density-independent pixel）：又叫css像素或密度无关像素 （逻辑分辨率）（软件可以达到的）"></a>设备独立像素（density-independent pixel）：又叫css像素或密度无关像素 （逻辑分辨率）（软件可以达到的）</h3><p> 可以认为是计算机坐标系统中的一个点，这个点代表一个可以由程序使用的《虚拟像素》（比如：css像素），然后由相关系统转换为物理像素，在这个可以理解为我们说的视觉视口大小；</p>
+<p> 所以说，物理像素和设备独立像素之间存在一定的对应关系，这就是 设备像素比。</p>
+<h3 id="设备像素比（device-pixel-ratio）："><a href="#设备像素比（device-pixel-ratio）：" class="headerlink" title="设备像素比（device pixel ratio）："></a>设备像素比（device pixel ratio）：</h3><p> 设备像素比（简称dpr）定义了物理像素和设备独立像素之间的对应关系，它的值可以按如下的公式得到， 设备像素比 = 物理像素 / 设备独立像素; //在某一方向上，X方向或者y方向。</p>
+<p> 设备像素比也是设备生产的时候设置好的，在javascript中，可以通过 window.devicePixelRatio 获取当前设备的 dpr。</p>
+<h2 id="无meta-name-”viewport”"><a href="#无meta-name-”viewport”" class="headerlink" title="无meta[name=”viewport”]"></a>无meta[name=”viewport”]</h2><p>当我们在head中不写下面这句<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>或者仅仅写一个不是完整的meta，如下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><code>在移动设备上</code>，我们会发现：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> width = <span class="built_in">window</span>.innerWidth; </div><div class="line"><span class="built_in">console</span>.log(width);  <span class="comment">//980</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.documentElement.clientWidth);  <span class="comment">//980</span></div><div class="line"><span class="built_in">console</span>.log(screen.width);  <span class="comment">// 531</span></div></pre></td></tr></table></figure></p>
+<p>前两项都是<code>980</code>，而<code>screen.width</code>是屏宽 <code>531</code>。</p>
+<p><code>在PC浏览器上</code>，我们会发现（假设我们的可视区域宽度为 786px，笔记本的屏幕分辨率是1366 * 768）：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> width = <span class="built_in">window</span>.innerWidth; </div><div class="line"><span class="built_in">console</span>.log(width);  <span class="comment">//786</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.documentElement.clientWidth);  <span class="comment">//786</span></div><div class="line"><span class="built_in">console</span>.log(screen.width);  <span class="comment">// 1366</span></div></pre></td></tr></table></figure></p>
+<p>前两个显示的是页面可视区域的大小，而screen.width显示的是PC屏幕的宽度。</p>
+<h2 id="有meta设置width属性"><a href="#有meta设置width属性" class="headerlink" title="有meta设置width属性"></a>有meta设置width属性</h2><p>假如我们这样设置<code>viewport</code><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> width = <span class="built_in">window</span>.innerWidth;  </div><div class="line"><span class="built_in">console</span>.log(width);  <span class="comment">//531</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.documentElement.clientWidth);  <span class="comment">//531</span></div><div class="line"><span class="built_in">console</span>.log(screen.width);  <span class="comment">// 531</span></div></pre></td></tr></table></figure></p>
+<p>可以看出，此时得到的值都是屏宽。这也是为什么有些rem高清适配方案里，现在meta中设置了<code>width=device-width</code>后可以用 <code>document.documentElement.clientWidth</code>来设置rem的原因，而且设置完之后，缩放系数有了，那么之后的 <code>document.documentElement.clientWidth</code>在scale不等于1的情况下就会发生变化了。</p>
+<blockquote>
+<p>不过建议使用screen.width来作为设备独立像素，因为这个是不会变化的。</p>
+</blockquote>
+<h2 id="有meta设置initial-scale缩放属性"><a href="#有meta设置initial-scale缩放属性" class="headerlink" title="有meta设置initial-scale缩放属性"></a>有meta设置initial-scale缩放属性</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>当这样设置完后，页面的缩放系数就设置为了0.5，那么此时<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> width = <span class="built_in">window</span>.innerWidth;</div><div class="line"><span class="built_in">console</span>.log(width);  <span class="comment">//1062</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.documentElement.clientWidth);  <span class="comment">//1062</span></div><div class="line"><span class="built_in">console</span>.log(screen.width);  <span class="comment">//531</span></div></pre></td></tr></table></figure></p>
+<p>我们会发现在 screen.width是531px时，initial-scale设置成了 0.5，那么就相当于缩放了一半，我们就可以求出此时的页面物理像素的大小。</p>
+<p>dpr = devicePixelRatio = 2;<br>scale = 1 / dpr = 0.5;<br>device-width = document.documentElement.clientWidth = screen.width * dpr;</p>
+<p>所以上面分别显示为<br>1062<br>1062<br>531</p>
+<p>如果我们将 上面的meta改为<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>我们会突然发现数值变成了<br>531<br>531<br>531</p>
+<p>wtf?<br>为啥缩放比initial-scale改成了1，就变成这样了？而且我的 dpr依然是2啊。</p>
+<p>注意：我们页面适配是由 meta[name=”viewport”]这一项决定的，其中的initial-scale需要显示设置。设置成0.5，就是缩放一半。设置成 0.333333333333 就是要缩放三分之一。<br>因此，为了实现我们写的css 1px 等于 一个物理像素，那么我们就要好好的利用initial-scale属性了。</p>
+<p>比如dpr = 2，那么 scale = 1 / dpr = 0.5;<br><code>**那么我们把缩放系数 initial-scale设置成 0.5后，此时我们就可以解决1px显示变粗的问题了。因为此时如果我们在css中设置了，边框为1px时，在高清屏上比如iphone4上就有2px的物理像素显示。然后又被 initial-scale=0.5缩小了一半。**</code></p>
+<h2 id="解决高清设备1px变粗的原理"><a href="#解决高清设备1px变粗的原理" class="headerlink" title="解决高清设备1px变粗的原理"></a>解决高清设备1px变粗的原理</h2><p>由于我在meta中设置了<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5,user-scalable=no"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>缩放系数为0.5。<br>所以此时假如设备独立像素（css像素） screen.width 是 320 。 那么dpr就是2，scale是0.5。那么此时的设备物理像素（device-width）也就是<br>screen.width / scale = screen.width x dpr = 320 x 2 = 640。<br>js中通过几下的接口可以获取。<br>其实此时的window.innerWidth, document.documentElement.clientWidth,<br>document.documentElement.getBoundingClientRect().width<br>获取的都是物理分辨率（设备物理像素）<br>他们都符合这个关系： device-width = window.screen.width * dpr;</p>
+<p>获取viewport 中的 device-width，可以用document.documentElement.clientWidth或者window.innerWidth或者 document.documentElement.getBoundingClientRect().width。</p>
+<p>其实在PC端，var dpr = window.devicePixelRatio = 1;<br>此时的设备物理像素等于设备独立像素，也就是说物理分辨率和逻辑分辨率此时是一样的。<br>因为 document.documentElement.clientWidth = window.screen.width * dpr = screen.width;<br>screen.width代表的是设备独立像素（逻辑分辨率）<br>document.documentElement.clientWidth 即 device-width代表的是 设备物理像素。</p>
+<p>解决移动端1px显示问题： 设置 viewport device-width = 设备的物理分辨率，让1px等于一个物理像素。 因为传统设置 viewport  width=device-width 是将宽度设置为了设备独立像素，或者叫逻辑分辨率。</p>
+<p>正是因为有了这样的设置，可以使得高清屏幕上1px边框的问题完美解决，因为，我们css中设置了边框为1px，其实这个设置的是CSS像素，也就相当于是设备独立像素，他是虚拟软件可以使用的，而高清屏中设备像素比都是大于1的，比如2或3，拿iphone4来说，devicePixelRatio(dpr) 是 2，那么此时在x或y方向上，1个css像素就有2个设备物理像素，所以在显示上会出现（1px显示成了设备可以显示的2px，又被 initial-scale=0.5 缩小了一半。）因此，我们设置的css 1px 就可以 以最小显示单元物理像素的  1px 来显示。</p>
+<h2 id="rem简单适配（不解决1px问题）"><a href="#rem简单适配（不解决1px问题）" class="headerlink" title="rem简单适配（不解决1px问题）"></a>rem简单适配（不解决1px问题）</h2><p>这种适配需要在head预先设置<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>为了能将设计稿中的 px 方便的转换为页面中 rem，我设置 1rem 为 宽度为 750px 的设计稿中的 100px，也就是<code>设计稿为750px，基准字体100px，可以在750px设计稿上切图片素材</code></p>
+<ul>
+<li>该方案并没有解决高清屏幕的显示，即1px的世纪问题</li>
+<li>该方案以750px为设计稿，并在此宽度得标注稿，然后可以直接在此基础上切图。</li>
+<li>该方案以100px为基准字体，这样更加方便计算，比如一个div宽464px，那就是4.64rem</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">!<span class="function"><span class="keyword">function</span>(<span class="params">win, doc</span>)</span>&#123;</div><div class="line"></div><div class="line">     <span class="function"><span class="keyword">function</span> <span class="title">setFontSize</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="comment">//获取window宽度</span></div><div class="line">        <span class="keyword">var</span> winWidth = <span class="built_in">window</span>.innerWidth || doc.documentElement.clientWidth || screen.width;</div><div class="line">        <span class="comment">//750px宽度以上进行限制</span></div><div class="line">        <span class="keyword">var</span> size = winWidth / <span class="number">7.5</span>;  <span class="comment">//实际原理var size = (winWidth / 750) * 100;</span></div><div class="line">        doc.documentElement.style.fontSize = (size &lt; <span class="number">100</span> ? size : <span class="number">100</span> ) + <span class="string">'px'</span>;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="comment">//限制也可以换一种写法</span></div><div class="line">        <span class="comment">/*            </span></div><div class="line">          if(winWidth&gt;750)&#123;</div><div class="line">              winWidth = 750;</div><div class="line">          &#125;else if(winWidth &lt; 300)&#123;</div><div class="line">              winWidth = 300;</div><div class="line">          &#125;</div><div class="line">          var size = winWidth / 7.5;  //实际原理var size = (winWidth / 750) * 100;</div><div class="line">          doc.documentElement.style.fontSize = size + 'px';</div><div class="line">        */</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> evt = <span class="string">'onorientationchange'</span> <span class="keyword">in</span> win ? <span class="string">'orientationchange'</span> : <span class="string">'resize'</span>;</div><div class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span>;</div><div class="line"></div><div class="line">    win.addEventListener(evt,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       clearTimeout(timer);</div><div class="line">       timer = setTimeout(setFontSize,<span class="number">100</span>);</div><div class="line">    &#125;,<span class="literal">false</span>);</div><div class="line"></div><div class="line">    win.addEventListener(<span class="string">'pageshow'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">       <span class="keyword">if</span>(e.persisted)&#123;</div><div class="line">          clearTimeout(timer);</div><div class="line">          timer = setTimeout(setFontSize,<span class="number">100</span>);</div><div class="line">       &#125;</div><div class="line">    &#125;,<span class="literal">false</span>);</div><div class="line"></div><div class="line">    <span class="comment">//初始化</span></div><div class="line">    setFontSize();</div><div class="line"></div><div class="line"></div><div class="line">&#125;(<span class="built_in">window</span>,<span class="built_in">document</span>);</div></pre></td></tr></table></figure>
+<p>这样设置之后我们就会发现 <code>html</code>标签上自动加上了<code>style=&quot;50px</code>属性，假如在<code>375px</code>屏宽下。<br>然后我们就可以直接在css写样式了。<br><code>比如设计稿750px，我们给盒子一个宽度为7.5rem，表示设计稿的宽度。然后其中一个元素的尺寸比如在标注稿上是宽334px，高200px，那么就可以不用sass或者less或者其他的什么px2rem的工具，直接口算出来了。简直轻松啊。</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">html,body&#123;</div><div class="line">  width:100%;</div><div class="line">  height:100%;</div><div class="line">&#125;</div><div class="line">.wrap&#123;</div><div class="line">   width:7.5rem;  /*全屏宽*/</div><div class="line">   margin:0 auto;</div><div class="line">   height:100%;</div><div class="line">   background:red;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/*对于段落文本如何设置字体，所有设备都显示同样的字体大小吗*/</div><div class="line">/*不好*/</div><div class="line">/*使用rem吗？*/</div><div class="line">/*不好*/</div><div class="line">/*没有方法了吗？*/</div><div class="line">.wrap p&#123;</div><div class="line">   font-size:0.22rem;</div><div class="line">&#125;</div><div class="line">.wrap .left&#123;</div><div class="line">   width:50%;  /*其中一半的宽度，也可以适当的使用百分比*/</div><div class="line">   width:3.75rem;</div><div class="line">   background:blue;</div><div class="line"></div><div class="line">&#125;</div><div class="line">.wrap .left2&#123;</div><div class="line">   width:50%;  /*其中一半的宽度，也可以适当的使用百分比*/</div><div class="line">   background:orange;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.wrap .left3&#123;</div><div class="line">   width:50%;  /*其中一半的宽度，也可以适当的使用百分比*/</div><div class="line">   width:50vw;  /*兼容性不好*/  /*而且他是根据屏幕为基准*/</div><div class="line">   background:#fff;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">.wrap .left,</div><div class="line">.wrap .left2,</div><div class="line">.wrap .left3&#123;</div><div class="line">  padding:.1rem;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrap"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>元素1--width:3.75rem;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left2"</span>&gt;</span>元素2--width:50%;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left3"</span>&gt;</span>元素3--width:50vw;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>更加简洁的写法</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">doc,win</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> docEl = doc.documentElement,</div><div class="line">    resizeEvt = <span class="string">'orientationchange'</span> <span class="keyword">in</span> <span class="built_in">window</span> ? <span class="string">'orientationchange'</span> : <span class="string">'resize'</span>,</div><div class="line">    recalc = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="keyword">var</span> clientWidth = docEl.clientWidth;</div><div class="line">       <span class="keyword">if</span>(!clientWidth) <span class="keyword">return</span>;</div><div class="line">       <span class="comment">//docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';</span></div><div class="line">       docEl.style.fontSize = <span class="number">100</span>*(clientWidth / <span class="number">750</span>) + <span class="string">'px'</span>;           </div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">if</span>(!doc.addEventListener) <span class="keyword">return</span>;</div><div class="line">    win.addEventListener(resizeEvt,recalc,<span class="literal">false</span>);</div><div class="line">    <span class="comment">//初始化</span></div><div class="line">    recalc();</div><div class="line">    <span class="comment">//这个不用下面的状态来执行，可以直接初始化</span></div><div class="line">    <span class="comment">//doc.addEventListener('DOMContentLoaded',recalc,false);</span></div><div class="line">&#125;)(<span class="built_in">document</span>,<span class="built_in">window</span>);</div></pre></td></tr></table></figure></p>
+<p><code>注意，由于这种方案并没有解决高清显示的问题，因此，根据场景复杂程度来选择使用。而且这种方案唯一不好的地方是设置段落文本的时候不好设置，设置成固定px宽度显然不可取，好一点的办法就是通过媒体查询来设置段落文本的字体，当然也可以直接使用rem。</code></p>
+<h2 id="rem高清适配（解决1px问题）"><a href="#rem高清适配（解决1px问题）" class="headerlink" title="rem高清适配（解决1px问题）"></a>rem高清适配（解决1px问题）</h2><p>终于到了激动人心的高清视觉稿还原了，尤其是当强迫症的设计师拿着视觉稿和你的网页用放大镜一般的眼睛挑出1px边框的显示为啥变粗了的时候，真实无语了。</p>
+<p>因此，推出这种高清视觉稿的适配方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line">流程步骤：  </div><div class="line">    <span class="number">750</span> * <span class="number">1334</span> 的视觉稿，当然高度是由内容自动填充决定的。</div><div class="line">    iphone6视觉稿 基准字体值 是<span class="number">75</span>  <span class="number">1</span>rem = <span class="number">75</span>px;</div><div class="line"></div><div class="line"><span class="comment">//http://www.html-js.com/article/Mobile-terminal-H5-mobile-terminal-HD-multi-screen-adaptation-scheme%203041</span></div><div class="line"></div><div class="line"></div><div class="line">!<span class="function"><span class="keyword">function</span>(<span class="params">win</span>)</span>&#123;</div><div class="line"></div><div class="line">	 <span class="keyword">var</span> doc = win.document;</div><div class="line">	 <span class="keyword">var</span> dpr, rem, scale;</div><div class="line">	 <span class="keyword">var</span> docEl = <span class="built_in">document</span>.documentElement;</div><div class="line">	 <span class="keyword">var</span> fontEl = <span class="built_in">document</span>.createElement(<span class="string">"style"</span>);</div><div class="line">	 <span class="keyword">var</span> metaEl = <span class="built_in">document</span>.querySelector(<span class="string">"meta[name='viewport']"</span>);</div><div class="line">	 <span class="keyword">var</span> evt = <span class="string">'onorientationchange'</span> <span class="keyword">in</span> win ? <span class="string">'orientationchange'</span> : <span class="string">'resize'</span>;</div><div class="line">	 <span class="keyword">var</span> tid;</div><div class="line"></div><div class="line">	 dpr = <span class="built_in">window</span>.devicePixelRatio || <span class="number">1</span>;</div><div class="line">	          </div><div class="line">	 <span class="function"><span class="keyword">function</span> <span class="title">refreshRem</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	    <span class="comment">//console.log(screen.width,window.innerWidth,document.documentElement.clientWidth);</span></div><div class="line">	    <span class="comment">/*</span></div><div class="line">	    console.log(screen.width);</div><div class="line">	    console.log(document.documentElement.clientWidth);</div><div class="line">	    */</div><div class="line">	    <span class="comment">//console.log('为什么这个window.innerWidth执行了两次啊 '+window.innerWidth);</span></div><div class="line"></div><div class="line">	    <span class="keyword">var</span> deviceWidth = <span class="built_in">window</span>.screen.width;</div><div class="line">	    <span class="keyword">if</span>(deviceWidth &gt; <span class="number">540</span>)&#123;</div><div class="line">	       deviceWidth = <span class="number">540</span>;</div><div class="line">	    &#125;</div><div class="line">	    rem = deviceWidth*dpr/<span class="number">10</span>;</div><div class="line">	    scale = <span class="number">1</span> / dpr;</div><div class="line"></div><div class="line">	    <span class="comment">//设置viewport，进行缩放，达到高清效果</span></div><div class="line">	    metaEl.setAttribute(<span class="string">'content'</span>,<span class="string">'width='</span>+ (dpr*screen.width || dpr*docEl.clientWidth) +<span class="string">',initial-scale='</span>+ scale +<span class="string">',minimum-scale='</span>+ scale +<span class="string">',maximum-scale='</span>+ scale +<span class="string">',user-scalable=no'</span>);</div><div class="line"></div><div class="line">	    docEl.style.fontSize =  rem + <span class="string">'px'</span>;</div><div class="line"></div><div class="line">	 &#125;</div><div class="line"></div><div class="line">	 <span class="comment">//设置 data-dpr属性，留作 css hack之用，比如设置段落文本的字体px</span></div><div class="line">	 docEl.setAttribute(<span class="string">'data-dpr'</span>,dpr);</div><div class="line"></div><div class="line">	 <span class="comment">//初始化body字体显示</span></div><div class="line">	 <span class="keyword">if</span>(<span class="built_in">document</span>.readyState === <span class="string">'complete'</span>)&#123;</div><div class="line">	    <span class="built_in">document</span>.body.style.fontSize = <span class="number">12</span> * dpr + <span class="string">'px'</span>;</div><div class="line">	 &#125;<span class="keyword">else</span> &#123;</div><div class="line">	    <span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	       <span class="built_in">document</span>.body.style.fontSize = <span class="number">12</span> * dpr + <span class="string">'px'</span>;</div><div class="line">	    &#125;,<span class="literal">false</span>);</div><div class="line">	 &#125;</div><div class="line"></div><div class="line"></div><div class="line">	 win.addEventListener(evt, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	     clearTimeout(tid);</div><div class="line">	     tid = setTimeout(refreshRem,<span class="number">100</span>);</div><div class="line">	 &#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line">	 win.addEventListener(<span class="string">'pageshow'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">	     <span class="keyword">if</span>(e.persisted)&#123;</div><div class="line">	         clearTimeout(tid);</div><div class="line">	         tid = setTimeout(refreshRem,<span class="number">100</span>);</div><div class="line">	     &#125;</div><div class="line">	 &#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line">	 <span class="comment">//初始化</span></div><div class="line">	 refreshRem();</div><div class="line"></div><div class="line"></div><div class="line">&#125;(<span class="built_in">window</span>);</div></pre></td></tr></table></figure>
+<p>注意：这种方案不再是把750px视觉稿的基准字体设置成100px了。<br>有所区别的是，它把视觉稿分成了100a，为了兼容以后的100vw。<br>然后1rem = 10a，那视觉稿的宽度就是10rem。<br>因此 <code>1rem = 75px;</code></p>
+<h3 id="如何计算元素宽度"><a href="#如何计算元素宽度" class="headerlink" title="如何计算元素宽度"></a>如何计算元素宽度</h3><p>说到如何计算，各路大牛们其实都已经做了很多探索。比如<code>less，sass，宏之类的，然后一些px2rem在线转换工具等。</code></p>
+<p><strong>当然了，我设想的场景是，我不想用那些转换工具，我只想用我的编辑器来转换。那么就推荐使用<code>cssrem</code>插件了，这个工具是真的好啊。安装后，我们只需要看着标注图，然后在css直接写尺寸，写出px后编辑器会自动出现一个转换弹窗，我们选择确定就行了。简直不要太好用啊。</strong></p>
+<p>然后在css中，我们为了不出现rem计算后的页面字体或布局跳动，可以先预设一下body的font-size。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">*&#123;</div><div class="line">  -webkit-box-sizing:border-box;</div><div class="line">  box-sizing:border-box;</div><div class="line">&#125;</div><div class="line">html,body&#123;</div><div class="line">  width:100%;</div><div class="line">  height:100%;</div><div class="line">&#125;</div><div class="line">body&#123;</div><div class="line">  font-size:12px;   /*预设成12px*/</div><div class="line">  /* width:10.0rem;</div><div class="line">  margin:0 auto; */</div><div class="line">&#125;</div><div class="line">.wrap&#123;</div><div class="line">   width:10rem;  /*全屏宽*/</div><div class="line">   margin:0 auto;</div><div class="line">   height:100%;</div><div class="line">   background:#f6f6f6;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">.wrap p&#123;</div><div class="line">   font-size:0.346667rem;</div><div class="line">&#125;</div><div class="line">.wrap .left&#123;</div><div class="line">   width:50%;  /*其中一半的宽度，也可以适当的使用百分比*/</div><div class="line">   width:5.0rem;</div><div class="line">   background:blue;</div><div class="line"></div><div class="line">&#125;</div><div class="line">.wrap .left2&#123;</div><div class="line">   width:50%;  /*其中一半的宽度，也可以适当的使用百分比*/</div><div class="line">   background:orange;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.wrap .left3&#123;</div><div class="line">   width:50%;  /*其中一半的宽度，也可以适当的使用百分比*/</div><div class="line">   width:50vw;  /*兼容性不好*/  /*而且他是根据屏幕为基准*/</div><div class="line">   background:#fff;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">.wrap .left,</div><div class="line">.wrap .left2,</div><div class="line">.wrap .left3&#123;</div><div class="line">  padding:0.266667rem;</div><div class="line">&#125;</div><div class="line"></div><div class="line">div&#123;</div><div class="line">  font-size:12px;</div><div class="line">&#125;</div><div class="line">[data-dpr="2"] div&#123;</div><div class="line">  font-size:24px;</div><div class="line">&#125;</div><div class="line">[data-dpr="3"] div&#123;</div><div class="line">  font-size:36px;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrap"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示个人信息设置视频演示<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>元素1--width:3.75rem;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left2"</span>&gt;</span>元素2--width:50%;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left3"</span>&gt;</span>元素3--width:50vw;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><code>这里关键是有一点我们可以设置那些我们不希望自动缩放的段落文本了，通过[data-dpr]属性</code><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span>&#123;</div><div class="line">  <span class="attribute">font-size</span>:<span class="number">12px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-attr">[data-dpr="2"]</span> <span class="selector-tag">div</span>&#123;</div><div class="line">  <span class="attribute">font-size</span>:<span class="number">24px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-attr">[data-dpr="3"]</span> <span class="selector-tag">div</span>&#123;</div><div class="line">  <span class="attribute">font-size</span>:<span class="number">36px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>参考</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000007526917" target="_blank" rel="external">移动端页面开发适配 rem布局原理</a></li>
+<li><a href="https://segmentfault.com/a/1190000009237854" target="_blank" rel="external">移动端web布局方案的知识总结</a></li>
+<li><a href="http://www.html-js.com/article/Mobile-terminal-H5-mobile-terminal-HD-multi-screen-adaptation-scheme%203041" target="_blank" rel="external">移动端高清、多屏适配方案</a></li>
+<li><a href="https://segmentfault.com/a/1190000003690140?_ea=746493" target="_blank" rel="external">关于移动端 rem 布局的一些总结</a></li>
+<li><a href="https://w3ctech.com/topic/979" target="_blank" rel="external">MobileWeb 适配总结</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/H5适配/" rel="tag">#H5适配</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/22/npm-install全局安装与本地安装/" rel="next" title="npm install全局安装与本地安装">
+                <i class="fa fa-chevron-left"></i> npm install全局安装与本地安装
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/06/15/移动端H5页面适配-viewport/"
+           data-title="移动端H5页面适配-viewport" data-url="http://yoursite.com/2017/06/15/移动端H5页面适配-viewport/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Legold" />
+          <p class="site-author-name" itemprop="name">Legold</p>
+          <p class="site-description motion-element" itemprop="description">梦想还是要有的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/legold" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/hl-520" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本解释"><span class="nav-number">1.</span> <span class="nav-text">基本解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物理像素（physical-pixel）：又叫设备像素或者设备物理像素-（物理分辨率）（硬件可以支持的）"><span class="nav-number">1.1.</span> <span class="nav-text">物理像素（physical pixel）：又叫设备像素或者设备物理像素 （物理分辨率）（硬件可以支持的）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设备独立像素（density-independent-pixel）：又叫css像素或密度无关像素-（逻辑分辨率）（软件可以达到的）"><span class="nav-number">1.2.</span> <span class="nav-text">设备独立像素（density-independent pixel）：又叫css像素或密度无关像素 （逻辑分辨率）（软件可以达到的）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设备像素比（device-pixel-ratio）："><span class="nav-number">1.3.</span> <span class="nav-text">设备像素比（device pixel ratio）：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无meta-name-”viewport”"><span class="nav-number">2.</span> <span class="nav-text">无meta[name=”viewport”]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有meta设置width属性"><span class="nav-number">3.</span> <span class="nav-text">有meta设置width属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有meta设置initial-scale缩放属性"><span class="nav-number">4.</span> <span class="nav-text">有meta设置initial-scale缩放属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决高清设备1px变粗的原理"><span class="nav-number">5.</span> <span class="nav-text">解决高清设备1px变粗的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rem简单适配（不解决1px问题）"><span class="nav-number">6.</span> <span class="nav-text">rem简单适配（不解决1px问题）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rem高清适配（解决1px问题）"><span class="nav-number">7.</span> <span class="nav-text">rem高清适配（解决1px问题）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何计算元素宽度"><span class="nav-number">7.1.</span> <span class="nav-text">如何计算元素宽度</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Legold</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"legold"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
